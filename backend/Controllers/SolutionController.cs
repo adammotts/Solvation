@@ -38,7 +38,9 @@ namespace Solvation.Controllers
             return Ok(request);
         }
 
-        // Test with: curl -X GET "http://localhost:5256/game-state?playerSumValue=21&playerValueType=Blackjack&playerStateType=Terminal&dealerFaceUpValue=10&dealerValueType=Hard&dealerStateType=Active"
+        /* Test with:
+            curl -X GET "http://localhost:5256/game-state?playerSumValue=21&playerValueType=Blackjack&playerStateType=Terminal&dealerFaceUpValue=10&dealerValueType=Hard&dealerStateType=Active"
+        */
         [HttpGet("/game-state")]
         public IActionResult GetGameState(
             [FromQuery] int playerSumValue,
