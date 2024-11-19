@@ -1,3 +1,6 @@
 # Build Artifacts
 bin/
 obj/
+
+# Credentials
+.env
