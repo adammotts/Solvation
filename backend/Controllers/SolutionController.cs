@@ -16,18 +16,25 @@ namespace Solvation.Controllers
             _gameStateCollection = mongoDbService.GetCollection<GameState>("gameStates");
         }
 
-        // Test with: curl -X POST http://localhost:5256/game-state
+        // Test with: curl -X POST "http://localhost:5256/game-state?playerSumValue=21&playerValueType=Blackjack&playerStateType=Terminal&dealerFaceUpValue=10&dealerValueType=Hard&dealerStateType=Active"
         [HttpPost("/game-state")]
-        public IActionResult GenerateGameState()
+        public IActionResult GenerateGameState(
+            [FromQuery] int playerSumValue,
+            [FromQuery] GameState.GameStateValueType playerValueType,
+            [FromQuery] GameState.GameStateType playerStateType,
+            [FromQuery] int dealerFaceUpValue,
+            [FromQuery] GameState.GameStateValueType dealerValueType,
+            [FromQuery] GameState.GameStateType dealerStateType
+        )
         {
             var gameState = new GameState
             {
-                PlayerSumValue = 21,
-                PlayerValueType = GameState.GameStateValueType.Blackjack,
-                PlayerStateType = GameState.GameStateType.Terminal,
-                DealerFaceUpValue = 10,
-                DealerValueType = GameState.GameStateValueType.Hard,
-                DealerStateType = GameState.GameStateType.Active
+                PlayerSumValue = playerSumValue,
+                PlayerValueType = playerValueType,
+                PlayerStateType = playerStateType,
+                DealerFaceUpValue = dealerFaceUpValue,
+                DealerValueType = dealerValueType,
+                DealerStateType = dealerStateType
             };
 
             _gameStateCollection.InsertOne(gameState);
@@ -39,28 +46,20 @@ namespace Solvation.Controllers
         [HttpGet("/game-state")]
         public IActionResult GetGameState(
             [FromQuery] int playerSumValue,
-            [FromQuery] string playerValueType,
-            [FromQuery] string playerStateType,
+            [FromQuery] GameState.GameStateValueType playerValueType,
+            [FromQuery] GameState.GameStateType playerStateType,
             [FromQuery] int dealerFaceUpValue,
-            [FromQuery] string dealerValueType,
-            [FromQuery] string dealerStateType
+            [FromQuery] GameState.GameStateValueType dealerValueType,
+            [FromQuery] GameState.GameStateType dealerStateType
         )
         {
-            if (!Enum.TryParse(playerValueType, true, out GameState.GameStateValueType parsedPlayerValueType) ||
-                !Enum.TryParse(playerStateType, true, out GameState.GameStateType parsedPlayerStateType) ||
-                !Enum.TryParse(dealerValueType, true, out GameState.GameStateValueType parsedDealerValueType) ||
-                !Enum.TryParse(dealerStateType, true, out GameState.GameStateType parsedDealerStateType))
-            {
-                return BadRequest("Invalid enum values provided.");
-            }
-
             var filter = Builders<GameState>.Filter.And(
                 Builders<GameState>.Filter.Eq(g => g.PlayerSumValue, playerSumValue),
-                Builders<GameState>.Filter.Eq(g => g.PlayerValueType, parsedPlayerValueType),
-                Builders<GameState>.Filter.Eq(g => g.PlayerStateType, parsedPlayerStateType),
+                Builders<GameState>.Filter.Eq(g => g.PlayerValueType, playerValueType),
+                Builders<GameState>.Filter.Eq(g => g.PlayerStateType, playerStateType),
                 Builders<GameState>.Filter.Eq(g => g.DealerFaceUpValue, dealerFaceUpValue),
-                Builders<GameState>.Filter.Eq(g => g.DealerValueType, parsedDealerValueType),
-                Builders<GameState>.Filter.Eq(g => g.DealerStateType, parsedDealerStateType)
+                Builders<GameState>.Filter.Eq(g => g.DealerValueType, dealerValueType),
+                Builders<GameState>.Filter.Eq(g => g.DealerStateType, dealerStateType)
             );
 
             var gameStates = _gameStateCollection.Find(filter).ToList();
