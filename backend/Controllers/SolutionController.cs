@@ -30,7 +30,7 @@ namespace Solvation.Controllers
                 "DealerValueType": "Hard",
                 "DealerStateType": "Active",
                 "Actions": {
-                    "Hit": 0.65,
+                    "Hit": null,
                     "Stand": 0.85,
                     "Double": 1.25,
                     "Split": 0.95
