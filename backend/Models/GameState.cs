@@ -29,7 +29,7 @@ namespace Solvation.Models {
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public GameStateType PlayerStateType { get; set; }
 
-        public int DealerFaceUpValue { get; set;}
+        public int DealerFaceUpValue { get; set; }
 
         [JsonConverter(typeof(JsonStringEnumConverter))]
         public GameStateValueType DealerValueType { get; set; }
