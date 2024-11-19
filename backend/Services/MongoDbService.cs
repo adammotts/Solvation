@@ -1,4 +1,6 @@
 using MongoDB.Driver;
+using DotNetEnv;
+using Microsoft.Extensions.Configuration;
 
 public class MongoDbService
 {
@@ -6,8 +8,21 @@ public class MongoDbService
 
     public MongoDbService(IConfiguration configuration)
     {
-        var connectionString = configuration.GetSection("MongoDB:ConnectionString").Value;
-        var databaseName = configuration.GetSection("MongoDB:DatabaseName").Value;
+        DotNetEnv.Env.Load();
+
+        var username = Environment.GetEnvironmentVariable("DATABASE_USER_USERNAME")
+            ?? throw new InvalidOperationException("Environment variable 'DATABASE_USER_USERNAME' is not set.");
+        var password = Environment.GetEnvironmentVariable("DATABASE_USER_PASSWORD")
+            ?? throw new InvalidOperationException("Environment variable 'DATABASE_USER_PASSWORD' is not set.");
+
+        var connectionStringTemplate = configuration.GetSection("MongoDB:ConnectionString").Value
+            ?? throw new InvalidOperationException("Configuration key 'MongoDB:ConnectionString' is not set.");
+        var databaseName = configuration.GetSection("MongoDB:DatabaseName").Value
+            ?? throw new InvalidOperationException("Configuration key 'MongoDB:DatabaseName' is not set.");
+
+        var connectionString = connectionStringTemplate
+            .Replace("<username>", username)
+            .Replace("<password>", password);
 
         var client = new MongoClient(connectionString);
         _database = client.GetDatabase(databaseName);
