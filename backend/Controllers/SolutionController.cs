@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using Solvation.Models;
+using Solvation.Enums;
 using System.Linq;
 
 namespace Solvation.Controllers
@@ -16,41 +17,36 @@ namespace Solvation.Controllers
             _gameStateCollection = mongoDbService.GetCollection<GameState>("gameStates");
         }
 
-        // Test with: curl -X POST "http://localhost:5256/game-state?playerSumValue=21&playerValueType=Blackjack&playerStateType=Terminal&dealerFaceUpValue=10&dealerValueType=Hard&dealerStateType=Active"
+        /*
+        Test with:
+            curl -X POST "http://localhost:5256/game-state" \
+            -H "Content-Type: application/json" \
+            -d '{
+                "PlayerSumValue": 21,
+                "PlayerValueType": "Blackjack",
+                "PlayerStateType": "Terminal",
+                "DealerFaceUpValue": 10,
+                "DealerValueType": "Hard",
+                "DealerStateType": "Active"
+            }'
+        */
         [HttpPost("/game-state")]
-        public IActionResult GenerateGameState(
-            [FromQuery] int playerSumValue,
-            [FromQuery] GameState.GameStateValueType playerValueType,
-            [FromQuery] GameState.GameStateType playerStateType,
-            [FromQuery] int dealerFaceUpValue,
-            [FromQuery] GameState.GameStateValueType dealerValueType,
-            [FromQuery] GameState.GameStateType dealerStateType
-        )
+        public IActionResult GenerateGameState([FromBody] GameState request)
         {
-            var gameState = new GameState
-            {
-                PlayerSumValue = playerSumValue,
-                PlayerValueType = playerValueType,
-                PlayerStateType = playerStateType,
-                DealerFaceUpValue = dealerFaceUpValue,
-                DealerValueType = dealerValueType,
-                DealerStateType = dealerStateType
-            };
+            _gameStateCollection.InsertOne(request);
 
-            _gameStateCollection.InsertOne(gameState);
-
-            return Ok(gameState);
+            return Ok(request);
         }
 
         // Test with: curl -X GET "http://localhost:5256/game-state?playerSumValue=21&playerValueType=Blackjack&playerStateType=Terminal&dealerFaceUpValue=10&dealerValueType=Hard&dealerStateType=Active"
         [HttpGet("/game-state")]
         public IActionResult GetGameState(
             [FromQuery] int playerSumValue,
-            [FromQuery] GameState.GameStateValueType playerValueType,
-            [FromQuery] GameState.GameStateType playerStateType,
+            [FromQuery] GameStateValueType playerValueType,
+            [FromQuery] GameStateType playerStateType,
             [FromQuery] int dealerFaceUpValue,
-            [FromQuery] GameState.GameStateValueType dealerValueType,
-            [FromQuery] GameState.GameStateType dealerStateType
+            [FromQuery] GameStateValueType dealerValueType,
+            [FromQuery] GameStateType dealerStateType
         )
         {
             var filter = Builders<GameState>.Filter.And(

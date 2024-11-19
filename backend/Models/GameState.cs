@@ -1,22 +1,10 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System.Text.Json.Serialization;
+using Solvation.Enums;
 
 namespace Solvation.Models {
     public class GameState {
-        public enum GameStateValueType {
-            Soft,
-            Hard,
-            Blackjack,
-            MaybeBlackjack,
-            Splittable
-        }
-
-        public enum GameStateType {
-            Active,
-            Terminal
-        }
-
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
