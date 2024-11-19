@@ -19,5 +19,7 @@ namespace Solvation.Models {
         public GameStateValueType DealerValueType { get; set; }
 
         public GameStateType DealerStateType { get; set; }
+
+        public GameActions Actions { get; set; } = new GameActions();
     }
 }

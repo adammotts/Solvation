@@ -28,12 +28,26 @@ namespace Solvation.Controllers
                 "PlayerStateType": "Terminal",
                 "DealerFaceUpValue": 10,
                 "DealerValueType": "Hard",
-                "DealerStateType": "Active"
+                "DealerStateType": "Active",
+                "Actions": {
+                    "Hit": 0.65,
+                    "Stand": 0.85,
+                    "Double": 1.25,
+                    "Split": 0.95
+                }
             }'
         */
         [HttpPost("/game-state")]
         public IActionResult GenerateGameState([FromBody] GenerateGameStateRequest request)
         {
+            var gameActions = new GameActions
+            {
+                Hit = request.Actions.Hit,
+                Stand = request.Actions.Stand,
+                Double = request.Actions.Double,
+                Split = request.Actions.Split
+            };
+
             var gameState = new GameState
             {
                 PlayerSumValue = request.PlayerSumValue,
@@ -41,7 +55,8 @@ namespace Solvation.Controllers
                 PlayerStateType = request.PlayerStateType,
                 DealerFaceUpValue = request.DealerFaceUpValue,
                 DealerValueType = request.DealerValueType,
-                DealerStateType = request.DealerStateType
+                DealerStateType = request.DealerStateType,
+                Actions = gameActions
             };
 
             _gameStateCollection.InsertOne(gameState);

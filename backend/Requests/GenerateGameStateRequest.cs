@@ -1,4 +1,5 @@
 using Solvation.Enums;
+using Solvation.Models;
 
 namespace Solvation.Requests
 {
@@ -10,5 +11,6 @@ namespace Solvation.Requests
         public int DealerFaceUpValue { get; set; }
         public GameStateValueType DealerValueType { get; set; }
         public GameStateType DealerStateType { get; set; }
+        public GameActionsRequest Actions { get; set; } = new GameActionsRequest();
     }
 }
