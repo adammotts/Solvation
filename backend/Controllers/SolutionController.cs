@@ -16,12 +16,7 @@ namespace Solvation.Controllers
             _gameStateCollection = mongoDbService.GetCollection<GameState>("gameStates");
         }
 
-        [HttpGet("/test")]
-        public IActionResult GetTestResponse()
-        {
-            return Ok(new { message = "Test route" });
-        }
-
+        // Test with: curl -X POST http://localhost:5256/game-state
         [HttpPost("/game-state")]
         public IActionResult GenerateGameState()
         {
@@ -40,6 +35,7 @@ namespace Solvation.Controllers
             return Ok(gameState);
         }
 
+        // Test with: curl -X GET "http://localhost:5256/game-state?playerSumValue=21&playerValueType=Blackjack&playerStateType=Terminal&dealerFaceUpValue=10&dealerValueType=Hard&dealerStateType=Active"
         [HttpGet("/game-state")]
         public IActionResult GetGameState(
             [FromQuery] int playerSumValue,
