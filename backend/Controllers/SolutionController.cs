@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using Solvation.Models;
 using Solvation.Enums;
+using Solvation.Requests;
 using System.Linq;
 
 namespace Solvation.Controllers
@@ -31,33 +32,45 @@ namespace Solvation.Controllers
             }'
         */
         [HttpPost("/game-state")]
-        public IActionResult GenerateGameState([FromBody] GameState request)
+        public IActionResult GenerateGameState([FromBody] GenerateGameStateRequest request)
         {
-            _gameStateCollection.InsertOne(request);
+            var gameState = new GameState
+            {
+                PlayerSumValue = request.PlayerSumValue,
+                PlayerValueType = request.PlayerValueType,
+                PlayerStateType = request.PlayerStateType,
+                DealerFaceUpValue = request.DealerFaceUpValue,
+                DealerValueType = request.DealerValueType,
+                DealerStateType = request.DealerStateType
+            };
 
-            return Ok(request);
+            _gameStateCollection.InsertOne(gameState);
+
+            return Ok(gameState);
         }
 
         /* Test with:
-            curl -X GET "http://localhost:5256/game-state?playerSumValue=21&playerValueType=Blackjack&playerStateType=Terminal&dealerFaceUpValue=10&dealerValueType=Hard&dealerStateType=Active"
+            curl -X GET "http://localhost:5256/game-state" \
+            -H "Content-Type: application/json" \
+            -d '{
+                "PlayerSumValue": 21,
+                "PlayerValueType": "Blackjack",
+                "PlayerStateType": "Terminal",
+                "DealerFaceUpValue": 10,
+                "DealerValueType": "Hard",
+                "DealerStateType": "Active"
+            }'
         */
         [HttpGet("/game-state")]
-        public IActionResult GetGameState(
-            [FromQuery] int playerSumValue,
-            [FromQuery] GameStateValueType playerValueType,
-            [FromQuery] GameStateType playerStateType,
-            [FromQuery] int dealerFaceUpValue,
-            [FromQuery] GameStateValueType dealerValueType,
-            [FromQuery] GameStateType dealerStateType
-        )
+        public IActionResult GetGameState([FromBody] GetGameStateRequest request)
         {
             var filter = Builders<GameState>.Filter.And(
-                Builders<GameState>.Filter.Eq(g => g.PlayerSumValue, playerSumValue),
-                Builders<GameState>.Filter.Eq(g => g.PlayerValueType, playerValueType),
-                Builders<GameState>.Filter.Eq(g => g.PlayerStateType, playerStateType),
-                Builders<GameState>.Filter.Eq(g => g.DealerFaceUpValue, dealerFaceUpValue),
-                Builders<GameState>.Filter.Eq(g => g.DealerValueType, dealerValueType),
-                Builders<GameState>.Filter.Eq(g => g.DealerStateType, dealerStateType)
+                Builders<GameState>.Filter.Eq(g => g.PlayerSumValue, request.PlayerSumValue),
+                Builders<GameState>.Filter.Eq(g => g.PlayerValueType, request.PlayerValueType),
+                Builders<GameState>.Filter.Eq(g => g.PlayerStateType, request.PlayerStateType),
+                Builders<GameState>.Filter.Eq(g => g.DealerFaceUpValue, request.DealerFaceUpValue),
+                Builders<GameState>.Filter.Eq(g => g.DealerValueType, request.DealerValueType),
+                Builders<GameState>.Filter.Eq(g => g.DealerStateType, request.DealerStateType)
             );
 
             var gameStates = _gameStateCollection.Find(filter).ToList();
