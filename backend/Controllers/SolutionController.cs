@@ -21,54 +21,6 @@ namespace Solvation.Controllers
 
         /*
         Test with:
-            curl -X POST "http://localhost:5256/game-state" \
-            -H "Content-Type: application/json" \
-            -d '{
-                "PlayerSumValue": 21,
-                "PlayerValueType": "Blackjack",
-                "PlayerStateType": "Terminal",
-                "DealerFaceUpValue": 10,
-                "DealerValueType": "Hard",
-                "DealerStateType": "Active",
-                "Actions": {
-                    "Hit": null,
-                    "Stand": 0.85,
-                    "Double": 1.25,
-                    "Split": 0.95
-                }
-            }'
-
-        NOTE: THIS ENDPOINT TO BE USED EXTERNALLY, ONLY FOR TESTING PURPOSES
-        */
-        [HttpPost("/game-state")]
-        public IActionResult GenerateGameState([FromBody] GenerateGameStateRequest request)
-        {
-            var gameActions = new GameActions
-            {
-                Hit = request.Actions.Hit,
-                Stand = request.Actions.Stand,
-                Double = request.Actions.Double,
-                Split = request.Actions.Split
-            };
-
-            var gameState = new GameState
-            {
-                PlayerSumValue = request.PlayerSumValue,
-                PlayerValueType = request.PlayerValueType,
-                PlayerStateType = request.PlayerStateType,
-                DealerFaceUpValue = request.DealerFaceUpValue,
-                DealerValueType = request.DealerValueType,
-                DealerStateType = request.DealerStateType,
-                Actions = gameActions
-            };
-
-            _gameStateCollection.InsertOne(gameState);
-
-            return Ok(gameState);
-        }
-
-        /*
-        Test with:
             curl -X POST "http://localhost:5256/generate-game-states"
         */
         [HttpPost("/generate-game-states")]
