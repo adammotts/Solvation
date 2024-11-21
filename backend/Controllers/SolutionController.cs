@@ -3,6 +3,7 @@ using MongoDB.Driver;
 using Solvation.Models;
 using Solvation.Enums;
 using Solvation.Requests;
+using Solvation.Algorithms;
 using System.Linq;
 
 namespace Solvation.Controllers
@@ -36,6 +37,8 @@ namespace Solvation.Controllers
                     "Split": 0.95
                 }
             }'
+
+        NOTE: THIS ENDPOINT TO BE USED EXTERNALLY, ONLY FOR TESTING PURPOSES
         */
         [HttpPost("/game-state")]
         public IActionResult GenerateGameState([FromBody] GenerateGameStateRequest request)
@@ -62,6 +65,20 @@ namespace Solvation.Controllers
             _gameStateCollection.InsertOne(gameState);
 
             return Ok(gameState);
+        }
+
+        /*
+        Test with:
+            curl -X POST "http://localhost:5256/generate-game-states"
+        */
+        [HttpPost("/generate-game-states")]
+        public IActionResult GenerateGameStates()
+        {
+            GameState[] gameStates = Solver.Solve();
+
+            _gameStateCollection.InsertMany(gameStates);
+
+            return Ok(gameStates);
         }
 
         /* Test with:

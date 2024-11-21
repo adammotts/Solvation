@@ -2,8 +2,10 @@ using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using Solvation.Enums;
 
-namespace Solvation.Models {
-    public class GameState {
+namespace Solvation.Models
+{
+    public class GameState
+    {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
         public string? Id { get; set; }
