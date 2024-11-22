@@ -30,9 +30,9 @@ namespace Solvation.Models
 
         public override DealerState Hit(Card card)
         {
-            DealerState notBlackjack = this.AddCard(card);
-
             DealerState other = PileState<DealerState>.RankValues[card.Rank];
+
+            DealerState notBlackjack = this.Combine(other);
 
             if (this.Insurable && other.Insurable && notBlackjack.SumValue == 21)
             {

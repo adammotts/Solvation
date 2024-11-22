@@ -40,12 +40,10 @@ namespace Solvation.Models
 
         public abstract T Hit(Card card);
 
-        protected T AddCard(Card card)
+        protected T Combine(T other)
         {
             if (this.StateType == GameStateType.Terminal)
                 throw new InvalidOperationException("Cannot act on terminal state");
-
-            T other = PileState<T>.RankValues[card.Rank];
 
             int resultValue = this.SumValue + other.SumValue;
             GameStateValueType resultValueType;
