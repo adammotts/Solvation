@@ -7,7 +7,6 @@ namespace Solvation.Models
         public readonly int SumValue;
         public readonly GameStateValueType ValueType;
         public readonly GameStateType StateType;
-
         public readonly static Dictionary<Rank, T> RankValues = new Dictionary<Rank, T>
         {
             { Rank.Two, CreateState(2, GameStateValueType.Hard) },

@@ -8,7 +8,14 @@ namespace Solvation.Models
 
         public DealerState(int sumValue, GameStateValueType valueType) : base(sumValue, valueType)
         {
-            this.Insurable = false;
+            if (sumValue == 10 || sumValue == 11)
+            {
+                this.Insurable = true;
+            }
+            else
+            {
+                this.Insurable = false;
+            }
         }
 
         public DealerState(int sumValue, GameStateValueType valueType, bool insurable) : base(sumValue, valueType)
@@ -29,7 +36,7 @@ namespace Solvation.Models
 
             if (this.Insurable && other.Insurable && notBlackjack.SumValue == 21)
             {
-                return new DealerState(21, GameStateValueType.Blackjack);
+                return new DealerState(21, GameStateValueType.Blackjack, false);
             }
 
             return notBlackjack;
@@ -41,19 +48,19 @@ namespace Solvation.Models
 
             for (int i = 26; i >= 22; i--)
             {
-                dealerStates.Add(new DealerState(i, GameStateValueType.Hard));
+                dealerStates.Add(new DealerState(i, GameStateValueType.Hard, false));
             }
 
-            dealerStates.Add(new DealerState(21, GameStateValueType.Blackjack));
+            dealerStates.Add(new DealerState(21, GameStateValueType.Blackjack, false));
 
             for (int i = 21; i >= 11; i--)
             {
-                dealerStates.Add(new DealerState(i, GameStateValueType.Hard));
+                dealerStates.Add(new DealerState(i, GameStateValueType.Hard, false));
             }
 
             for (int i = 21; i >= 12; i--)
             {
-                dealerStates.Add(new DealerState(i, GameStateValueType.Soft));
+                dealerStates.Add(new DealerState(i, GameStateValueType.Soft, false));
             }
 
             dealerStates.Add(new DealerState(11, GameStateValueType.Soft, true));
@@ -61,7 +68,7 @@ namespace Solvation.Models
 
             for (int i = 10; i >= 2; i--)
             {
-                dealerStates.Add(new DealerState(i, GameStateValueType.Hard));
+                dealerStates.Add(new DealerState(i, GameStateValueType.Hard, false));
             }
 
             return dealerStates;
