@@ -21,18 +21,6 @@ namespace Solvation.Controllers
 
         /*
         Test with:
-            curl -X POST "http://localhost:5256/verify-interactions"
-        */
-        [HttpPost("/verify-interactions")]
-        public IActionResult VerifyInteractions()
-        {
-            Solver.VerifyInteractions();
-
-            return Ok("Interactions Verified.");
-        }
-
-        /*
-        Test with:
             curl -X POST "http://localhost:5256/game-states"
         */
         [HttpPost("/game-states")]
