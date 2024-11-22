@@ -28,5 +28,17 @@ namespace Solvation.Models
 
             return deck.ToArray();
         }
+
+        public static Card[] AllRanks()
+        {
+            List<Card> allRanks = new List<Card>();
+
+            foreach (Rank rank in Enum.GetValues(typeof(Rank)))
+            {
+                allRanks.Add(new Card(rank, Suit.Spades));
+            }
+
+            return allRanks.ToArray();
+        }
     }
 }

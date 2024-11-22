@@ -86,5 +86,20 @@ namespace Solvation.Models
 
             return playerStates;
         }
+        
+        public override bool Equals(object? obj)
+        {
+            if (obj is PlayerState other)
+            {
+                return this.SumValue == other.SumValue && this.ValueType == other.ValueType && this.StateType == other.StateType && this.Splittable == other.Splittable;
+            }
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.SumValue, this.ValueType, this.StateType, this.Splittable);
+        }
     }
 }

@@ -19,7 +19,7 @@ namespace Solvation.Algorithms
                 terminalNodeProbabilities[terminalNode] = 0.0;
             }
 
-            foreach (DealerState node in DealerState.AllTerminalStates())
+            foreach (DealerState node in DealerState.AllStates())
             {
                 // Initialize probabilities with all terminal nodes having 0 probability
                 var probabilities = new Dictionary<DealerState, double>(terminalNodeProbabilities);
@@ -31,23 +31,19 @@ namespace Solvation.Algorithms
                 }
                 else
                 {
-                    Card[] deck = Card.Deck();
+                    Card[] allRanks = Card.AllRanks();
 
                     // Compute the probability of reaching various terminal nodes
-                    foreach (var card in deck)
+                    foreach (var card in allRanks)
                     {
                         DealerState resultAfterAddCard = node.Hit(card);
 
-                        // Check if the resulting node is already in the tree
-                        if (!dealerTree.TryGetValue(resultAfterAddCard, out var resultNodeProbabilities))
-                        {
-                            throw new KeyNotFoundException("The resulting dealer state is not present in the dealer tree.");
-                        }
+                        var resultNodeProbabilities = dealerTree[resultAfterAddCard];
 
                         foreach (var terminalNode in resultNodeProbabilities.Keys)
                         {
                             // Update probabilities for the terminal nodes
-                            probabilities[terminalNode] += resultNodeProbabilities[terminalNode] / deck.Count();
+                            probabilities[terminalNode] += resultNodeProbabilities[terminalNode] / allRanks.Count();
                         }
                     }
                 }

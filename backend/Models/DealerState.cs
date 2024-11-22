@@ -88,5 +88,20 @@ namespace Solvation.Models
 
             return terminalStates;
         }
+
+        public override bool Equals(object? obj)
+        {
+            if (obj is DealerState other)
+            {
+                return this.SumValue == other.SumValue && this.ValueType == other.ValueType && this.StateType == other.StateType && this.Insurable == other.Insurable;
+            }
+
+            return false;
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(this.SumValue, this.ValueType, this.StateType, this.Insurable);
+        }
     }
 }
