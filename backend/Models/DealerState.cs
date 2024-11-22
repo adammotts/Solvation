@@ -103,5 +103,10 @@ namespace Solvation.Models
         {
             return HashCode.Combine(this.SumValue, this.ValueType, this.StateType, this.Insurable);
         }
+
+        public override string ToString()
+        {
+            return $"[{this.SumValue}, {this.ValueType}, {this.StateType}, {(this.Insurable ? "Insurable" : "Not Insurable")}]";
+        }
     }
 }

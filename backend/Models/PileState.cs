@@ -24,6 +24,11 @@ namespace Solvation.Models
             { Rank.Ace, CreateState(11, GameStateValueType.Soft) }
         };
 
+        private static T CreateState(int sumValue, GameStateValueType valueType)
+        {
+            return (T)Activator.CreateInstance(typeof(T), sumValue, valueType)!;
+        }
+
         protected PileState(int sumValue, GameStateValueType valueType)
         {
             this.SumValue = sumValue;
@@ -43,32 +48,41 @@ namespace Solvation.Models
             T other = PileState<T>.RankValues[card.Rank];
 
             int resultValue = this.SumValue + other.SumValue;
-            GameStateValueType resultValueType = this.DetermineValueType(resultValue, other);
+            GameStateValueType resultValueType;
 
-            return PileState<T>.CreateState(resultValue, resultValueType);
-        }
-
-        protected static T CreateState(int sumValue, GameStateValueType valueType)
-        {
-            return (T)Activator.CreateInstance(typeof(T), sumValue, valueType)!;
-        }
-
-        private GameStateValueType DetermineValueType(int resultValue, T other)
-        {
             if (other.SumValue == 11 && other.ValueType == GameStateValueType.Soft)
             {
                 if (resultValue > 21)
-                    return this.ValueType;
-                return GameStateValueType.Soft;
+                {
+                    resultValue -= 10;
+                    resultValueType = this.ValueType;
+                }
+                else
+                {
+                    resultValueType = GameStateValueType.Soft;
+                }
+            }
+            else
+            {
+                if (this.ValueType == GameStateValueType.Hard)
+                {
+                    resultValueType = GameStateValueType.Hard;
+                }
+                else
+                {
+                    if (resultValue > 21)
+                    {
+                        resultValue -= 10;
+                        resultValueType = GameStateValueType.Hard;
+                    }
+                    else
+                    {
+                        resultValueType = GameStateValueType.Soft;
+                    }
+                }
             }
 
-            if (this.ValueType == GameStateValueType.Hard)
-                return GameStateValueType.Hard;
-
-            if (resultValue > 21)
-                return GameStateValueType.Hard;
-
-            return GameStateValueType.Soft;
+            return PileState<T>.CreateState(resultValue, resultValueType);
         }
 
         public static List<T> AllStates()
@@ -79,11 +93,6 @@ namespace Solvation.Models
         public static List<T> AllTerminalStates()
         {
             throw new NotImplementedException();
-        }
-
-        public override string ToString()
-        {
-            return $"[{SumValue} {ValueType}]";
         }
     }
 }

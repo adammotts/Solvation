@@ -101,5 +101,10 @@ namespace Solvation.Models
         {
             return HashCode.Combine(this.SumValue, this.ValueType, this.StateType, this.Splittable);
         }
+
+        public override string ToString()
+        {
+            return $"[{this.SumValue}, {this.ValueType}, {this.StateType}, {(this.Splittable ? "Splittable" : "Not Splittable")}]";
+        }
     }
 }

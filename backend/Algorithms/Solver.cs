@@ -19,7 +19,7 @@ namespace Solvation.Algorithms
                 terminalNodeProbabilities[terminalNode] = 0.0;
             }
 
-            foreach (DealerState node in DealerState.AllStates())
+            foreach (DealerState node in DealerState.AllTerminalStates())
             {
                 // Initialize probabilities with all terminal nodes having 0 probability
                 var probabilities = new Dictionary<DealerState, double>(terminalNodeProbabilities);
@@ -67,6 +67,21 @@ namespace Solvation.Algorithms
                     result.AppendLine($"\t{terminalNode}: {dealerTree[node][terminalNode]}");
                 }
                 result.AppendLine("}");
+            }
+
+            foreach (var dealerState in DealerState.AllStates())
+            {
+                foreach (var card in Card.AllRanks())
+                {
+                    try {
+                        var afterHit = dealerState.Hit(card);
+                        result.AppendLine($"{dealerState} + {DealerState.RankValues[card.Rank]} = {afterHit}");
+                    }
+                    catch
+                    {
+                        result.AppendLine($"{dealerState} + {DealerState.RankValues[card.Rank]} = INVALID");
+                    }
+                }
             }
 
             return result.ToString();
