@@ -70,36 +70,54 @@ namespace Solvation.Models
         {
             List<PlayerState> playerStates = new List<PlayerState>();
 
-            for (int i = 30; i >= 22; i--)
-            {
-                playerStates.Add(new PlayerState(i, GameStateValueType.Hard));
-            }
+            playerStates.AddRange(PlayerState.UnsplittableStates());
 
-            playerStates.Add(new PlayerState(21, GameStateValueType.Blackjack));
-
-            for (int i = 21; i >= 11; i--)
-            {
-                playerStates.Add(new PlayerState(i, GameStateValueType.Hard));
-            }
-
-            for (int i = 21; i >= 11; i--)
-            {
-                playerStates.Add(new PlayerState(i, GameStateValueType.Soft));
-            }
-
-            for (int i = 10; i >= 2; i--)
-            {
-                playerStates.Add(new PlayerState(i, GameStateValueType.Hard));
-            }
-
-            playerStates.Add(new PlayerState(12, GameStateValueType.Soft, true));
-
-            for (int i = 10; i >= 2; i--)
-            {
-                playerStates.Add(new PlayerState(i * 2, GameStateValueType.Hard, true));
-            }
+            playerStates.AddRange(PlayerState.SplittableStates());
 
             return playerStates;
+        }
+
+        public static List<PlayerState> UnsplittableStates()
+        {
+            List<PlayerState> unsplittableStates = new List<PlayerState>();
+
+            for (int i = 30; i >= 22; i--)
+            {
+                unsplittableStates.Add(new PlayerState(i, GameStateValueType.Hard));
+            }
+
+            unsplittableStates.Add(new PlayerState(21, GameStateValueType.Blackjack));
+
+            for (int i = 21; i >= 11; i--)
+            {
+                unsplittableStates.Add(new PlayerState(i, GameStateValueType.Hard));
+            }
+
+            for (int i = 21; i >= 11; i--)
+            {
+                unsplittableStates.Add(new PlayerState(i, GameStateValueType.Soft));
+            }
+
+            for (int i = 10; i >= 2; i--)
+            {
+                unsplittableStates.Add(new PlayerState(i, GameStateValueType.Hard));
+            }
+
+            return unsplittableStates;
+        }
+
+        public static List<PlayerState> SplittableStates()
+        {
+            List<PlayerState> splittableStates = new List<PlayerState>();
+
+            splittableStates.Add(new PlayerState(12, GameStateValueType.Soft, true));
+
+            for (int i = 10; i >= 2; i--)
+            {
+                splittableStates.Add(new PlayerState(i * 2, GameStateValueType.Hard, true));
+            }
+
+            return splittableStates;
         }
 
         public new static string Interactions()
