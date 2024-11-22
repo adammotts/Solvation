@@ -40,7 +40,7 @@ namespace Solvation.Algorithms
 
                         if (!dealerTree.TryGetValue(resultAfterAddCard, out var resultNodeProbabilities))
                         {
-                            throw new KeyNotFoundException($"{node} + {DealerState.RankValues[card.Rank]} = {resultAfterAddCard} not found in dealer tree: {Solver.PrintDealerTree(dealerTree)}");
+                            throw new KeyNotFoundException($"{node} + {card} = {resultAfterAddCard} not found in dealer tree");
                         }
 
                         foreach (var terminalNode in resultNodeProbabilities.Keys)
@@ -58,36 +58,34 @@ namespace Solvation.Algorithms
             return dealerTree;
         }
 
-        public static string PrintDealerTree(Dictionary<DealerState, Dictionary<DealerState, double>> dealerTree)
+        public static string DealerTree(Dictionary<DealerState, Dictionary<DealerState, double>> dealerTree)
         {
             var result = new StringBuilder();
 
-            // foreach (var node in dealerTree.Keys)
-            // {
-            //     result.AppendLine($"{node} {{");
-            //     foreach (var terminalNode in dealerTree[node].Keys)
-            //     {
-            //         result.AppendLine($"\t{terminalNode}: {dealerTree[node][terminalNode]}");
-            //     }
-            //     result.AppendLine("}");
-            // }
-
-            foreach (var dealerState in DealerState.AllStates())
+            foreach (var node in dealerTree.Keys)
             {
-                foreach (var card in Card.AllRanks())
+                result.AppendLine($"{node} {{");
+                foreach (var terminalNode in dealerTree[node].Keys)
                 {
-                    try {
-                        var afterHit = dealerState.Hit(card);
-                        result.AppendLine($"{dealerState} + {DealerState.RankValues[card.Rank]} = {afterHit}");
-                    }
-                    catch
-                    {
-                        result.AppendLine($"{dealerState} + {DealerState.RankValues[card.Rank]} = INVALID");
-                    }
+                    result.AppendLine($"\t{terminalNode}: {dealerTree[node][terminalNode]}");
                 }
+                result.AppendLine("}");
             }
 
             return result.ToString();
+        }
+
+        public static void DealerInteractions()
+        {
+            string interactions = DealerState.Interactions();
+
+            string dealerTree = Solver.DealerTree(Solver.GenerateDealerTree());
+
+            string result = $"Dealer Interactions:\n\n{interactions}\nDealer Tree:\n\n{dealerTree}";
+
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Test/DealerInteractions.txt");
+
+            File.WriteAllText(filePath, result);
         }
 
         public static GameState[] Solve()

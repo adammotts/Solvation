@@ -21,18 +21,28 @@ namespace Solvation.Controllers
 
         /*
         Test with:
+            curl -X POST "http://localhost:5256/dealer-interactions"
+        */
+        [HttpPost("/dealer-interactions")]
+        public IActionResult DealerInteractions()
+        {
+            Solver.DealerInteractions();
+
+            return Ok("Dealer interactions generated.");
+        }
+
+        /*
+        Test with:
             curl -X POST "http://localhost:5256/game-states"
         */
         [HttpPost("/game-states")]
         public IActionResult GenerateGameStates()
         {
-            // GameState[] gameStates = Solver.Solve();
+            GameState[] gameStates = Solver.Solve();
 
-            // _gameStateCollection.InsertMany(gameStates);
+            _gameStateCollection.InsertMany(gameStates);
 
-            // return Ok(gameStates);
-
-            return Ok(Solver.PrintDealerTree(Solver.GenerateDealerTree()));
+            return Ok(gameStates);
         }
 
         /* Test with:

@@ -1,3 +1,5 @@
+Dealer Interactions:
+
 [26, Hard, Terminal, Not Insurable] + [2, Hard, Active, Not Insurable] = INVALID
 [26, Hard, Terminal, Not Insurable] + [3, Hard, Active, Not Insurable] = INVALID
 [26, Hard, Terminal, Not Insurable] + [4, Hard, Active, Not Insurable] = INVALID
@@ -492,3 +494,690 @@
 [2, Hard, Active, Not Insurable] + [10, Hard, Active, Insurable] = [12, Hard, Active, Not Insurable]
 [2, Hard, Active, Not Insurable] + [10, Hard, Active, Insurable] = [12, Hard, Active, Not Insurable]
 [2, Hard, Active, Not Insurable] + [11, Soft, Active, Insurable] = [13, Soft, Active, Not Insurable]
+
+Dealer Tree:
+
+[26, Hard, Terminal, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 1
+	[25, Hard, Terminal, Not Insurable]: 0
+	[24, Hard, Terminal, Not Insurable]: 0
+	[23, Hard, Terminal, Not Insurable]: 0
+	[22, Hard, Terminal, Not Insurable]: 0
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0
+	[20, Hard, Terminal, Not Insurable]: 0
+	[19, Hard, Terminal, Not Insurable]: 0
+	[18, Hard, Terminal, Not Insurable]: 0
+	[17, Hard, Terminal, Not Insurable]: 0
+	[21, Soft, Terminal, Not Insurable]: 0
+	[20, Soft, Terminal, Not Insurable]: 0
+	[19, Soft, Terminal, Not Insurable]: 0
+	[18, Soft, Terminal, Not Insurable]: 0
+	[17, Soft, Terminal, Not Insurable]: 0
+}
+[25, Hard, Terminal, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0
+	[25, Hard, Terminal, Not Insurable]: 1
+	[24, Hard, Terminal, Not Insurable]: 0
+	[23, Hard, Terminal, Not Insurable]: 0
+	[22, Hard, Terminal, Not Insurable]: 0
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0
+	[20, Hard, Terminal, Not Insurable]: 0
+	[19, Hard, Terminal, Not Insurable]: 0
+	[18, Hard, Terminal, Not Insurable]: 0
+	[17, Hard, Terminal, Not Insurable]: 0
+	[21, Soft, Terminal, Not Insurable]: 0
+	[20, Soft, Terminal, Not Insurable]: 0
+	[19, Soft, Terminal, Not Insurable]: 0
+	[18, Soft, Terminal, Not Insurable]: 0
+	[17, Soft, Terminal, Not Insurable]: 0
+}
+[24, Hard, Terminal, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0
+	[25, Hard, Terminal, Not Insurable]: 0
+	[24, Hard, Terminal, Not Insurable]: 1
+	[23, Hard, Terminal, Not Insurable]: 0
+	[22, Hard, Terminal, Not Insurable]: 0
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0
+	[20, Hard, Terminal, Not Insurable]: 0
+	[19, Hard, Terminal, Not Insurable]: 0
+	[18, Hard, Terminal, Not Insurable]: 0
+	[17, Hard, Terminal, Not Insurable]: 0
+	[21, Soft, Terminal, Not Insurable]: 0
+	[20, Soft, Terminal, Not Insurable]: 0
+	[19, Soft, Terminal, Not Insurable]: 0
+	[18, Soft, Terminal, Not Insurable]: 0
+	[17, Soft, Terminal, Not Insurable]: 0
+}
+[23, Hard, Terminal, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0
+	[25, Hard, Terminal, Not Insurable]: 0
+	[24, Hard, Terminal, Not Insurable]: 0
+	[23, Hard, Terminal, Not Insurable]: 1
+	[22, Hard, Terminal, Not Insurable]: 0
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0
+	[20, Hard, Terminal, Not Insurable]: 0
+	[19, Hard, Terminal, Not Insurable]: 0
+	[18, Hard, Terminal, Not Insurable]: 0
+	[17, Hard, Terminal, Not Insurable]: 0
+	[21, Soft, Terminal, Not Insurable]: 0
+	[20, Soft, Terminal, Not Insurable]: 0
+	[19, Soft, Terminal, Not Insurable]: 0
+	[18, Soft, Terminal, Not Insurable]: 0
+	[17, Soft, Terminal, Not Insurable]: 0
+}
+[22, Hard, Terminal, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0
+	[25, Hard, Terminal, Not Insurable]: 0
+	[24, Hard, Terminal, Not Insurable]: 0
+	[23, Hard, Terminal, Not Insurable]: 0
+	[22, Hard, Terminal, Not Insurable]: 1
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0
+	[20, Hard, Terminal, Not Insurable]: 0
+	[19, Hard, Terminal, Not Insurable]: 0
+	[18, Hard, Terminal, Not Insurable]: 0
+	[17, Hard, Terminal, Not Insurable]: 0
+	[21, Soft, Terminal, Not Insurable]: 0
+	[20, Soft, Terminal, Not Insurable]: 0
+	[19, Soft, Terminal, Not Insurable]: 0
+	[18, Soft, Terminal, Not Insurable]: 0
+	[17, Soft, Terminal, Not Insurable]: 0
+}
+[21, Blackjack, Terminal, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0
+	[25, Hard, Terminal, Not Insurable]: 0
+	[24, Hard, Terminal, Not Insurable]: 0
+	[23, Hard, Terminal, Not Insurable]: 0
+	[22, Hard, Terminal, Not Insurable]: 0
+	[21, Blackjack, Terminal, Not Insurable]: 1
+	[21, Hard, Terminal, Not Insurable]: 0
+	[20, Hard, Terminal, Not Insurable]: 0
+	[19, Hard, Terminal, Not Insurable]: 0
+	[18, Hard, Terminal, Not Insurable]: 0
+	[17, Hard, Terminal, Not Insurable]: 0
+	[21, Soft, Terminal, Not Insurable]: 0
+	[20, Soft, Terminal, Not Insurable]: 0
+	[19, Soft, Terminal, Not Insurable]: 0
+	[18, Soft, Terminal, Not Insurable]: 0
+	[17, Soft, Terminal, Not Insurable]: 0
+}
+[21, Hard, Terminal, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0
+	[25, Hard, Terminal, Not Insurable]: 0
+	[24, Hard, Terminal, Not Insurable]: 0
+	[23, Hard, Terminal, Not Insurable]: 0
+	[22, Hard, Terminal, Not Insurable]: 0
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 1
+	[20, Hard, Terminal, Not Insurable]: 0
+	[19, Hard, Terminal, Not Insurable]: 0
+	[18, Hard, Terminal, Not Insurable]: 0
+	[17, Hard, Terminal, Not Insurable]: 0
+	[21, Soft, Terminal, Not Insurable]: 0
+	[20, Soft, Terminal, Not Insurable]: 0
+	[19, Soft, Terminal, Not Insurable]: 0
+	[18, Soft, Terminal, Not Insurable]: 0
+	[17, Soft, Terminal, Not Insurable]: 0
+}
+[20, Hard, Terminal, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0
+	[25, Hard, Terminal, Not Insurable]: 0
+	[24, Hard, Terminal, Not Insurable]: 0
+	[23, Hard, Terminal, Not Insurable]: 0
+	[22, Hard, Terminal, Not Insurable]: 0
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0
+	[20, Hard, Terminal, Not Insurable]: 1
+	[19, Hard, Terminal, Not Insurable]: 0
+	[18, Hard, Terminal, Not Insurable]: 0
+	[17, Hard, Terminal, Not Insurable]: 0
+	[21, Soft, Terminal, Not Insurable]: 0
+	[20, Soft, Terminal, Not Insurable]: 0
+	[19, Soft, Terminal, Not Insurable]: 0
+	[18, Soft, Terminal, Not Insurable]: 0
+	[17, Soft, Terminal, Not Insurable]: 0
+}
+[19, Hard, Terminal, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0
+	[25, Hard, Terminal, Not Insurable]: 0
+	[24, Hard, Terminal, Not Insurable]: 0
+	[23, Hard, Terminal, Not Insurable]: 0
+	[22, Hard, Terminal, Not Insurable]: 0
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0
+	[20, Hard, Terminal, Not Insurable]: 0
+	[19, Hard, Terminal, Not Insurable]: 1
+	[18, Hard, Terminal, Not Insurable]: 0
+	[17, Hard, Terminal, Not Insurable]: 0
+	[21, Soft, Terminal, Not Insurable]: 0
+	[20, Soft, Terminal, Not Insurable]: 0
+	[19, Soft, Terminal, Not Insurable]: 0
+	[18, Soft, Terminal, Not Insurable]: 0
+	[17, Soft, Terminal, Not Insurable]: 0
+}
+[18, Hard, Terminal, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0
+	[25, Hard, Terminal, Not Insurable]: 0
+	[24, Hard, Terminal, Not Insurable]: 0
+	[23, Hard, Terminal, Not Insurable]: 0
+	[22, Hard, Terminal, Not Insurable]: 0
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0
+	[20, Hard, Terminal, Not Insurable]: 0
+	[19, Hard, Terminal, Not Insurable]: 0
+	[18, Hard, Terminal, Not Insurable]: 1
+	[17, Hard, Terminal, Not Insurable]: 0
+	[21, Soft, Terminal, Not Insurable]: 0
+	[20, Soft, Terminal, Not Insurable]: 0
+	[19, Soft, Terminal, Not Insurable]: 0
+	[18, Soft, Terminal, Not Insurable]: 0
+	[17, Soft, Terminal, Not Insurable]: 0
+}
+[17, Hard, Terminal, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0
+	[25, Hard, Terminal, Not Insurable]: 0
+	[24, Hard, Terminal, Not Insurable]: 0
+	[23, Hard, Terminal, Not Insurable]: 0
+	[22, Hard, Terminal, Not Insurable]: 0
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0
+	[20, Hard, Terminal, Not Insurable]: 0
+	[19, Hard, Terminal, Not Insurable]: 0
+	[18, Hard, Terminal, Not Insurable]: 0
+	[17, Hard, Terminal, Not Insurable]: 1
+	[21, Soft, Terminal, Not Insurable]: 0
+	[20, Soft, Terminal, Not Insurable]: 0
+	[19, Soft, Terminal, Not Insurable]: 0
+	[18, Soft, Terminal, Not Insurable]: 0
+	[17, Soft, Terminal, Not Insurable]: 0
+}
+[16, Hard, Active, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0.3076923076923077
+	[25, Hard, Terminal, Not Insurable]: 0.07692307692307693
+	[24, Hard, Terminal, Not Insurable]: 0.07692307692307693
+	[23, Hard, Terminal, Not Insurable]: 0.07692307692307693
+	[22, Hard, Terminal, Not Insurable]: 0.07692307692307693
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0.07692307692307693
+	[20, Hard, Terminal, Not Insurable]: 0.07692307692307693
+	[19, Hard, Terminal, Not Insurable]: 0.07692307692307693
+	[18, Hard, Terminal, Not Insurable]: 0.07692307692307693
+	[17, Hard, Terminal, Not Insurable]: 0.07692307692307693
+	[21, Soft, Terminal, Not Insurable]: 0
+	[20, Soft, Terminal, Not Insurable]: 0
+	[19, Soft, Terminal, Not Insurable]: 0
+	[18, Soft, Terminal, Not Insurable]: 0
+	[17, Soft, Terminal, Not Insurable]: 0
+}
+[15, Hard, Active, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0.02366863905325444
+	[25, Hard, Terminal, Not Insurable]: 0.3136094674556213
+	[24, Hard, Terminal, Not Insurable]: 0.08284023668639054
+	[23, Hard, Terminal, Not Insurable]: 0.08284023668639054
+	[22, Hard, Terminal, Not Insurable]: 0.08284023668639054
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0.08284023668639054
+	[20, Hard, Terminal, Not Insurable]: 0.08284023668639054
+	[19, Hard, Terminal, Not Insurable]: 0.08284023668639054
+	[18, Hard, Terminal, Not Insurable]: 0.08284023668639054
+	[17, Hard, Terminal, Not Insurable]: 0.08284023668639054
+	[21, Soft, Terminal, Not Insurable]: 0
+	[20, Soft, Terminal, Not Insurable]: 0
+	[19, Soft, Terminal, Not Insurable]: 0
+	[18, Soft, Terminal, Not Insurable]: 0
+	[17, Soft, Terminal, Not Insurable]: 0
+}
+[14, Hard, Active, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0.025489303595812474
+	[25, Hard, Terminal, Not Insurable]: 0.03004096495220756
+	[24, Hard, Terminal, Not Insurable]: 0.31998179335457444
+	[23, Hard, Terminal, Not Insurable]: 0.08921256258534366
+	[22, Hard, Terminal, Not Insurable]: 0.08921256258534366
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0.08921256258534366
+	[20, Hard, Terminal, Not Insurable]: 0.08921256258534366
+	[19, Hard, Terminal, Not Insurable]: 0.08921256258534366
+	[18, Hard, Terminal, Not Insurable]: 0.08921256258534366
+	[17, Hard, Terminal, Not Insurable]: 0.08921256258534366
+	[21, Soft, Terminal, Not Insurable]: 0
+	[20, Soft, Terminal, Not Insurable]: 0
+	[19, Soft, Terminal, Not Insurable]: 0
+	[18, Soft, Terminal, Not Insurable]: 0
+	[17, Soft, Terminal, Not Insurable]: 0
+}
+[13, Hard, Active, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0.027450019257028817
+	[25, Hard, Terminal, Not Insurable]: 0.03235180841006968
+	[24, Hard, Terminal, Not Insurable]: 0.03690346976646476
+	[23, Hard, Terminal, Not Insurable]: 0.32684429816883165
+	[22, Hard, Terminal, Not Insurable]: 0.09607506739960087
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0.09607506739960087
+	[20, Hard, Terminal, Not Insurable]: 0.09607506739960087
+	[19, Hard, Terminal, Not Insurable]: 0.09607506739960087
+	[18, Hard, Terminal, Not Insurable]: 0.09607506739960087
+	[17, Hard, Terminal, Not Insurable]: 0.09607506739960087
+	[21, Soft, Terminal, Not Insurable]: 0
+	[20, Soft, Terminal, Not Insurable]: 0
+	[19, Soft, Terminal, Not Insurable]: 0
+	[18, Soft, Terminal, Not Insurable]: 0
+	[17, Soft, Terminal, Not Insurable]: 0
+}
+[12, Hard, Active, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0.029561559199877192
+	[25, Hard, Terminal, Not Insurable]: 0.03484040905699811
+	[24, Hard, Terminal, Not Insurable]: 0.03974219821003897
+	[23, Hard, Terminal, Not Insurable]: 0.04429385956643406
+	[22, Hard, Terminal, Not Insurable]: 0.33423468796880096
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0.10346545719957016
+	[20, Hard, Terminal, Not Insurable]: 0.10346545719957016
+	[19, Hard, Terminal, Not Insurable]: 0.10346545719957016
+	[18, Hard, Terminal, Not Insurable]: 0.10346545719957016
+	[17, Hard, Terminal, Not Insurable]: 0.10346545719957016
+	[21, Soft, Terminal, Not Insurable]: 0
+	[20, Soft, Terminal, Not Insurable]: 0
+	[19, Soft, Terminal, Not Insurable]: 0
+	[18, Soft, Terminal, Not Insurable]: 0
+	[17, Soft, Terminal, Not Insurable]: 0
+}
+[11, Hard, Active, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0.03183552529217543
+	[25, Hard, Terminal, Not Insurable]: 0.03752044052292105
+	[24, Hard, Terminal, Not Insurable]: 0.042799290380041974
+	[23, Hard, Terminal, Not Insurable]: 0.04770107953308283
+	[22, Hard, Terminal, Not Insurable]: 0.052252740889477914
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0.34219356929184475
+	[20, Hard, Terminal, Not Insurable]: 0.111424338522614
+	[19, Hard, Terminal, Not Insurable]: 0.111424338522614
+	[18, Hard, Terminal, Not Insurable]: 0.111424338522614
+	[17, Hard, Terminal, Not Insurable]: 0.111424338522614
+	[21, Soft, Terminal, Not Insurable]: 0
+	[20, Soft, Terminal, Not Insurable]: 0
+	[19, Soft, Terminal, Not Insurable]: 0
+	[18, Soft, Terminal, Not Insurable]: 0
+	[17, Soft, Terminal, Not Insurable]: 0
+}
+[21, Soft, Terminal, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0
+	[25, Hard, Terminal, Not Insurable]: 0
+	[24, Hard, Terminal, Not Insurable]: 0
+	[23, Hard, Terminal, Not Insurable]: 0
+	[22, Hard, Terminal, Not Insurable]: 0
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0
+	[20, Hard, Terminal, Not Insurable]: 0
+	[19, Hard, Terminal, Not Insurable]: 0
+	[18, Hard, Terminal, Not Insurable]: 0
+	[17, Hard, Terminal, Not Insurable]: 0
+	[21, Soft, Terminal, Not Insurable]: 1
+	[20, Soft, Terminal, Not Insurable]: 0
+	[19, Soft, Terminal, Not Insurable]: 0
+	[18, Soft, Terminal, Not Insurable]: 0
+	[17, Soft, Terminal, Not Insurable]: 0
+}
+[20, Soft, Terminal, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0
+	[25, Hard, Terminal, Not Insurable]: 0
+	[24, Hard, Terminal, Not Insurable]: 0
+	[23, Hard, Terminal, Not Insurable]: 0
+	[22, Hard, Terminal, Not Insurable]: 0
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0
+	[20, Hard, Terminal, Not Insurable]: 0
+	[19, Hard, Terminal, Not Insurable]: 0
+	[18, Hard, Terminal, Not Insurable]: 0
+	[17, Hard, Terminal, Not Insurable]: 0
+	[21, Soft, Terminal, Not Insurable]: 0
+	[20, Soft, Terminal, Not Insurable]: 1
+	[19, Soft, Terminal, Not Insurable]: 0
+	[18, Soft, Terminal, Not Insurable]: 0
+	[17, Soft, Terminal, Not Insurable]: 0
+}
+[19, Soft, Terminal, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0
+	[25, Hard, Terminal, Not Insurable]: 0
+	[24, Hard, Terminal, Not Insurable]: 0
+	[23, Hard, Terminal, Not Insurable]: 0
+	[22, Hard, Terminal, Not Insurable]: 0
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0
+	[20, Hard, Terminal, Not Insurable]: 0
+	[19, Hard, Terminal, Not Insurable]: 0
+	[18, Hard, Terminal, Not Insurable]: 0
+	[17, Hard, Terminal, Not Insurable]: 0
+	[21, Soft, Terminal, Not Insurable]: 0
+	[20, Soft, Terminal, Not Insurable]: 0
+	[19, Soft, Terminal, Not Insurable]: 1
+	[18, Soft, Terminal, Not Insurable]: 0
+	[17, Soft, Terminal, Not Insurable]: 0
+}
+[18, Soft, Terminal, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0
+	[25, Hard, Terminal, Not Insurable]: 0
+	[24, Hard, Terminal, Not Insurable]: 0
+	[23, Hard, Terminal, Not Insurable]: 0
+	[22, Hard, Terminal, Not Insurable]: 0
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0
+	[20, Hard, Terminal, Not Insurable]: 0
+	[19, Hard, Terminal, Not Insurable]: 0
+	[18, Hard, Terminal, Not Insurable]: 0
+	[17, Hard, Terminal, Not Insurable]: 0
+	[21, Soft, Terminal, Not Insurable]: 0
+	[20, Soft, Terminal, Not Insurable]: 0
+	[19, Soft, Terminal, Not Insurable]: 0
+	[18, Soft, Terminal, Not Insurable]: 1
+	[17, Soft, Terminal, Not Insurable]: 0
+}
+[17, Soft, Terminal, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0
+	[25, Hard, Terminal, Not Insurable]: 0
+	[24, Hard, Terminal, Not Insurable]: 0
+	[23, Hard, Terminal, Not Insurable]: 0
+	[22, Hard, Terminal, Not Insurable]: 0
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0
+	[20, Hard, Terminal, Not Insurable]: 0
+	[19, Hard, Terminal, Not Insurable]: 0
+	[18, Hard, Terminal, Not Insurable]: 0
+	[17, Hard, Terminal, Not Insurable]: 0
+	[21, Soft, Terminal, Not Insurable]: 0
+	[20, Soft, Terminal, Not Insurable]: 0
+	[19, Soft, Terminal, Not Insurable]: 0
+	[18, Soft, Terminal, Not Insurable]: 0
+	[17, Soft, Terminal, Not Insurable]: 1
+}
+[16, Soft, Active, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0.10284144245193877
+	[25, Hard, Terminal, Not Insurable]: 0.055271919812861885
+	[24, Hard, Terminal, Not Insurable]: 0.06055076966998281
+	[23, Hard, Terminal, Not Insurable]: 0.06545255882302367
+	[22, Hard, Terminal, Not Insurable]: 0.07000422017941875
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0.05225274088947793
+	[20, Hard, Terminal, Not Insurable]: 0.05225274088947793
+	[19, Hard, Terminal, Not Insurable]: 0.05225274088947793
+	[18, Hard, Terminal, Not Insurable]: 0.05225274088947793
+	[17, Hard, Terminal, Not Insurable]: 0.05225274088947793
+	[21, Soft, Terminal, Not Insurable]: 0.07692307692307693
+	[20, Soft, Terminal, Not Insurable]: 0.07692307692307693
+	[19, Soft, Terminal, Not Insurable]: 0.07692307692307693
+	[18, Soft, Terminal, Not Insurable]: 0.07692307692307693
+	[17, Soft, Terminal, Not Insurable]: 0.07692307692307693
+}
+[15, Soft, Active, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0.021539760055205772
+	[25, Hard, Terminal, Not Insurable]: 0.10822638246574019
+	[24, Hard, Terminal, Not Insurable]: 0.060656859826663315
+	[23, Hard, Terminal, Not Insurable]: 0.06593570968378425
+	[22, Hard, Terminal, Not Insurable]: 0.07083749883682511
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0.05172052113996575
+	[20, Hard, Terminal, Not Insurable]: 0.05172052113996575
+	[19, Hard, Terminal, Not Insurable]: 0.05172052113996575
+	[18, Hard, Terminal, Not Insurable]: 0.05172052113996575
+	[17, Hard, Terminal, Not Insurable]: 0.05172052113996575
+	[21, Soft, Terminal, Not Insurable]: 0.08284023668639054
+	[20, Soft, Terminal, Not Insurable]: 0.08284023668639054
+	[19, Soft, Terminal, Not Insurable]: 0.08284023668639054
+	[18, Soft, Terminal, Not Insurable]: 0.08284023668639054
+	[17, Soft, Terminal, Not Insurable]: 0.08284023668639054
+}
+[14, Soft, Active, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0.021796153488253877
+	[25, Hard, Terminal, Not Insurable]: 0.02698879842726924
+	[24, Hard, Terminal, Not Insurable]: 0.11367542083780365
+	[23, Hard, Terminal, Not Insurable]: 0.06610589819872678
+	[22, Hard, Terminal, Not Insurable]: 0.0713847480558477
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0.050797233613076094
+	[20, Hard, Terminal, Not Insurable]: 0.050797233613076094
+	[19, Hard, Terminal, Not Insurable]: 0.050797233613076094
+	[18, Hard, Terminal, Not Insurable]: 0.050797233613076094
+	[17, Hard, Terminal, Not Insurable]: 0.050797233613076094
+	[21, Soft, Terminal, Not Insurable]: 0.08921256258534366
+	[20, Soft, Terminal, Not Insurable]: 0.08921256258534366
+	[19, Soft, Terminal, Not Insurable]: 0.08921256258534366
+	[18, Soft, Terminal, Not Insurable]: 0.08921256258534366
+	[17, Soft, Terminal, Not Insurable]: 0.08921256258534366
+}
+[13, Soft, Active, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0.021964537863337765
+	[25, Hard, Terminal, Not Insurable]: 0.027287287954088323
+	[24, Hard, Terminal, Not Insurable]: 0.03247993289310368
+	[23, Hard, Terminal, Not Insurable]: 0.11916655530363808
+	[22, Hard, Terminal, Not Insurable]: 0.07159703266456123
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0.049425863264653334
+	[20, Hard, Terminal, Not Insurable]: 0.049425863264653334
+	[19, Hard, Terminal, Not Insurable]: 0.049425863264653334
+	[18, Hard, Terminal, Not Insurable]: 0.049425863264653334
+	[17, Hard, Terminal, Not Insurable]: 0.049425863264653334
+	[21, Soft, Terminal, Not Insurable]: 0.09607506739960087
+	[20, Soft, Terminal, Not Insurable]: 0.09607506739960087
+	[19, Soft, Terminal, Not Insurable]: 0.09607506739960087
+	[18, Soft, Terminal, Not Insurable]: 0.09607506739960087
+	[17, Soft, Terminal, Not Insurable]: 0.09607506739960087
+}
+[12, Soft, Active, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0.022029856204480378
+	[25, Hard, Terminal, Not Insurable]: 0.027472001914457853
+	[24, Hard, Terminal, Not Insurable]: 0.032794752005208413
+	[23, Hard, Terminal, Not Insurable]: 0.037987396944223775
+	[22, Hard, Terminal, Not Insurable]: 0.12467401935475822
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0.04754293751580413
+	[20, Hard, Terminal, Not Insurable]: 0.04754293751580413
+	[19, Hard, Terminal, Not Insurable]: 0.04754293751580413
+	[18, Hard, Terminal, Not Insurable]: 0.04754293751580413
+	[17, Hard, Terminal, Not Insurable]: 0.04754293751580413
+	[21, Soft, Terminal, Not Insurable]: 0.10346545719957016
+	[20, Soft, Terminal, Not Insurable]: 0.10346545719957016
+	[19, Soft, Terminal, Not Insurable]: 0.10346545719957016
+	[18, Soft, Terminal, Not Insurable]: 0.10346545719957016
+	[17, Soft, Terminal, Not Insurable]: 0.10346545719957016
+}
+[11, Soft, Active, Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0.014628596158708967
+	[25, Hard, Terminal, Not Insurable]: 0.018865106967262884
+	[24, Hard, Terminal, Not Insurable]: 0.023089056556366297
+	[23, Hard, Terminal, Not Insurable]: 0.027280624534876657
+	[22, Hard, Terminal, Not Insurable]: 0.03142288608395469
+	[21, Blackjack, Terminal, Not Insurable]: 0.3076923076923077
+	[21, Hard, Terminal, Not Insurable]: 0.019364561263305942
+	[20, Hard, Terminal, Not Insurable]: 0.019364561263305942
+	[19, Hard, Terminal, Not Insurable]: 0.019364561263305942
+	[18, Hard, Terminal, Not Insurable]: 0.019364561263305942
+	[17, Hard, Terminal, Not Insurable]: 0.019364561263305942
+	[21, Soft, Terminal, Not Insurable]: 0.034501261599537085
+	[20, Soft, Terminal, Not Insurable]: 0.111424338522614
+	[19, Soft, Terminal, Not Insurable]: 0.111424338522614
+	[18, Soft, Terminal, Not Insurable]: 0.111424338522614
+	[17, Soft, Terminal, Not Insurable]: 0.111424338522614
+}
+[10, Hard, Active, Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0.03183552529217543
+	[25, Hard, Terminal, Not Insurable]: 0.03752044052292105
+	[24, Hard, Terminal, Not Insurable]: 0.042799290380041974
+	[23, Hard, Terminal, Not Insurable]: 0.047701079533082835
+	[22, Hard, Terminal, Not Insurable]: 0.05225274088947792
+	[21, Blackjack, Terminal, Not Insurable]: 0.07692307692307693
+	[21, Hard, Terminal, Not Insurable]: 0.03450126159953709
+	[20, Hard, Terminal, Not Insurable]: 0.3421935692918448
+	[19, Hard, Terminal, Not Insurable]: 0.11142433852261402
+	[18, Hard, Terminal, Not Insurable]: 0.11142433852261402
+	[17, Hard, Terminal, Not Insurable]: 0.11142433852261402
+	[21, Soft, Terminal, Not Insurable]: 0
+	[20, Soft, Terminal, Not Insurable]: 0
+	[19, Soft, Terminal, Not Insurable]: 0
+	[18, Soft, Terminal, Not Insurable]: 0
+	[17, Soft, Terminal, Not Insurable]: 0
+}
+[10, Hard, Active, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0.03183552529217543
+	[25, Hard, Terminal, Not Insurable]: 0.03752044052292105
+	[24, Hard, Terminal, Not Insurable]: 0.042799290380041974
+	[23, Hard, Terminal, Not Insurable]: 0.047701079533082835
+	[22, Hard, Terminal, Not Insurable]: 0.05225274088947792
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0.03450126159953709
+	[20, Hard, Terminal, Not Insurable]: 0.3421935692918448
+	[19, Hard, Terminal, Not Insurable]: 0.11142433852261402
+	[18, Hard, Terminal, Not Insurable]: 0.11142433852261402
+	[17, Hard, Terminal, Not Insurable]: 0.11142433852261402
+	[21, Soft, Terminal, Not Insurable]: 0.07692307692307693
+	[20, Soft, Terminal, Not Insurable]: 0
+	[19, Soft, Terminal, Not Insurable]: 0
+	[18, Soft, Terminal, Not Insurable]: 0
+	[17, Soft, Terminal, Not Insurable]: 0
+}
+[9, Hard, Active, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0.034284411853112005
+	[25, Hard, Terminal, Not Insurable]: 0.040406628255453436
+	[24, Hard, Terminal, Not Insurable]: 0.04609154348619905
+	[23, Hard, Terminal, Not Insurable]: 0.05137039334331997
+	[22, Hard, Terminal, Not Insurable]: 0.05627218249636084
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0.06082384385275591
+	[20, Hard, Terminal, Not Insurable]: 0.04307236456281509
+	[19, Hard, Terminal, Not Insurable]: 0.3507646722551228
+	[18, Hard, Terminal, Not Insurable]: 0.11999544148589202
+	[17, Hard, Terminal, Not Insurable]: 0.11999544148589202
+	[21, Soft, Terminal, Not Insurable]: 0
+	[20, Soft, Terminal, Not Insurable]: 0.07692307692307693
+	[19, Soft, Terminal, Not Insurable]: 0
+	[18, Soft, Terminal, Not Insurable]: 0
+	[17, Soft, Terminal, Not Insurable]: 0
+}
+[8, Hard, Active, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0.03673329841404858
+	[25, Hard, Terminal, Not Insurable]: 0.043292815987985823
+	[24, Hard, Terminal, Not Insurable]: 0.04938379659235612
+	[23, Hard, Terminal, Not Insurable]: 0.05503970715355711
+	[22, Hard, Terminal, Not Insurable]: 0.06029162410324375
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0.0634777870527203
+	[20, Hard, Terminal, Not Insurable]: 0.06939494681603392
+	[19, Hard, Terminal, Not Insurable]: 0.051643467526093084
+	[18, Hard, Terminal, Not Insurable]: 0.3593357752184008
+	[17, Hard, Terminal, Not Insurable]: 0.12856654444917
+	[21, Soft, Terminal, Not Insurable]: 0.00591715976331361
+	[20, Soft, Terminal, Not Insurable]: 0
+	[19, Soft, Terminal, Not Insurable]: 0.07692307692307693
+	[18, Soft, Terminal, Not Insurable]: 0
+	[17, Soft, Terminal, Not Insurable]: 0
+}
+[7, Hard, Active, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0.03937056086428796
+	[25, Hard, Terminal, Not Insurable]: 0.046401018161482246
+	[24, Hard, Terminal, Not Insurable]: 0.052929299937448354
+	[23, Hard, Terminal, Not Insurable]: 0.058991275872274034
+	[22, Hard, Terminal, Not Insurable]: 0.06462025352604073
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0.06815654427216306
+	[20, Hard, Terminal, Not Insurable]: 0.07270820562855815
+	[19, Hard, Terminal, Not Insurable]: 0.07862536539187177
+	[18, Hard, Terminal, Not Insurable]: 0.06087388610193094
+	[17, Hard, Terminal, Not Insurable]: 0.36856619379423866
+	[21, Soft, Terminal, Not Insurable]: 0.00591715976331361
+	[20, Soft, Terminal, Not Insurable]: 0.00591715976331361
+	[19, Soft, Terminal, Not Insurable]: 0
+	[18, Soft, Terminal, Not Insurable]: 0.07692307692307693
+	[17, Soft, Terminal, Not Insurable]: 0
+}
+[6, Hard, Active, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0.11320211636359351
+	[25, Hard, Terminal, Not Insurable]: 0.06748271406588352
+	[24, Hard, Terminal, Not Insurable]: 0.07447953281141659
+	[23, Hard, Terminal, Not Insurable]: 0.08097657878941157
+	[22, Hard, Terminal, Not Insurable]: 0.08700955005469263
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0.09079093025846699
+	[20, Hard, Terminal, Not Insurable]: 0.0957977577505016
+	[19, Hard, Terminal, Not Insurable]: 0.1003494191068967
+	[18, Hard, Terminal, Not Insurable]: 0.10626657887021031
+	[17, Hard, Terminal, Not Insurable]: 0.08851509958026946
+	[21, Soft, Terminal, Not Insurable]: 0.006372325898953118
+	[20, Soft, Terminal, Not Insurable]: 0.00591715976331361
+	[19, Soft, Terminal, Not Insurable]: 0.00591715976331361
+	[18, Soft, Terminal, Not Insurable]: 0
+	[17, Soft, Terminal, Not Insurable]: 0.07692307692307693
+}
+[5, Hard, Active, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0.0349289386487288
+	[25, Hard, Terminal, Not Insurable]: 0.12400648580810662
+	[24, Hard, Terminal, Not Insurable]: 0.07865710757867005
+	[23, Hard, Terminal, Not Insurable]: 0.08599752010188554
+	[22, Hard, Terminal, Not Insurable]: 0.09281361744487135
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0.09550152160681352
+	[20, Hard, Terminal, Not Insurable]: 0.1008584768954939
+	[19, Hard, Terminal, Not Insurable]: 0.1058653043875285
+	[18, Hard, Terminal, Not Insurable]: 0.11041696574392358
+	[17, Hard, Terminal, Not Insurable]: 0.1163341255072372
+	[21, Soft, Terminal, Not Insurable]: 0.012744651797906237
+	[20, Soft, Terminal, Not Insurable]: 0.012289485662266729
+	[19, Soft, Terminal, Not Insurable]: 0.01183431952662722
+	[18, Soft, Terminal, Not Insurable]: 0.01183431952662722
+	[17, Soft, Terminal, Not Insurable]: 0.00591715976331361
+}
+[4, Hard, Active, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0.03598230699805805
+	[25, Hard, Terminal, Not Insurable]: 0.043708193635252725
+	[24, Hard, Terminal, Not Insurable]: 0.13274711190838223
+	[23, Hard, Terminal, Not Insurable]: 0.08736186399885792
+	[22, Hard, Terminal, Not Insurable]: 0.09466896896199196
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0.09754271018523074
+	[20, Hard, Terminal, Not Insurable]: 0.10328480605022147
+	[19, Hard, Terminal, Not Insurable]: 0.10864176133890185
+	[18, Hard, Terminal, Not Insurable]: 0.11364858883093644
+	[17, Hard, Terminal, Not Insurable]: 0.11820025018733152
+	[21, Soft, Terminal, Not Insurable]: 0.013689996848849832
+	[20, Soft, Terminal, Not Insurable]: 0.013199817933545747
+	[19, Soft, Terminal, Not Insurable]: 0.012744651797906237
+	[18, Soft, Terminal, Not Insurable]: 0.012289485662266729
+	[17, Soft, Terminal, Not Insurable]: 0.012289485662266729
+}
+[3, Hard, Active, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0.03718062818802831
+	[25, Hard, Terminal, Not Insurable]: 0.04522053726533075
+	[24, Hard, Terminal, Not Insurable]: 0.052936258406144285
+	[23, Hard, Terminal, Not Insurable]: 0.14196573728977702
+	[22, Hard, Terminal, Not Insurable]: 0.09657172423286287
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0.09953910910348855
+	[20, Hard, Terminal, Not Insurable]: 0.10569327845222393
+	[19, Hard, Terminal, Not Insurable]: 0.11143537431721466
+	[18, Hard, Terminal, Not Insurable]: 0.11679232960589501
+	[17, Hard, Terminal, Not Insurable]: 0.12179915709792961
+	[21, Soft, Terminal, Not Insurable]: 0.01516053359476209
+	[20, Soft, Terminal, Not Insurable]: 0.014635341899793427
+	[19, Soft, Terminal, Not Insurable]: 0.01414516298448934
+	[18, Soft, Terminal, Not Insurable]: 0.013689996848849832
+	[17, Soft, Terminal, Not Insurable]: 0.013234830713210324
+}
+[2, Hard, Active, Not Insurable] {
+	[26, Hard, Terminal, Not Insurable]: 0.038337189106848184
+	[25, Hard, Terminal, Not Insurable]: 0.046691358549391326
+	[24, Hard, Terminal, Not Insurable]: 0.054718130677524304
+	[23, Hard, Terminal, Not Insurable]: 0.062421653222680465
+	[22, Hard, Terminal, Not Insurable]: 0.15143980483891709
+	[21, Blackjack, Terminal, Not Insurable]: 0
+	[21, Hard, Terminal, Not Insurable]: 0.10125198924480511
+	[20, Hard, Terminal, Not Insurable]: 0.10784785827546281
+	[19, Hard, Terminal, Not Insurable]: 0.1140020276241982
+	[18, Hard, Terminal, Not Insurable]: 0.11974412348918892
+	[17, Hard, Terminal, Not Insurable]: 0.12510107877786927
+	[21, Soft, Terminal, Not Insurable]: 0.01674149526115494
+	[20, Soft, Terminal, Not Insurable]: 0.01617859749577827
+	[19, Soft, Terminal, Not Insurable]: 0.015653405800809605
+	[18, Soft, Terminal, Not Insurable]: 0.015163226885505518
+	[17, Soft, Terminal, Not Insurable]: 0.014708060749866012
+}

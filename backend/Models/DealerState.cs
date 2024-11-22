@@ -1,3 +1,4 @@
+using System.Text;
 using Solvation.Enums;
 
 namespace Solvation.Models
@@ -6,7 +7,7 @@ namespace Solvation.Models
     {
         public readonly bool Insurable;
 
-        public new readonly static Dictionary<Rank, DealerState> RankValues = new Dictionary<Rank, DealerState>
+        protected new readonly static Dictionary<Rank, DealerState> RankValues = new Dictionary<Rank, DealerState>
         {
             { Rank.Two, new DealerState(2, GameStateValueType.Hard) },
             { Rank.Three, new DealerState(3, GameStateValueType.Hard) },
@@ -91,6 +92,28 @@ namespace Solvation.Models
             }
 
             return terminalStates;
+        }
+
+        public static string Interactions()
+        {
+            StringBuilder result = new StringBuilder();
+
+            foreach (DealerState dealerState in DealerState.AllStates())
+            {
+                foreach (Card card in Card.AllRanks())
+                {
+                    try {
+                        DealerState afterHit = dealerState.Hit(card);
+                        result.AppendLine($"{dealerState} + {DealerState.RankValues[card.Rank]} = {afterHit}");
+                    }
+                    catch
+                    {
+                        result.AppendLine($"{dealerState} + {DealerState.RankValues[card.Rank]} = INVALID");
+                    }
+                }
+            }
+
+            return result.ToString();
         }
 
         public override bool Equals(object? obj)
