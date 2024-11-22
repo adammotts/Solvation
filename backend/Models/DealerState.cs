@@ -31,7 +31,6 @@ namespace Solvation.Models
         public override DealerState Hit(Card card)
         {
             DealerState other = PileState<DealerState>.RankValues[card.Rank];
-
             PileState<DealerState>.Combine(this, other, out int resultValue, out GameStateValueType resultValueType);
 
             if (this.Insurable && other.Insurable && resultValue == 21)
