@@ -1,3 +1,7 @@
+using Solvation.Algorithms;
+
+Solver.VerifyInteractions();
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
