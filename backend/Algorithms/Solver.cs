@@ -62,30 +62,30 @@ namespace Solvation.Algorithms
         {
             var result = new StringBuilder();
 
-            foreach (var node in dealerTree.Keys)
-            {
-                result.AppendLine($"{node} {{");
-                foreach (var terminalNode in dealerTree[node].Keys)
-                {
-                    result.AppendLine($"\t{terminalNode}: {dealerTree[node][terminalNode]}");
-                }
-                result.AppendLine("}");
-            }
-
-            // foreach (var dealerState in DealerState.AllStates())
+            // foreach (var node in dealerTree.Keys)
             // {
-            //     foreach (var card in Card.AllRanks())
+            //     result.AppendLine($"{node} {{");
+            //     foreach (var terminalNode in dealerTree[node].Keys)
             //     {
-            //         try {
-            //             var afterHit = dealerState.Hit(card);
-            //             result.AppendLine($"{dealerState} + {DealerState.RankValues[card.Rank]} = {afterHit}");
-            //         }
-            //         catch
-            //         {
-            //             result.AppendLine($"{dealerState} + {DealerState.RankValues[card.Rank]} = INVALID");
-            //         }
+            //         result.AppendLine($"\t{terminalNode}: {dealerTree[node][terminalNode]}");
             //     }
+            //     result.AppendLine("}");
             // }
+
+            foreach (var dealerState in DealerState.AllStates())
+            {
+                foreach (var card in Card.AllRanks())
+                {
+                    try {
+                        var afterHit = dealerState.Hit(card);
+                        result.AppendLine($"{dealerState} + {DealerState.RankValues[card.Rank]} = {afterHit}");
+                    }
+                    catch
+                    {
+                        result.AppendLine($"{dealerState} + {DealerState.RankValues[card.Rank]} = INVALID");
+                    }
+                }
+            }
 
             return result.ToString();
         }

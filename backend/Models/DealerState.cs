@@ -32,14 +32,14 @@ namespace Solvation.Models
         {
             DealerState other = PileState<DealerState>.RankValues[card.Rank];
 
-            DealerState notBlackjack = this.Combine(other);
+            PileState<DealerState>.Combine(this, other, out int resultValue, out GameStateValueType resultValueType);
 
-            if (this.Insurable && other.Insurable && notBlackjack.SumValue == 21)
+            if (this.Insurable && other.Insurable && resultValue == 21)
             {
                 return new DealerState(21, GameStateValueType.Blackjack, false);
             }
 
-            return new DealerState(notBlackjack.SumValue, notBlackjack.ValueType, false);
+            return new DealerState(resultValue, resultValueType, false);
         }
 
         public new static List<DealerState> AllStates()

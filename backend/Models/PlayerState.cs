@@ -24,7 +24,8 @@ namespace Solvation.Models
         public override PlayerState Hit(Card card)
         {
             PlayerState other = PileState<PlayerState>.RankValues[card.Rank];
-            return this.Combine(other);
+            PileState<PlayerState>.Combine(this, other, out int resultValue, out GameStateValueType resultValueType);
+            return new PlayerState(resultValue, resultValueType);
         }
 
         public PlayerState Split()

@@ -40,20 +40,19 @@ namespace Solvation.Models
 
         public abstract T Hit(Card card);
 
-        protected T Combine(T other)
+        protected static void Combine(T first, T second, out int resultValue, out GameStateValueType resultValueType)
         {
-            if (this.StateType == GameStateType.Terminal)
+            if (first.StateType == GameStateType.Terminal || second.StateType == GameStateType.Terminal)
                 throw new InvalidOperationException("Cannot act on terminal state");
 
-            int resultValue = this.SumValue + other.SumValue;
-            GameStateValueType resultValueType;
+            resultValue = first.SumValue + second.SumValue;
+            resultValueType = first.ValueType;
 
-            if (other.SumValue == 11 && other.ValueType == GameStateValueType.Soft)
+            if (second.SumValue == 11 && second.ValueType == GameStateValueType.Soft)
             {
                 if (resultValue > 21)
                 {
                     resultValue -= 10;
-                    resultValueType = this.ValueType;
                 }
                 else
                 {
@@ -62,7 +61,7 @@ namespace Solvation.Models
             }
             else
             {
-                if (this.ValueType == GameStateValueType.Hard)
+                if (first.ValueType == GameStateValueType.Hard)
                 {
                     resultValueType = GameStateValueType.Hard;
                 }
@@ -79,8 +78,6 @@ namespace Solvation.Models
                     }
                 }
             }
-
-            return PileState<T>.CreateState(resultValue, resultValueType);
         }
 
         public static List<T> AllStates()
