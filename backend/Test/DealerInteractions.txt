@@ -1,5 +1,4 @@
 Dealer Interactions:
-
 [26, Hard, Terminal, Not Insurable] + [2, Hard, Active, Not Insurable] = INVALID
 [26, Hard, Terminal, Not Insurable] + [3, Hard, Active, Not Insurable] = INVALID
 [26, Hard, Terminal, Not Insurable] + [4, Hard, Active, Not Insurable] = INVALID

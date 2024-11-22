@@ -75,7 +75,7 @@ namespace Solvation.Algorithms
             return result.ToString();
         }
 
-        public static void DealerInteractions()
+        private static bool DealerInteractions()
         {
             string interactions = DealerState.Interactions();
 
@@ -89,13 +89,10 @@ namespace Solvation.Algorithms
 
             File.WriteAllText(filePath, result);
 
-            if (existingInteractions != "" && existingInteractions != result)
-            {
-                throw new InvalidOperationException("Dealer Interactions do not match expected output");
-            }
+            return existingInteractions == "" || existingInteractions == result;
         }
 
-        public static void PlayerInteractions()
+        private static bool PlayerInteractions()
         {
             string interactions = PlayerState.Interactions();
 
@@ -107,9 +104,29 @@ namespace Solvation.Algorithms
 
             File.WriteAllText(filePath, result);
 
-            if (existingInteractions != "" && existingInteractions != result)
+            return existingInteractions == "" || existingInteractions == result;
+        }
+
+        public static void VerifyInteractions()
+        {
+            bool dealerVerified = Solver.DealerInteractions();
+            bool playerVerified = Solver.PlayerInteractions();
+
+            StringBuilder result = new StringBuilder();
+
+            if (!dealerVerified)
             {
-                throw new InvalidOperationException("Player Interactions do not match expected output");
+                result.AppendLine("Dealer interactions verification failed");
+            }
+
+            if (!playerVerified)
+            {
+                result.AppendLine("Player interactions verification failed");
+            }
+
+            if (result.Length != 0)
+            {
+                throw new InvalidOperationException(result.ToString());
             }
         }
 

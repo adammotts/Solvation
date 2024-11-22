@@ -26,8 +26,7 @@ namespace Solvation.Controllers
         [HttpPost("/verify-interactions")]
         public IActionResult VerifyInteractions()
         {
-            Solver.DealerInteractions();
-            Solver.PlayerInteractions();
+            Solver.VerifyInteractions();
 
             return Ok("Interactions Verified.");
         }
