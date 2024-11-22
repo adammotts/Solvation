@@ -1,10 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using Solvation.Models;
-using Solvation.Enums;
 using Solvation.Requests;
 using Solvation.Algorithms;
-using System.Linq;
 
 namespace Solvation.Controllers
 {
