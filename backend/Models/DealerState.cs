@@ -37,7 +37,7 @@ namespace Solvation.Models
         public override DealerState Hit(Card card)
         {
             DealerState other = DealerState.RankValues[card.Rank];
-            PileState.Combine(this, other, out int resultValue, out GameStateValueType resultValueType);
+            DealerState.Combine(this, other, out int resultValue, out GameStateValueType resultValueType);
 
             if (this.Insurable && other.Insurable && resultValue == 21)
             {
@@ -94,7 +94,7 @@ namespace Solvation.Models
             return terminalStates;
         }
 
-        public static string Interactions()
+        public new static string Interactions()
         {
             StringBuilder result = new StringBuilder();
 

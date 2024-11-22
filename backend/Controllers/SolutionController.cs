@@ -21,14 +21,15 @@ namespace Solvation.Controllers
 
         /*
         Test with:
-            curl -X POST "http://localhost:5256/dealer-interactions"
+            curl -X POST "http://localhost:5256/verify-interactions"
         */
-        [HttpPost("/dealer-interactions")]
-        public IActionResult DealerInteractions()
+        [HttpPost("/verify-interactions")]
+        public IActionResult VerifyInteractions()
         {
             Solver.DealerInteractions();
+            Solver.PlayerInteractions();
 
-            return Ok("Dealer interactions generated.");
+            return Ok("Interactions Verified.");
         }
 
         /*

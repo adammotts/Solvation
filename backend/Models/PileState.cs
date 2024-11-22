@@ -8,7 +8,7 @@ namespace Solvation.Models
         public readonly GameStateValueType ValueType;
         public readonly GameStateType StateType;
 
-        public readonly static Dictionary<Rank, PlayerState> RankValues = new Dictionary<Rank, PlayerState>();
+        protected readonly static Dictionary<Rank, PlayerState> RankValues = new Dictionary<Rank, PlayerState>();
 
         protected PileState(int sumValue, GameStateValueType valueType)
         {
@@ -67,6 +67,11 @@ namespace Solvation.Models
         }
 
         public static List<PileState> AllTerminalStates()
+        {
+            throw new NotImplementedException();
+        }
+
+        public static string Interactions()
         {
             throw new NotImplementedException();
         }

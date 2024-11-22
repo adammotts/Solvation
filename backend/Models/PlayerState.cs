@@ -1,3 +1,4 @@
+using System.Text;
 using Solvation.Enums;
 
 namespace Solvation.Models
@@ -36,7 +37,7 @@ namespace Solvation.Models
         public override PlayerState Hit(Card card)
         {
             PlayerState other = PlayerState.RankValues[card.Rank];
-            PileState.Combine(this, other, out int resultValue, out GameStateValueType resultValueType);
+            PlayerState.Combine(this, other, out int resultValue, out GameStateValueType resultValueType);
             return new PlayerState(resultValue, resultValueType);
         }
 
@@ -99,6 +100,28 @@ namespace Solvation.Models
             }
 
             return playerStates;
+        }
+
+        public new static string Interactions()
+        {
+            StringBuilder result = new StringBuilder();
+
+            foreach (PlayerState playerState in PlayerState.AllStates())
+            {
+                foreach (Card card in Card.AllRanks())
+                {
+                    try {
+                        PlayerState afterHit = playerState.Hit(card);
+                        result.AppendLine($"{playerState} + {PlayerState.RankValues[card.Rank]} = {afterHit}");
+                    }
+                    catch
+                    {
+                        result.AppendLine($"{playerState} + {PlayerState.RankValues[card.Rank]} = INVALID");
+                    }
+                }
+            }
+
+            return result.ToString();
         }
         
         public override bool Equals(object? obj)

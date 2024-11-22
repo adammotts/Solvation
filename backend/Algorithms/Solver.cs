@@ -85,7 +85,32 @@ namespace Solvation.Algorithms
 
             string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Test/DealerInteractions.txt");
 
+            string existingInteractions = File.ReadAllText(filePath);
+
             File.WriteAllText(filePath, result);
+
+            if (existingInteractions != "" && existingInteractions != result)
+            {
+                throw new InvalidOperationException("Dealer Interactions do not match expected output");
+            }
+        }
+
+        public static void PlayerInteractions()
+        {
+            string interactions = PlayerState.Interactions();
+
+            string result = $"Player Interactions:\n\n{interactions}";
+
+            string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Test/PlayerInteractions.txt");
+
+            string existingInteractions = File.ReadAllText(filePath);
+
+            File.WriteAllText(filePath, result);
+
+            if (existingInteractions != "" && existingInteractions != result)
+            {
+                throw new InvalidOperationException("Player Interactions do not match expected output");
+            }
         }
 
         public static GameState[] Solve()
