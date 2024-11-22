@@ -2,16 +2,28 @@ using Solvation.Enums;
 
 namespace Solvation.Models
 {
-    public class PlayerState : PileState<PlayerState>
+    public class PlayerState : PileState
     {
         public readonly bool Splittable;
 
-        public PlayerState(int sumValue, GameStateValueType valueType) : base(sumValue, valueType)
+        public new readonly static Dictionary<Rank, PlayerState> RankValues = new Dictionary<Rank, PlayerState>
         {
-            this.Splittable = false;
-        }
+            { Rank.Two, new PlayerState(2, GameStateValueType.Hard) },
+            { Rank.Three, new PlayerState(3, GameStateValueType.Hard) },
+            { Rank.Four, new PlayerState(4, GameStateValueType.Hard) },
+            { Rank.Five, new PlayerState(5, GameStateValueType.Hard) },
+            { Rank.Six, new PlayerState(6, GameStateValueType.Hard) },
+            { Rank.Seven, new PlayerState(7, GameStateValueType.Hard) },
+            { Rank.Eight, new PlayerState(8, GameStateValueType.Hard) },
+            { Rank.Nine, new PlayerState(9, GameStateValueType.Hard) },
+            { Rank.Ten, new PlayerState(10, GameStateValueType.Hard) },
+            { Rank.Jack, new PlayerState(10, GameStateValueType.Hard) },
+            { Rank.Queen, new PlayerState(10, GameStateValueType.Hard) },
+            { Rank.King, new PlayerState(10, GameStateValueType.Hard) },
+            { Rank.Ace, new PlayerState(11, GameStateValueType.Soft) }
+        };
 
-        public PlayerState(int sumValue, GameStateValueType valueType, bool splittable) : base(sumValue, valueType)
+        public PlayerState(int sumValue, GameStateValueType valueType, bool splittable = false) : base(sumValue, valueType)
         {
             this.Splittable = splittable;
         }
@@ -23,8 +35,8 @@ namespace Solvation.Models
 
         public override PlayerState Hit(Card card)
         {
-            PlayerState other = PileState<PlayerState>.RankValues[card.Rank];
-            PileState<PlayerState>.Combine(this, other, out int resultValue, out GameStateValueType resultValueType);
+            PlayerState other = PlayerState.RankValues[card.Rank];
+            PileState.Combine(this, other, out int resultValue, out GameStateValueType resultValueType);
             return new PlayerState(resultValue, resultValueType);
         }
 

@@ -2,32 +2,13 @@ using Solvation.Enums;
 
 namespace Solvation.Models
 {
-    public abstract class PileState<T> where T : PileState<T>
+    public abstract class PileState
     {
         public readonly int SumValue;
         public readonly GameStateValueType ValueType;
         public readonly GameStateType StateType;
-        public readonly static Dictionary<Rank, T> RankValues = new Dictionary<Rank, T>
-        {
-            { Rank.Two, CreateState(2, GameStateValueType.Hard) },
-            { Rank.Three, CreateState(3, GameStateValueType.Hard) },
-            { Rank.Four, CreateState(4, GameStateValueType.Hard) },
-            { Rank.Five, CreateState(5, GameStateValueType.Hard) },
-            { Rank.Six, CreateState(6, GameStateValueType.Hard) },
-            { Rank.Seven, CreateState(7, GameStateValueType.Hard) },
-            { Rank.Eight, CreateState(8, GameStateValueType.Hard) },
-            { Rank.Nine, CreateState(9, GameStateValueType.Hard) },
-            { Rank.Ten, CreateState(10, GameStateValueType.Hard) },
-            { Rank.Jack, CreateState(10, GameStateValueType.Hard) },
-            { Rank.Queen, CreateState(10, GameStateValueType.Hard) },
-            { Rank.King, CreateState(10, GameStateValueType.Hard) },
-            { Rank.Ace, CreateState(11, GameStateValueType.Soft) }
-        };
 
-        private static T CreateState(int sumValue, GameStateValueType valueType)
-        {
-            return (T)Activator.CreateInstance(typeof(T), sumValue, valueType)!;
-        }
+        public readonly static Dictionary<Rank, PlayerState> RankValues = new Dictionary<Rank, PlayerState>();
 
         protected PileState(int sumValue, GameStateValueType valueType)
         {
@@ -38,9 +19,9 @@ namespace Solvation.Models
 
         protected abstract GameStateType DetermineStateType();
 
-        public abstract T Hit(Card card);
+        public abstract PileState Hit(Card card);
 
-        protected static void Combine(T first, T second, out int resultValue, out GameStateValueType resultValueType)
+        protected static void Combine(PileState first, PileState second, out int resultValue, out GameStateValueType resultValueType)
         {
             if (first.StateType == GameStateType.Terminal || second.StateType == GameStateType.Terminal)
                 throw new InvalidOperationException("Cannot act on terminal state");
@@ -80,12 +61,12 @@ namespace Solvation.Models
             }
         }
 
-        public static List<T> AllStates()
+        public static List<PileState> AllStates()
         {
             throw new NotImplementedException();
         }
 
-        public static List<T> AllTerminalStates()
+        public static List<PileState> AllTerminalStates()
         {
             throw new NotImplementedException();
         }
