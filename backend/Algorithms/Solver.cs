@@ -60,12 +60,11 @@ namespace Solvation.Algorithms
 
         public static string DealerTree(Dictionary<DealerState, Dictionary<DealerState, double>> dealerTree)
         {
-            var result = new StringBuilder();
-
-            foreach (var node in dealerTree.Keys)
+            StringBuilder result = new StringBuilder();
+            foreach (DealerState node in dealerTree.Keys)
             {
                 result.AppendLine($"{node} {{");
-                foreach (var terminalNode in dealerTree[node].Keys)
+                foreach (DealerState terminalNode in dealerTree[node].Keys)
                 {
                     result.AppendLine($"\t{terminalNode}: {dealerTree[node][terminalNode]}");
                 }
@@ -78,32 +77,21 @@ namespace Solvation.Algorithms
         private static bool DealerInteractions()
         {
             string interactions = DealerState.Interactions();
-
             string dealerTree = Solver.DealerTree(Solver.GenerateDealerTree());
-
             string result = $"Dealer Interactions:\n\n{interactions}\nDealer Tree:\n\n{dealerTree}";
-
             string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Test/DealerInteractions.txt");
-
             string existingInteractions = File.ReadAllText(filePath);
-
             File.WriteAllText(filePath, result);
-
             return existingInteractions == "" || existingInteractions == result;
         }
 
         private static bool PlayerInteractions()
         {
             string interactions = PlayerState.Interactions();
-
             string result = $"Player Interactions:\n\n{interactions}";
-
             string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Test/PlayerInteractions.txt");
-
             string existingInteractions = File.ReadAllText(filePath);
-
             File.WriteAllText(filePath, result);
-
             return existingInteractions == "" || existingInteractions == result;
         }
 
@@ -111,7 +99,6 @@ namespace Solvation.Algorithms
         {
             bool dealerVerified = Solver.DealerInteractions();
             bool playerVerified = Solver.PlayerInteractions();
-
             StringBuilder result = new StringBuilder();
 
             if (!dealerVerified)
