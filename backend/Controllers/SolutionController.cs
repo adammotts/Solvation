@@ -26,11 +26,13 @@ namespace Solvation.Controllers
         [HttpPost("/game-states")]
         public IActionResult GenerateGameStates()
         {
-            GameState[] gameStates = Solver.Solve();
+            // GameState[] gameStates = Solver.Solve();
 
-            _gameStateCollection.InsertMany(gameStates);
+            // _gameStateCollection.InsertMany(gameStates);
 
-            return Ok(gameStates);
+            // return Ok(gameStates);
+
+            return Ok(Solver.PrintDealerTree(Solver.GenerateDealerTree()));
         }
 
         /* Test with:

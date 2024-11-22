@@ -75,5 +75,15 @@ namespace Solvation.Models
         {
             throw new NotImplementedException();
         }
+
+        public static List<T> AllTerminalStates()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override string ToString()
+        {
+            return $"[{SumValue} {ValueType}]";
+        }
     }
 }

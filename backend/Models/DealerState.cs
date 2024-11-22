@@ -73,5 +73,20 @@ namespace Solvation.Models
 
             return dealerStates;
         }
+
+        public new static List<DealerState> AllTerminalStates()
+        {
+            var terminalStates = new List<DealerState>();
+
+            foreach (DealerState dealerState in DealerState.AllStates())
+            {
+                if (dealerState.StateType == GameStateType.Terminal)
+                {
+                    terminalStates.Add(dealerState);
+                }
+            }
+
+            return terminalStates;
+        }
     }
 }
