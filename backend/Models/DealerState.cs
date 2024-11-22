@@ -35,7 +35,7 @@ namespace Solvation.Models
             return notBlackjack;
         }
 
-        public static List<DealerState> AllDealerStates()
+        public new static List<DealerState> AllStates()
         {
             var dealerStates = new List<DealerState>();
 

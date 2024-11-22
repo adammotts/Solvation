@@ -51,7 +51,7 @@ namespace Solvation.Models
             return new PlayerState(splitValue, splitValueType);
         }
 
-        public static List<PlayerState> AllPlayerStates()
+        public new static List<PlayerState> AllStates()
         {
             List<PlayerState> playerStates = new List<PlayerState>();
 

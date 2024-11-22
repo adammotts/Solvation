@@ -71,5 +71,10 @@ namespace Solvation.Models
 
             return GameStateValueType.Soft;
         }
+
+        public static List<T> AllStates()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
