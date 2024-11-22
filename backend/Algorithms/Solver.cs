@@ -19,7 +19,7 @@ namespace Solvation.Algorithms
                 terminalNodeProbabilities[terminalNode] = 0.0;
             }
 
-            foreach (DealerState node in DealerState.AllTerminalStates())
+            foreach (DealerState node in DealerState.AllStates())
             {
                 // Initialize probabilities with all terminal nodes having 0 probability
                 var probabilities = new Dictionary<DealerState, double>(terminalNodeProbabilities);
@@ -38,7 +38,10 @@ namespace Solvation.Algorithms
                     {
                         DealerState resultAfterAddCard = node.Hit(card);
 
-                        var resultNodeProbabilities = dealerTree[resultAfterAddCard];
+                        if (!dealerTree.TryGetValue(resultAfterAddCard, out var resultNodeProbabilities))
+                        {
+                            throw new KeyNotFoundException($"{node} + {DealerState.RankValues[card.Rank]} = {resultAfterAddCard} not found in dealer tree: {Solver.PrintDealerTree(dealerTree)}");
+                        }
 
                         foreach (var terminalNode in resultNodeProbabilities.Keys)
                         {
@@ -69,20 +72,20 @@ namespace Solvation.Algorithms
                 result.AppendLine("}");
             }
 
-            foreach (var dealerState in DealerState.AllStates())
-            {
-                foreach (var card in Card.AllRanks())
-                {
-                    try {
-                        var afterHit = dealerState.Hit(card);
-                        result.AppendLine($"{dealerState} + {DealerState.RankValues[card.Rank]} = {afterHit}");
-                    }
-                    catch
-                    {
-                        result.AppendLine($"{dealerState} + {DealerState.RankValues[card.Rank]} = INVALID");
-                    }
-                }
-            }
+            // foreach (var dealerState in DealerState.AllStates())
+            // {
+            //     foreach (var card in Card.AllRanks())
+            //     {
+            //         try {
+            //             var afterHit = dealerState.Hit(card);
+            //             result.AppendLine($"{dealerState} + {DealerState.RankValues[card.Rank]} = {afterHit}");
+            //         }
+            //         catch
+            //         {
+            //             result.AppendLine($"{dealerState} + {DealerState.RankValues[card.Rank]} = INVALID");
+            //         }
+            //     }
+            // }
 
             return result.ToString();
         }

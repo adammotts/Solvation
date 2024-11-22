@@ -39,7 +39,7 @@ namespace Solvation.Models
                 return new DealerState(21, GameStateValueType.Blackjack, false);
             }
 
-            return notBlackjack;
+            return new DealerState(notBlackjack.SumValue, notBlackjack.ValueType, false);
         }
 
         public new static List<DealerState> AllStates()
