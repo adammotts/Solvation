@@ -73,7 +73,7 @@ namespace Solvation.Models
                 playerStates.Add(new PlayerState(i, GameStateValueType.Soft));
             }
 
-            for (int i = 10; i >= 4; i--)
+            for (int i = 10; i >= 2; i--)
             {
                 playerStates.Add(new PlayerState(i, GameStateValueType.Hard));
             }
