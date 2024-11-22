@@ -15,7 +15,7 @@ namespace Solvation.Algorithms
                 DealerFaceUpValue = 10,
                 DealerValueType = GameStateValueType.Hard,
                 DealerStateType = GameStateType.Active,
-                Actions = new GameActions
+                Actions = new Actions
                 {
                     Hit = null,
                     Stand = 0.85,
