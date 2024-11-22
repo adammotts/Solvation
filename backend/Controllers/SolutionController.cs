@@ -21,9 +21,9 @@ namespace Solvation.Controllers
 
         /*
         Test with:
-            curl -X POST "http://localhost:5256/generate-game-states"
+            curl -X POST "http://localhost:5256/game-states"
         */
-        [HttpPost("/generate-game-states")]
+        [HttpPost("/game-states")]
         public IActionResult GenerateGameStates()
         {
             GameState[] gameStates = Solver.Solve();
@@ -70,6 +70,17 @@ namespace Solvation.Controllers
             }
 
             return Ok(gameStates.First());
+        }
+
+        /* Test with:
+            curl -X DELETE "http://localhost:5256/game-states"
+        */
+        [HttpDelete("/game-states")]
+        public IActionResult DeleteGameStates()
+        {
+            _gameStateCollection.DeleteMany(Builders<GameState>.Filter.Empty);
+
+            return Ok();
         }
     }
 }
