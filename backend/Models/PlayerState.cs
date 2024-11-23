@@ -66,6 +66,14 @@ namespace Solvation.Models
             return new PlayerState(splitValue, splitValueType);
         }
 
+        public PlayerState DeclineSplit()
+        {
+            if (!this.Splittable)
+                throw new ArgumentException("Not Splittable");
+
+            return new PlayerState(this.SumValue, this.ValueType, false);
+        }
+
         public new static List<PlayerState> AllStates()
         {
             List<PlayerState> playerStates = new List<PlayerState>();

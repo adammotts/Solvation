@@ -21,7 +21,7 @@ namespace Solvation.Models
 
         public GameStateType DealerStateType { get; }
 
-        public Actions Actions { get; } = new Actions();
+        public Actions Actions { get; } = new Actions(0, 0, 0, 0);
 
         public GameState(
             int playerSumValue,
