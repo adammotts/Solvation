@@ -310,18 +310,27 @@ namespace Solvation.Algorithms
         {
             List<GameState> gameStates = new List<GameState>();
 
-            foreach (PlayerState playerState in PlayerState.AllStates())
+            var playerStrategyTree = Solver.PlayerTree;
+
+            foreach (DealerState dealerState in playerStrategyTree.Keys)
             {
-                foreach (DealerState dealerState in DealerState.AllStates())
+                var playerStrategyGivenDealerState = playerStrategyTree[dealerState];
+
+                foreach (PlayerState playerState in playerStrategyGivenDealerState.Keys)
                 {
-                    gameStates.Add(new GameState(
-                        playerState.SumValue,
-                        playerState.ValueType,
-                        playerState.StateType,
-                        dealerState.SumValue,
-                        dealerState.ValueType,
-                        dealerState.StateType
-                    ));
+                    var expectedValues = playerStrategyGivenDealerState[playerState];
+
+                    gameStates.Add(
+                        new GameState(
+                            playerState.SumValue,
+                            playerState.ValueType,
+                            playerState.StateType,
+                            dealerState.SumValue,
+                            dealerState.ValueType,
+                            dealerState.StateType,
+                            expectedValues
+                        )
+                    );
                 }
             }
 

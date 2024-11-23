@@ -8,20 +8,20 @@ namespace Solvation.Models
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
-        public string? Id { get; }
+        public string? Id { get; set; }
 
-        public int PlayerSumValue { get; }
+        public int PlayerSumValue { get; set; }
 
-        public GameStateValueType PlayerValueType { get; }
+        public GameStateValueType PlayerValueType { get; set; }
 
-        public GameStateType PlayerStateType { get; }
-        public int DealerFaceUpValue { get; }
+        public GameStateType PlayerStateType { get; set; }
+        public int DealerFaceUpValue { get; set; }
 
-        public GameStateValueType DealerValueType { get; }
+        public GameStateValueType DealerValueType { get; set; }
 
-        public GameStateType DealerStateType { get; }
+        public GameStateType DealerStateType { get; set; }
 
-        public Actions Actions { get; } = new Actions(0, 0, 0, 0);
+        public Actions Actions { get; set; } = new Actions(0, 0, 0, 0);
 
         public GameState(
             int playerSumValue,
@@ -29,7 +29,8 @@ namespace Solvation.Models
             GameStateType playerStateType,
             int dealerFaceUpValue,
             GameStateValueType dealerValueType,
-            GameStateType dealerStateType
+            GameStateType dealerStateType,
+            Actions actions
         )
         {
             PlayerSumValue = playerSumValue;
@@ -38,6 +39,7 @@ namespace Solvation.Models
             DealerFaceUpValue = dealerFaceUpValue;
             DealerValueType = dealerValueType;
             DealerStateType = dealerStateType;
+            Actions = actions;
         }
     }
 }
