@@ -251,10 +251,10 @@ namespace Solvation.Algorithms
             StringBuilder result = new StringBuilder();
             foreach (DealerState dealerNode in playerTree.Keys)
             {
-                result.AppendLine($"[Dealer]{dealerNode} {{");
+                result.AppendLine($"[Dealer] {dealerNode} {{");
                 foreach (PlayerState playerNode in playerTree[dealerNode].Keys)
                 {
-                    result.AppendLine($"\t[Player]{playerNode}: {playerTree[dealerNode][playerNode]}");
+                    result.AppendLine($"\t[Player] {playerNode}: {playerTree[dealerNode][playerNode]}");
                 }
                 result.AppendLine("}");
             }
