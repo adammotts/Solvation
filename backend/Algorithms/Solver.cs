@@ -84,11 +84,14 @@ namespace Solvation.Algorithms
 
             var strategyTree = new Dictionary<DealerState, Dictionary<PlayerState, Actions>>();
 
-            var playerTree = new Dictionary<PlayerState, Actions>();
-
             foreach (DealerState dealerNode in dealerTree.Keys)
             {
-                var singlePlayerTree = new Dictionary<PlayerState, Actions>(playerTree);
+                if (dealerNode.StateType == GameStateType.Terminal)
+                {
+                    continue;
+                }
+
+                var playerStrategyGivenDealerState = new Dictionary<PlayerState, Actions>();
 
                 foreach (PlayerState playerNode in PlayerState.AllStates())
                 {
@@ -114,9 +117,9 @@ namespace Solvation.Algorithms
                         {
                             PlayerState resultAfterAddCard = playerNode.Hit(card);
 
-                            if (!singlePlayerTree.TryGetValue(resultAfterAddCard, out var resultNodeActions))
+                            if (!playerStrategyGivenDealerState.TryGetValue(resultAfterAddCard, out var resultNodeActions))
                             {
-                                throw new KeyNotFoundException($"{dealerNode} + {card} = {resultAfterAddCard} not found in player tree");
+                                throw new KeyNotFoundException($"{playerNode} + {card} = {resultAfterAddCard} not found in player tree");
                             }
 
                             double evBestMove = double.MinValue;
@@ -148,7 +151,7 @@ namespace Solvation.Algorithms
                         {
                             PlayerState resultAfterAddCard = splitNode.Hit(card);
 
-                            if (!singlePlayerTree.TryGetValue(resultAfterAddCard, out var resultNodeActions))
+                            if (!playerStrategyGivenDealerState.TryGetValue(resultAfterAddCard, out var resultNodeActions))
                             {
                                 throw new KeyNotFoundException($"{splitNode} + {card} = {resultAfterAddCard} not found in player tree");
                             }
@@ -171,17 +174,17 @@ namespace Solvation.Algorithms
                             evSplit += 2 * evBestMove / allRanks.Count();
                         }
 
-                        Actions declineSplitActions = singlePlayerTree[playerNode.DeclineSplit()];
+                        Actions declineSplitActions = playerStrategyGivenDealerState[playerNode.DeclineSplit()];
                         expectedValues.Hit = declineSplitActions.Hit;
                         expectedValues.Stand = declineSplitActions.Stand;
                         expectedValues.Double = declineSplitActions.Double;
                         expectedValues.Split = evSplit;
                     }
 
-                    singlePlayerTree[playerNode] = expectedValues;
+                    playerStrategyGivenDealerState[playerNode] = expectedValues;
                 }
 
-                strategyTree[dealerNode] = singlePlayerTree;
+                strategyTree[dealerNode] = playerStrategyGivenDealerState;
             }
 
             return strategyTree;
@@ -219,7 +222,7 @@ namespace Solvation.Algorithms
                     ev -= 1 * frequency;
                 }
                 // Dealer bust
-                else if (dealerNode.SumValue > 21)
+                else if (terminalNode.SumValue > 21)
                 {
                     ev += 1 * frequency;
                 }
@@ -248,10 +251,10 @@ namespace Solvation.Algorithms
             StringBuilder result = new StringBuilder();
             foreach (DealerState dealerNode in playerTree.Keys)
             {
-                result.AppendLine($"{dealerNode} {{");
+                result.AppendLine($"[Dealer]{dealerNode} {{");
                 foreach (PlayerState playerNode in playerTree[dealerNode].Keys)
                 {
-                    result.AppendLine($"\t{playerNode}: {playerTree[dealerNode][playerNode]}");
+                    result.AppendLine($"\t[Player]{playerNode}: {playerTree[dealerNode][playerNode]}");
                 }
                 result.AppendLine("}");
             }
