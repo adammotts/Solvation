@@ -5,6 +5,7 @@ namespace Solvation.Models
 {
     public class DealerState : PileState
     {
+        // This is an alias for MaybeBlackjack. If I want to implement insurance logic, then this needs to be changed for 10s
         public readonly bool Insurable;
 
         protected new readonly static Dictionary<Rank, DealerState> RankValues = new Dictionary<Rank, DealerState>
