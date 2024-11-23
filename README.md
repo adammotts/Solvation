@@ -5,3 +5,4 @@ Rules:
 - Can only split once
 - Player blackjack pushes against dealer blackjack
 - Dealer stands on soft 17
+- No insurance
