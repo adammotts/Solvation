@@ -11,7 +11,6 @@ namespace Solvation.Algorithms
             Post Reveal: Tree after player and dealer blackjack reveal (dealer has a hidden card, but blackjack is not possible)
         */
 
-        // 
         public readonly static Dictionary<DealerState, Dictionary<DealerState, double>> DealerPostRevealTree = GenerateDealerPostRevealTree();
 
         public readonly static Dictionary<DealerState, Dictionary<DealerState, double>> DealerBlackjackTree = GenerateDealerBlackjackTree();
