@@ -8,7 +8,7 @@ namespace Solvation.Models
         public readonly GameStateValueType ValueType;
         public readonly GameStateType StateType;
 
-        protected readonly static Dictionary<Rank, PlayerState> RankValues = new Dictionary<Rank, PlayerState>();
+        public readonly static Dictionary<Rank, PlayerState> RankValues = new Dictionary<Rank, PlayerState>();
 
         protected PileState(int sumValue, GameStateValueType valueType)
         {

@@ -1,4 +1,176 @@
-Dealer Interactions:
+Dealer Reveal Interactions:
+
+2♠ + 2♠ = [4, Hard, Active, Not Insurable]
+2♠ + 3♠ = [5, Hard, Active, Not Insurable]
+2♠ + 4♠ = [6, Hard, Active, Not Insurable]
+2♠ + 5♠ = [7, Hard, Active, Not Insurable]
+2♠ + 6♠ = [8, Hard, Active, Not Insurable]
+2♠ + 7♠ = [9, Hard, Active, Not Insurable]
+2♠ + 8♠ = [10, Hard, Active, Not Insurable]
+2♠ + 9♠ = [11, Hard, Active, Not Insurable]
+2♠ + 10♠ = [12, Hard, Active, Not Insurable]
+2♠ + J♠ = [12, Hard, Active, Not Insurable]
+2♠ + Q♠ = [12, Hard, Active, Not Insurable]
+2♠ + K♠ = [12, Hard, Active, Not Insurable]
+2♠ + A♠ = [13, Soft, Active, Not Insurable]
+3♠ + 2♠ = [5, Hard, Active, Not Insurable]
+3♠ + 3♠ = [6, Hard, Active, Not Insurable]
+3♠ + 4♠ = [7, Hard, Active, Not Insurable]
+3♠ + 5♠ = [8, Hard, Active, Not Insurable]
+3♠ + 6♠ = [9, Hard, Active, Not Insurable]
+3♠ + 7♠ = [10, Hard, Active, Not Insurable]
+3♠ + 8♠ = [11, Hard, Active, Not Insurable]
+3♠ + 9♠ = [12, Hard, Active, Not Insurable]
+3♠ + 10♠ = [13, Hard, Active, Not Insurable]
+3♠ + J♠ = [13, Hard, Active, Not Insurable]
+3♠ + Q♠ = [13, Hard, Active, Not Insurable]
+3♠ + K♠ = [13, Hard, Active, Not Insurable]
+3♠ + A♠ = [14, Soft, Active, Not Insurable]
+4♠ + 2♠ = [6, Hard, Active, Not Insurable]
+4♠ + 3♠ = [7, Hard, Active, Not Insurable]
+4♠ + 4♠ = [8, Hard, Active, Not Insurable]
+4♠ + 5♠ = [9, Hard, Active, Not Insurable]
+4♠ + 6♠ = [10, Hard, Active, Not Insurable]
+4♠ + 7♠ = [11, Hard, Active, Not Insurable]
+4♠ + 8♠ = [12, Hard, Active, Not Insurable]
+4♠ + 9♠ = [13, Hard, Active, Not Insurable]
+4♠ + 10♠ = [14, Hard, Active, Not Insurable]
+4♠ + J♠ = [14, Hard, Active, Not Insurable]
+4♠ + Q♠ = [14, Hard, Active, Not Insurable]
+4♠ + K♠ = [14, Hard, Active, Not Insurable]
+4♠ + A♠ = [15, Soft, Active, Not Insurable]
+5♠ + 2♠ = [7, Hard, Active, Not Insurable]
+5♠ + 3♠ = [8, Hard, Active, Not Insurable]
+5♠ + 4♠ = [9, Hard, Active, Not Insurable]
+5♠ + 5♠ = [10, Hard, Active, Not Insurable]
+5♠ + 6♠ = [11, Hard, Active, Not Insurable]
+5♠ + 7♠ = [12, Hard, Active, Not Insurable]
+5♠ + 8♠ = [13, Hard, Active, Not Insurable]
+5♠ + 9♠ = [14, Hard, Active, Not Insurable]
+5♠ + 10♠ = [15, Hard, Active, Not Insurable]
+5♠ + J♠ = [15, Hard, Active, Not Insurable]
+5♠ + Q♠ = [15, Hard, Active, Not Insurable]
+5♠ + K♠ = [15, Hard, Active, Not Insurable]
+5♠ + A♠ = [16, Soft, Active, Not Insurable]
+6♠ + 2♠ = [8, Hard, Active, Not Insurable]
+6♠ + 3♠ = [9, Hard, Active, Not Insurable]
+6♠ + 4♠ = [10, Hard, Active, Not Insurable]
+6♠ + 5♠ = [11, Hard, Active, Not Insurable]
+6♠ + 6♠ = [12, Hard, Active, Not Insurable]
+6♠ + 7♠ = [13, Hard, Active, Not Insurable]
+6♠ + 8♠ = [14, Hard, Active, Not Insurable]
+6♠ + 9♠ = [15, Hard, Active, Not Insurable]
+6♠ + 10♠ = [16, Hard, Active, Not Insurable]
+6♠ + J♠ = [16, Hard, Active, Not Insurable]
+6♠ + Q♠ = [16, Hard, Active, Not Insurable]
+6♠ + K♠ = [16, Hard, Active, Not Insurable]
+6♠ + A♠ = [17, Soft, Terminal, Not Insurable]
+7♠ + 2♠ = [9, Hard, Active, Not Insurable]
+7♠ + 3♠ = [10, Hard, Active, Not Insurable]
+7♠ + 4♠ = [11, Hard, Active, Not Insurable]
+7♠ + 5♠ = [12, Hard, Active, Not Insurable]
+7♠ + 6♠ = [13, Hard, Active, Not Insurable]
+7♠ + 7♠ = [14, Hard, Active, Not Insurable]
+7♠ + 8♠ = [15, Hard, Active, Not Insurable]
+7♠ + 9♠ = [16, Hard, Active, Not Insurable]
+7♠ + 10♠ = [17, Hard, Terminal, Not Insurable]
+7♠ + J♠ = [17, Hard, Terminal, Not Insurable]
+7♠ + Q♠ = [17, Hard, Terminal, Not Insurable]
+7♠ + K♠ = [17, Hard, Terminal, Not Insurable]
+7♠ + A♠ = [18, Soft, Terminal, Not Insurable]
+8♠ + 2♠ = [10, Hard, Active, Not Insurable]
+8♠ + 3♠ = [11, Hard, Active, Not Insurable]
+8♠ + 4♠ = [12, Hard, Active, Not Insurable]
+8♠ + 5♠ = [13, Hard, Active, Not Insurable]
+8♠ + 6♠ = [14, Hard, Active, Not Insurable]
+8♠ + 7♠ = [15, Hard, Active, Not Insurable]
+8♠ + 8♠ = [16, Hard, Active, Not Insurable]
+8♠ + 9♠ = [17, Hard, Terminal, Not Insurable]
+8♠ + 10♠ = [18, Hard, Terminal, Not Insurable]
+8♠ + J♠ = [18, Hard, Terminal, Not Insurable]
+8♠ + Q♠ = [18, Hard, Terminal, Not Insurable]
+8♠ + K♠ = [18, Hard, Terminal, Not Insurable]
+8♠ + A♠ = [19, Soft, Terminal, Not Insurable]
+9♠ + 2♠ = [11, Hard, Active, Not Insurable]
+9♠ + 3♠ = [12, Hard, Active, Not Insurable]
+9♠ + 4♠ = [13, Hard, Active, Not Insurable]
+9♠ + 5♠ = [14, Hard, Active, Not Insurable]
+9♠ + 6♠ = [15, Hard, Active, Not Insurable]
+9♠ + 7♠ = [16, Hard, Active, Not Insurable]
+9♠ + 8♠ = [17, Hard, Terminal, Not Insurable]
+9♠ + 9♠ = [18, Hard, Terminal, Not Insurable]
+9♠ + 10♠ = [19, Hard, Terminal, Not Insurable]
+9♠ + J♠ = [19, Hard, Terminal, Not Insurable]
+9♠ + Q♠ = [19, Hard, Terminal, Not Insurable]
+9♠ + K♠ = [19, Hard, Terminal, Not Insurable]
+9♠ + A♠ = [20, Soft, Terminal, Not Insurable]
+10♠ + 2♠ = [12, Hard, Active, Not Insurable]
+10♠ + 3♠ = [13, Hard, Active, Not Insurable]
+10♠ + 4♠ = [14, Hard, Active, Not Insurable]
+10♠ + 5♠ = [15, Hard, Active, Not Insurable]
+10♠ + 6♠ = [16, Hard, Active, Not Insurable]
+10♠ + 7♠ = [17, Hard, Terminal, Not Insurable]
+10♠ + 8♠ = [18, Hard, Terminal, Not Insurable]
+10♠ + 9♠ = [19, Hard, Terminal, Not Insurable]
+10♠ + 10♠ = [20, Hard, Terminal, Not Insurable]
+10♠ + J♠ = [20, Hard, Terminal, Not Insurable]
+10♠ + Q♠ = [20, Hard, Terminal, Not Insurable]
+10♠ + K♠ = [20, Hard, Terminal, Not Insurable]
+10♠ + A♠ = [21, Blackjack, Terminal, Not Insurable]
+J♠ + 2♠ = [12, Hard, Active, Not Insurable]
+J♠ + 3♠ = [13, Hard, Active, Not Insurable]
+J♠ + 4♠ = [14, Hard, Active, Not Insurable]
+J♠ + 5♠ = [15, Hard, Active, Not Insurable]
+J♠ + 6♠ = [16, Hard, Active, Not Insurable]
+J♠ + 7♠ = [17, Hard, Terminal, Not Insurable]
+J♠ + 8♠ = [18, Hard, Terminal, Not Insurable]
+J♠ + 9♠ = [19, Hard, Terminal, Not Insurable]
+J♠ + 10♠ = [20, Hard, Terminal, Not Insurable]
+J♠ + J♠ = [20, Hard, Terminal, Not Insurable]
+J♠ + Q♠ = [20, Hard, Terminal, Not Insurable]
+J♠ + K♠ = [20, Hard, Terminal, Not Insurable]
+J♠ + A♠ = [21, Blackjack, Terminal, Not Insurable]
+Q♠ + 2♠ = [12, Hard, Active, Not Insurable]
+Q♠ + 3♠ = [13, Hard, Active, Not Insurable]
+Q♠ + 4♠ = [14, Hard, Active, Not Insurable]
+Q♠ + 5♠ = [15, Hard, Active, Not Insurable]
+Q♠ + 6♠ = [16, Hard, Active, Not Insurable]
+Q♠ + 7♠ = [17, Hard, Terminal, Not Insurable]
+Q♠ + 8♠ = [18, Hard, Terminal, Not Insurable]
+Q♠ + 9♠ = [19, Hard, Terminal, Not Insurable]
+Q♠ + 10♠ = [20, Hard, Terminal, Not Insurable]
+Q♠ + J♠ = [20, Hard, Terminal, Not Insurable]
+Q♠ + Q♠ = [20, Hard, Terminal, Not Insurable]
+Q♠ + K♠ = [20, Hard, Terminal, Not Insurable]
+Q♠ + A♠ = [21, Blackjack, Terminal, Not Insurable]
+K♠ + 2♠ = [12, Hard, Active, Not Insurable]
+K♠ + 3♠ = [13, Hard, Active, Not Insurable]
+K♠ + 4♠ = [14, Hard, Active, Not Insurable]
+K♠ + 5♠ = [15, Hard, Active, Not Insurable]
+K♠ + 6♠ = [16, Hard, Active, Not Insurable]
+K♠ + 7♠ = [17, Hard, Terminal, Not Insurable]
+K♠ + 8♠ = [18, Hard, Terminal, Not Insurable]
+K♠ + 9♠ = [19, Hard, Terminal, Not Insurable]
+K♠ + 10♠ = [20, Hard, Terminal, Not Insurable]
+K♠ + J♠ = [20, Hard, Terminal, Not Insurable]
+K♠ + Q♠ = [20, Hard, Terminal, Not Insurable]
+K♠ + K♠ = [20, Hard, Terminal, Not Insurable]
+K♠ + A♠ = [21, Blackjack, Terminal, Not Insurable]
+A♠ + 2♠ = [13, Soft, Active, Not Insurable]
+A♠ + 3♠ = [14, Soft, Active, Not Insurable]
+A♠ + 4♠ = [15, Soft, Active, Not Insurable]
+A♠ + 5♠ = [16, Soft, Active, Not Insurable]
+A♠ + 6♠ = [17, Soft, Terminal, Not Insurable]
+A♠ + 7♠ = [18, Soft, Terminal, Not Insurable]
+A♠ + 8♠ = [19, Soft, Terminal, Not Insurable]
+A♠ + 9♠ = [20, Soft, Terminal, Not Insurable]
+A♠ + 10♠ = [21, Blackjack, Terminal, Not Insurable]
+A♠ + J♠ = [21, Blackjack, Terminal, Not Insurable]
+A♠ + Q♠ = [21, Blackjack, Terminal, Not Insurable]
+A♠ + K♠ = [21, Blackjack, Terminal, Not Insurable]
+A♠ + A♠ = [12, Soft, Active, Not Insurable]
+
+Dealer Hit Interactions:
 
 [26, Hard, Terminal, Not Insurable] + [2, Hard, Active, Not Insurable] = INVALID
 [26, Hard, Terminal, Not Insurable] + [3, Hard, Active, Not Insurable] = INVALID
@@ -359,10 +531,10 @@ Dealer Interactions:
 [11, Soft, Active, Insurable] + [7, Hard, Active, Not Insurable] = [18, Soft, Terminal, Not Insurable]
 [11, Soft, Active, Insurable] + [8, Hard, Active, Not Insurable] = [19, Soft, Terminal, Not Insurable]
 [11, Soft, Active, Insurable] + [9, Hard, Active, Not Insurable] = [20, Soft, Terminal, Not Insurable]
-[11, Soft, Active, Insurable] + [10, Hard, Active, Insurable] = [21, Blackjack, Terminal, Not Insurable]
-[11, Soft, Active, Insurable] + [10, Hard, Active, Insurable] = [21, Blackjack, Terminal, Not Insurable]
-[11, Soft, Active, Insurable] + [10, Hard, Active, Insurable] = [21, Blackjack, Terminal, Not Insurable]
-[11, Soft, Active, Insurable] + [10, Hard, Active, Insurable] = [21, Blackjack, Terminal, Not Insurable]
+[11, Soft, Active, Insurable] + [10, Hard, Active, Insurable] = INVALID
+[11, Soft, Active, Insurable] + [10, Hard, Active, Insurable] = INVALID
+[11, Soft, Active, Insurable] + [10, Hard, Active, Insurable] = INVALID
+[11, Soft, Active, Insurable] + [10, Hard, Active, Insurable] = INVALID
 [11, Soft, Active, Insurable] + [11, Soft, Active, Insurable] = [12, Soft, Active, Not Insurable]
 [10, Hard, Active, Insurable] + [2, Hard, Active, Not Insurable] = [12, Hard, Active, Not Insurable]
 [10, Hard, Active, Insurable] + [3, Hard, Active, Not Insurable] = [13, Hard, Active, Not Insurable]
@@ -376,7 +548,7 @@ Dealer Interactions:
 [10, Hard, Active, Insurable] + [10, Hard, Active, Insurable] = [20, Hard, Terminal, Not Insurable]
 [10, Hard, Active, Insurable] + [10, Hard, Active, Insurable] = [20, Hard, Terminal, Not Insurable]
 [10, Hard, Active, Insurable] + [10, Hard, Active, Insurable] = [20, Hard, Terminal, Not Insurable]
-[10, Hard, Active, Insurable] + [11, Soft, Active, Insurable] = [21, Blackjack, Terminal, Not Insurable]
+[10, Hard, Active, Insurable] + [11, Soft, Active, Insurable] = INVALID
 [10, Hard, Active, Not Insurable] + [2, Hard, Active, Not Insurable] = [12, Hard, Active, Not Insurable]
 [10, Hard, Active, Not Insurable] + [3, Hard, Active, Not Insurable] = [13, Hard, Active, Not Insurable]
 [10, Hard, Active, Not Insurable] + [4, Hard, Active, Not Insurable] = [14, Hard, Active, Not Insurable]
@@ -495,7 +667,124 @@ Dealer Interactions:
 [2, Hard, Active, Not Insurable] + [10, Hard, Active, Insurable] = [12, Hard, Active, Not Insurable]
 [2, Hard, Active, Not Insurable] + [11, Soft, Active, Insurable] = [13, Soft, Active, Not Insurable]
 
-Dealer Tree:
+Dealer Blackjack Tree:
+
+[26, Hard, Terminal, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[25, Hard, Terminal, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[24, Hard, Terminal, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[23, Hard, Terminal, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[22, Hard, Terminal, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[21, Blackjack, Terminal, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 1
+}
+[21, Hard, Terminal, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[20, Hard, Terminal, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[19, Hard, Terminal, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[18, Hard, Terminal, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[17, Hard, Terminal, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[16, Hard, Active, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[15, Hard, Active, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[14, Hard, Active, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[13, Hard, Active, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[12, Hard, Active, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[11, Hard, Active, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[21, Soft, Terminal, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[20, Soft, Terminal, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[19, Soft, Terminal, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[18, Soft, Terminal, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[17, Soft, Terminal, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[16, Soft, Active, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[15, Soft, Active, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[14, Soft, Active, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[13, Soft, Active, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[12, Soft, Active, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[11, Soft, Active, Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0.3076923076923077
+}
+[10, Hard, Active, Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0.07692307692307693
+}
+[10, Hard, Active, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[9, Hard, Active, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[8, Hard, Active, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[7, Hard, Active, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[6, Hard, Active, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[5, Hard, Active, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[4, Hard, Active, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[3, Hard, Active, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+[2, Hard, Active, Not Insurable] {
+	[21, Blackjack, Terminal, Not Insurable]: 0
+}
+
+Dealer Post Reveal Tree:
 
 [26, Hard, Terminal, Not Insurable] {
 	[26, Hard, Terminal, Not Insurable]: 1
@@ -503,7 +792,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0
 	[23, Hard, Terminal, Not Insurable]: 0
 	[22, Hard, Terminal, Not Insurable]: 0
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0
 	[20, Hard, Terminal, Not Insurable]: 0
 	[19, Hard, Terminal, Not Insurable]: 0
@@ -521,7 +809,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0
 	[23, Hard, Terminal, Not Insurable]: 0
 	[22, Hard, Terminal, Not Insurable]: 0
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0
 	[20, Hard, Terminal, Not Insurable]: 0
 	[19, Hard, Terminal, Not Insurable]: 0
@@ -539,7 +826,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 1
 	[23, Hard, Terminal, Not Insurable]: 0
 	[22, Hard, Terminal, Not Insurable]: 0
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0
 	[20, Hard, Terminal, Not Insurable]: 0
 	[19, Hard, Terminal, Not Insurable]: 0
@@ -557,7 +843,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0
 	[23, Hard, Terminal, Not Insurable]: 1
 	[22, Hard, Terminal, Not Insurable]: 0
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0
 	[20, Hard, Terminal, Not Insurable]: 0
 	[19, Hard, Terminal, Not Insurable]: 0
@@ -575,25 +860,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0
 	[23, Hard, Terminal, Not Insurable]: 0
 	[22, Hard, Terminal, Not Insurable]: 1
-	[21, Blackjack, Terminal, Not Insurable]: 0
-	[21, Hard, Terminal, Not Insurable]: 0
-	[20, Hard, Terminal, Not Insurable]: 0
-	[19, Hard, Terminal, Not Insurable]: 0
-	[18, Hard, Terminal, Not Insurable]: 0
-	[17, Hard, Terminal, Not Insurable]: 0
-	[21, Soft, Terminal, Not Insurable]: 0
-	[20, Soft, Terminal, Not Insurable]: 0
-	[19, Soft, Terminal, Not Insurable]: 0
-	[18, Soft, Terminal, Not Insurable]: 0
-	[17, Soft, Terminal, Not Insurable]: 0
-}
-[21, Blackjack, Terminal, Not Insurable] {
-	[26, Hard, Terminal, Not Insurable]: 0
-	[25, Hard, Terminal, Not Insurable]: 0
-	[24, Hard, Terminal, Not Insurable]: 0
-	[23, Hard, Terminal, Not Insurable]: 0
-	[22, Hard, Terminal, Not Insurable]: 0
-	[21, Blackjack, Terminal, Not Insurable]: 1
 	[21, Hard, Terminal, Not Insurable]: 0
 	[20, Hard, Terminal, Not Insurable]: 0
 	[19, Hard, Terminal, Not Insurable]: 0
@@ -611,7 +877,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0
 	[23, Hard, Terminal, Not Insurable]: 0
 	[22, Hard, Terminal, Not Insurable]: 0
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 1
 	[20, Hard, Terminal, Not Insurable]: 0
 	[19, Hard, Terminal, Not Insurable]: 0
@@ -629,7 +894,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0
 	[23, Hard, Terminal, Not Insurable]: 0
 	[22, Hard, Terminal, Not Insurable]: 0
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0
 	[20, Hard, Terminal, Not Insurable]: 1
 	[19, Hard, Terminal, Not Insurable]: 0
@@ -647,7 +911,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0
 	[23, Hard, Terminal, Not Insurable]: 0
 	[22, Hard, Terminal, Not Insurable]: 0
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0
 	[20, Hard, Terminal, Not Insurable]: 0
 	[19, Hard, Terminal, Not Insurable]: 1
@@ -665,7 +928,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0
 	[23, Hard, Terminal, Not Insurable]: 0
 	[22, Hard, Terminal, Not Insurable]: 0
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0
 	[20, Hard, Terminal, Not Insurable]: 0
 	[19, Hard, Terminal, Not Insurable]: 0
@@ -683,7 +945,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0
 	[23, Hard, Terminal, Not Insurable]: 0
 	[22, Hard, Terminal, Not Insurable]: 0
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0
 	[20, Hard, Terminal, Not Insurable]: 0
 	[19, Hard, Terminal, Not Insurable]: 0
@@ -701,7 +962,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0.07692307692307693
 	[23, Hard, Terminal, Not Insurable]: 0.07692307692307693
 	[22, Hard, Terminal, Not Insurable]: 0.07692307692307693
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0.07692307692307693
 	[20, Hard, Terminal, Not Insurable]: 0.07692307692307693
 	[19, Hard, Terminal, Not Insurable]: 0.07692307692307693
@@ -719,7 +979,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0.08284023668639054
 	[23, Hard, Terminal, Not Insurable]: 0.08284023668639054
 	[22, Hard, Terminal, Not Insurable]: 0.08284023668639054
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0.08284023668639054
 	[20, Hard, Terminal, Not Insurable]: 0.08284023668639054
 	[19, Hard, Terminal, Not Insurable]: 0.08284023668639054
@@ -737,7 +996,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0.31998179335457444
 	[23, Hard, Terminal, Not Insurable]: 0.08921256258534366
 	[22, Hard, Terminal, Not Insurable]: 0.08921256258534366
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0.08921256258534366
 	[20, Hard, Terminal, Not Insurable]: 0.08921256258534366
 	[19, Hard, Terminal, Not Insurable]: 0.08921256258534366
@@ -755,7 +1013,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0.03690346976646476
 	[23, Hard, Terminal, Not Insurable]: 0.32684429816883165
 	[22, Hard, Terminal, Not Insurable]: 0.09607506739960087
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0.09607506739960087
 	[20, Hard, Terminal, Not Insurable]: 0.09607506739960087
 	[19, Hard, Terminal, Not Insurable]: 0.09607506739960087
@@ -773,7 +1030,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0.03974219821003897
 	[23, Hard, Terminal, Not Insurable]: 0.04429385956643406
 	[22, Hard, Terminal, Not Insurable]: 0.33423468796880096
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0.10346545719957016
 	[20, Hard, Terminal, Not Insurable]: 0.10346545719957016
 	[19, Hard, Terminal, Not Insurable]: 0.10346545719957016
@@ -791,7 +1047,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0.042799290380041974
 	[23, Hard, Terminal, Not Insurable]: 0.04770107953308283
 	[22, Hard, Terminal, Not Insurable]: 0.052252740889477914
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0.34219356929184475
 	[20, Hard, Terminal, Not Insurable]: 0.111424338522614
 	[19, Hard, Terminal, Not Insurable]: 0.111424338522614
@@ -809,7 +1064,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0
 	[23, Hard, Terminal, Not Insurable]: 0
 	[22, Hard, Terminal, Not Insurable]: 0
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0
 	[20, Hard, Terminal, Not Insurable]: 0
 	[19, Hard, Terminal, Not Insurable]: 0
@@ -827,7 +1081,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0
 	[23, Hard, Terminal, Not Insurable]: 0
 	[22, Hard, Terminal, Not Insurable]: 0
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0
 	[20, Hard, Terminal, Not Insurable]: 0
 	[19, Hard, Terminal, Not Insurable]: 0
@@ -845,7 +1098,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0
 	[23, Hard, Terminal, Not Insurable]: 0
 	[22, Hard, Terminal, Not Insurable]: 0
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0
 	[20, Hard, Terminal, Not Insurable]: 0
 	[19, Hard, Terminal, Not Insurable]: 0
@@ -863,7 +1115,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0
 	[23, Hard, Terminal, Not Insurable]: 0
 	[22, Hard, Terminal, Not Insurable]: 0
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0
 	[20, Hard, Terminal, Not Insurable]: 0
 	[19, Hard, Terminal, Not Insurable]: 0
@@ -881,7 +1132,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0
 	[23, Hard, Terminal, Not Insurable]: 0
 	[22, Hard, Terminal, Not Insurable]: 0
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0
 	[20, Hard, Terminal, Not Insurable]: 0
 	[19, Hard, Terminal, Not Insurable]: 0
@@ -899,7 +1149,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0.06055076966998281
 	[23, Hard, Terminal, Not Insurable]: 0.06545255882302367
 	[22, Hard, Terminal, Not Insurable]: 0.07000422017941875
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0.05225274088947793
 	[20, Hard, Terminal, Not Insurable]: 0.05225274088947793
 	[19, Hard, Terminal, Not Insurable]: 0.05225274088947793
@@ -917,7 +1166,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0.060656859826663315
 	[23, Hard, Terminal, Not Insurable]: 0.06593570968378425
 	[22, Hard, Terminal, Not Insurable]: 0.07083749883682511
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0.05172052113996575
 	[20, Hard, Terminal, Not Insurable]: 0.05172052113996575
 	[19, Hard, Terminal, Not Insurable]: 0.05172052113996575
@@ -935,7 +1183,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0.11367542083780365
 	[23, Hard, Terminal, Not Insurable]: 0.06610589819872678
 	[22, Hard, Terminal, Not Insurable]: 0.0713847480558477
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0.050797233613076094
 	[20, Hard, Terminal, Not Insurable]: 0.050797233613076094
 	[19, Hard, Terminal, Not Insurable]: 0.050797233613076094
@@ -953,7 +1200,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0.03247993289310368
 	[23, Hard, Terminal, Not Insurable]: 0.11916655530363808
 	[22, Hard, Terminal, Not Insurable]: 0.07159703266456123
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0.049425863264653334
 	[20, Hard, Terminal, Not Insurable]: 0.049425863264653334
 	[19, Hard, Terminal, Not Insurable]: 0.049425863264653334
@@ -971,7 +1217,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0.032794752005208413
 	[23, Hard, Terminal, Not Insurable]: 0.037987396944223775
 	[22, Hard, Terminal, Not Insurable]: 0.12467401935475822
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0.04754293751580413
 	[20, Hard, Terminal, Not Insurable]: 0.04754293751580413
 	[19, Hard, Terminal, Not Insurable]: 0.04754293751580413
@@ -984,35 +1229,33 @@ Dealer Tree:
 	[17, Soft, Terminal, Not Insurable]: 0.10346545719957016
 }
 [11, Soft, Active, Insurable] {
-	[26, Hard, Terminal, Not Insurable]: 0.014628596158708967
-	[25, Hard, Terminal, Not Insurable]: 0.018865106967262884
-	[24, Hard, Terminal, Not Insurable]: 0.023089056556366297
-	[23, Hard, Terminal, Not Insurable]: 0.027280624534876657
-	[22, Hard, Terminal, Not Insurable]: 0.03142288608395469
-	[21, Blackjack, Terminal, Not Insurable]: 0.3076923076923077
-	[21, Hard, Terminal, Not Insurable]: 0.019364561263305942
-	[20, Hard, Terminal, Not Insurable]: 0.019364561263305942
-	[19, Hard, Terminal, Not Insurable]: 0.019364561263305942
-	[18, Hard, Terminal, Not Insurable]: 0.019364561263305942
-	[17, Hard, Terminal, Not Insurable]: 0.019364561263305942
-	[21, Soft, Terminal, Not Insurable]: 0.034501261599537085
-	[20, Soft, Terminal, Not Insurable]: 0.111424338522614
-	[19, Soft, Terminal, Not Insurable]: 0.111424338522614
-	[18, Soft, Terminal, Not Insurable]: 0.111424338522614
-	[17, Soft, Terminal, Not Insurable]: 0.111424338522614
+	[26, Hard, Terminal, Not Insurable]: 0.021130194451468506
+	[25, Hard, Terminal, Not Insurable]: 0.02724959895271305
+	[24, Hard, Terminal, Not Insurable]: 0.03335085947030687
+	[23, Hard, Terminal, Not Insurable]: 0.0394053465503774
+	[22, Hard, Terminal, Not Insurable]: 0.045388613232379006
+	[21, Hard, Terminal, Not Insurable]: 0.02797103293588636
+	[20, Hard, Terminal, Not Insurable]: 0.02797103293588636
+	[19, Hard, Terminal, Not Insurable]: 0.02797103293588636
+	[18, Hard, Terminal, Not Insurable]: 0.02797103293588636
+	[17, Hard, Terminal, Not Insurable]: 0.02797103293588636
+	[21, Soft, Terminal, Not Insurable]: 0.0498351556437758
+	[20, Soft, Terminal, Not Insurable]: 0.16094626675488688
+	[19, Soft, Terminal, Not Insurable]: 0.16094626675488688
+	[18, Soft, Terminal, Not Insurable]: 0.16094626675488688
+	[17, Soft, Terminal, Not Insurable]: 0.16094626675488688
 }
 [10, Hard, Active, Insurable] {
-	[26, Hard, Terminal, Not Insurable]: 0.03183552529217543
-	[25, Hard, Terminal, Not Insurable]: 0.03752044052292105
-	[24, Hard, Terminal, Not Insurable]: 0.042799290380041974
-	[23, Hard, Terminal, Not Insurable]: 0.047701079533082835
-	[22, Hard, Terminal, Not Insurable]: 0.05225274088947792
-	[21, Blackjack, Terminal, Not Insurable]: 0.07692307692307693
-	[21, Hard, Terminal, Not Insurable]: 0.03450126159953709
-	[20, Hard, Terminal, Not Insurable]: 0.3421935692918448
-	[19, Hard, Terminal, Not Insurable]: 0.11142433852261402
-	[18, Hard, Terminal, Not Insurable]: 0.11142433852261402
-	[17, Hard, Terminal, Not Insurable]: 0.11142433852261402
+	[26, Hard, Terminal, Not Insurable]: 0.03448848573319005
+	[25, Hard, Terminal, Not Insurable]: 0.04064714389983113
+	[24, Hard, Terminal, Not Insurable]: 0.04636589791171213
+	[23, Hard, Terminal, Not Insurable]: 0.051676169494173065
+	[22, Hard, Terminal, Not Insurable]: 0.05660713596360108
+	[21, Hard, Terminal, Not Insurable]: 0.037376366732831845
+	[20, Hard, Terminal, Not Insurable]: 0.37070970006616516
+	[19, Hard, Terminal, Not Insurable]: 0.12070970006616517
+	[18, Hard, Terminal, Not Insurable]: 0.12070970006616517
+	[17, Hard, Terminal, Not Insurable]: 0.12070970006616517
 	[21, Soft, Terminal, Not Insurable]: 0
 	[20, Soft, Terminal, Not Insurable]: 0
 	[19, Soft, Terminal, Not Insurable]: 0
@@ -1025,7 +1268,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0.042799290380041974
 	[23, Hard, Terminal, Not Insurable]: 0.047701079533082835
 	[22, Hard, Terminal, Not Insurable]: 0.05225274088947792
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0.03450126159953709
 	[20, Hard, Terminal, Not Insurable]: 0.3421935692918448
 	[19, Hard, Terminal, Not Insurable]: 0.11142433852261402
@@ -1043,7 +1285,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0.04609154348619905
 	[23, Hard, Terminal, Not Insurable]: 0.05137039334331997
 	[22, Hard, Terminal, Not Insurable]: 0.05627218249636084
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0.06082384385275591
 	[20, Hard, Terminal, Not Insurable]: 0.04307236456281509
 	[19, Hard, Terminal, Not Insurable]: 0.3507646722551228
@@ -1061,7 +1302,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0.04938379659235612
 	[23, Hard, Terminal, Not Insurable]: 0.05503970715355711
 	[22, Hard, Terminal, Not Insurable]: 0.06029162410324375
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0.0634777870527203
 	[20, Hard, Terminal, Not Insurable]: 0.06939494681603392
 	[19, Hard, Terminal, Not Insurable]: 0.051643467526093084
@@ -1079,7 +1319,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0.052929299937448354
 	[23, Hard, Terminal, Not Insurable]: 0.058991275872274034
 	[22, Hard, Terminal, Not Insurable]: 0.06462025352604073
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0.06815654427216306
 	[20, Hard, Terminal, Not Insurable]: 0.07270820562855815
 	[19, Hard, Terminal, Not Insurable]: 0.07862536539187177
@@ -1097,7 +1336,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0.07447953281141659
 	[23, Hard, Terminal, Not Insurable]: 0.08097657878941157
 	[22, Hard, Terminal, Not Insurable]: 0.08700955005469263
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0.09079093025846699
 	[20, Hard, Terminal, Not Insurable]: 0.0957977577505016
 	[19, Hard, Terminal, Not Insurable]: 0.1003494191068967
@@ -1115,7 +1353,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0.07865710757867005
 	[23, Hard, Terminal, Not Insurable]: 0.08599752010188554
 	[22, Hard, Terminal, Not Insurable]: 0.09281361744487135
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0.09550152160681352
 	[20, Hard, Terminal, Not Insurable]: 0.1008584768954939
 	[19, Hard, Terminal, Not Insurable]: 0.1058653043875285
@@ -1133,7 +1370,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0.13274711190838223
 	[23, Hard, Terminal, Not Insurable]: 0.08736186399885792
 	[22, Hard, Terminal, Not Insurable]: 0.09466896896199196
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0.09754271018523074
 	[20, Hard, Terminal, Not Insurable]: 0.10328480605022147
 	[19, Hard, Terminal, Not Insurable]: 0.10864176133890185
@@ -1151,7 +1387,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0.052936258406144285
 	[23, Hard, Terminal, Not Insurable]: 0.14196573728977702
 	[22, Hard, Terminal, Not Insurable]: 0.09657172423286287
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0.09953910910348855
 	[20, Hard, Terminal, Not Insurable]: 0.10569327845222393
 	[19, Hard, Terminal, Not Insurable]: 0.11143537431721466
@@ -1169,7 +1404,6 @@ Dealer Tree:
 	[24, Hard, Terminal, Not Insurable]: 0.054718130677524304
 	[23, Hard, Terminal, Not Insurable]: 0.062421653222680465
 	[22, Hard, Terminal, Not Insurable]: 0.15143980483891709
-	[21, Blackjack, Terminal, Not Insurable]: 0
 	[21, Hard, Terminal, Not Insurable]: 0.10125198924480511
 	[20, Hard, Terminal, Not Insurable]: 0.10784785827546281
 	[19, Hard, Terminal, Not Insurable]: 0.1140020276241982
