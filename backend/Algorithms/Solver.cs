@@ -6,11 +6,14 @@ namespace Solvation.Algorithms
 {
     public class Solver
     {
-        public readonly static Dictionary<DealerState, Dictionary<DealerState, double>> DealerTree = GenerateDealerTree();
+        // Tree given that dealer cannot achieve blackjack
+        public readonly static Dictionary<DealerState, Dictionary<DealerState, double>> DealerPostRevealTree = GenerateDealerPostRevealTree();
+
+        public readonly static Dictionary<DealerState, Dictionary<DealerState, double>> DealerBlackjackTree = GenerateDealerBlackjackTree();
 
         public readonly static Dictionary<DealerState, Dictionary<PlayerState, Actions>> PlayerTree = GeneratePlayerTree();
 
-        private static Dictionary<DealerState, Dictionary<DealerState, double>> GenerateDealerTree()
+        private static Dictionary<DealerState, Dictionary<DealerState, double>> GenerateDealerPostRevealTree()
         {
             // Map of all nodes to the probability of attaining each of the various terminal nodes
             var dealerTree = new Dictionary<DealerState, Dictionary<DealerState, double>>();
@@ -20,11 +23,21 @@ namespace Solvation.Algorithms
 
             foreach (DealerState terminalNode in DealerState.AllTerminalStates())
             {
+                if (terminalNode.ValueType == GameStateValueType.Blackjack)
+                {
+                    continue;
+                }
+
                 terminalNodeProbabilities[terminalNode] = 0.0;
             }
 
             foreach (DealerState node in DealerState.AllStates())
             {
+                if (node.ValueType == GameStateValueType.Blackjack)
+                {
+                    continue;
+                }
+
                 // Initialize probabilities with all terminal nodes having 0 probability
                 var probabilities = new Dictionary<DealerState, double>(terminalNodeProbabilities);
 
@@ -37,19 +50,64 @@ namespace Solvation.Algorithms
                 {
                     Card[] allRanks = Card.AllRanks();
 
-                    // Compute the probability of reaching various terminal nodes
-                    foreach (var card in allRanks)
+                    // Given that we are in post reveal, we know that the hidden card is not a 10
+                    if (node.SumValue == 11 && node.ValueType == GameStateValueType.Soft && node.Insurable)
                     {
-                        DealerState resultAfterAddCard = node.Hit(card);
+                        Card[] nonTenRanks = allRanks.Where(card => DealerState.RankValues[card.Rank].SumValue != 10).ToArray();
 
-                        if (!dealerTree.TryGetValue(resultAfterAddCard, out var resultNodeProbabilities))
+                        foreach (var card in nonTenRanks)
                         {
-                            throw new KeyNotFoundException($"{node} + {card} = {resultAfterAddCard} not found in dealer tree");
+                            DealerState resultAfterAddCard = node.Hit(card);
+
+                            if (!dealerTree.TryGetValue(resultAfterAddCard, out var resultNodeProbabilities))
+                            {
+                                throw new KeyNotFoundException($"{node} + {card} = {resultAfterAddCard} not found in dealer tree");
+                            }
+
+                            foreach (var terminalNode in resultNodeProbabilities.Keys)
+                            {
+                                probabilities[terminalNode] += resultNodeProbabilities[terminalNode] / nonTenRanks.Count();
+                            }
                         }
+                    }
 
-                        foreach (var terminalNode in resultNodeProbabilities.Keys)
+                    // Given that we are in post reveal, we know that the hidden card is not an ace
+                    else if (node.SumValue == 10 && node.ValueType == GameStateValueType.Hard && node.Insurable)
+                    {
+                        Card[] nonAceRanks = allRanks.Where(card => DealerState.RankValues[card.Rank].SumValue != 11).ToArray();
+
+                        foreach (var card in nonAceRanks)
                         {
-                            probabilities[terminalNode] += resultNodeProbabilities[terminalNode] / allRanks.Count();
+                            DealerState resultAfterAddCard = node.Hit(card);
+
+                            if (!dealerTree.TryGetValue(resultAfterAddCard, out var resultNodeProbabilities))
+                            {
+                                throw new KeyNotFoundException($"{node} + {card} = {resultAfterAddCard} not found in dealer tree");
+                            }
+
+                            foreach (var terminalNode in resultNodeProbabilities.Keys)
+                            {
+                                probabilities[terminalNode] += resultNodeProbabilities[terminalNode] / nonAceRanks.Count();
+                            }
+                        }
+                    }
+
+                    else
+                    {
+                        // Compute the probability of reaching various terminal nodes
+                        foreach (var card in allRanks)
+                        {
+                            DealerState resultAfterAddCard = node.Hit(card);
+
+                            if (!dealerTree.TryGetValue(resultAfterAddCard, out var resultNodeProbabilities))
+                            {
+                                throw new KeyNotFoundException($"{node} + {card} = {resultAfterAddCard} not found in dealer tree");
+                            }
+
+                            foreach (var terminalNode in resultNodeProbabilities.Keys)
+                            {
+                                probabilities[terminalNode] += resultNodeProbabilities[terminalNode] / allRanks.Count();
+                            }
                         }
                     }
                 }
@@ -59,6 +117,59 @@ namespace Solvation.Algorithms
             }
 
             return dealerTree;
+        }
+
+        private static Dictionary<DealerState, Dictionary<DealerState, double>> GenerateDealerBlackjackTree()
+        {
+            var dealerBlackjackTree = new Dictionary<DealerState, Dictionary<DealerState, double>>();
+
+            var blackjackProbability = new Dictionary<DealerState, double>();
+
+            DealerState blackjack = new DealerState(21, GameStateValueType.Blackjack);
+
+            blackjackProbability[blackjack] = 0.0;
+
+            foreach (DealerState node in DealerState.AllStates())
+            {
+                var probabilities = new Dictionary<DealerState, double>(blackjackProbability);
+
+                if (node.ValueType == GameStateValueType.Blackjack)
+                {
+                    probabilities[blackjack] = 1.0;
+                }
+                else if (node.StateType == GameStateType.Terminal)
+                {
+                    probabilities[blackjack] = 0;
+                }
+                else
+                {
+                    Card[] allRanks = Card.AllRanks();
+
+                    foreach (var card in allRanks)
+                    {
+                        DealerState resultAfterAddCard = node.Reveal(card);
+
+                        if (!dealerBlackjackTree.TryGetValue(resultAfterAddCard, out var resultNodeProbabilities))
+                        {
+                            throw new KeyNotFoundException($"{node} + {card} = {resultAfterAddCard} not found in dealer blackjack tree");
+                        }
+
+                        foreach (var terminalNode in resultNodeProbabilities.Keys)
+                        {
+                            probabilities[blackjack] += resultNodeProbabilities[terminalNode] / allRanks.Count();
+                        }
+                    }
+                }
+
+                if (probabilities.Count != 1)
+                {
+                    throw new InvalidProgramException();
+                }
+
+                dealerBlackjackTree[node] = probabilities;
+            }
+
+            return dealerBlackjackTree;
         }
 
         public static string ViewDealerTree(Dictionary<DealerState, Dictionary<DealerState, double>> dealerTree)
@@ -80,7 +191,7 @@ namespace Solvation.Algorithms
         private static Dictionary<DealerState, Dictionary<PlayerState, Actions>> GeneratePlayerTree()
         {
             // The dealer's tree
-            var dealerTree = Solver.DealerTree;
+            var dealerTree = Solver.DealerPostRevealTree;
 
             var strategyTree = new Dictionary<DealerState, Dictionary<PlayerState, Actions>>();
 
@@ -199,7 +310,7 @@ namespace Solvation.Algorithms
 
         private static double StandExpectedValue(PlayerState playerNode, DealerState dealerNode)
         {
-            var dealerTree = Solver.DealerTree;
+            var dealerTree = Solver.DealerPostRevealTree;
 
             double ev = 0;
 
@@ -272,9 +383,11 @@ namespace Solvation.Algorithms
 
         private static bool DealerInteractions()
         {
+            string revealInteractions = DealerState.RevealInteractions();
             string interactions = DealerState.Interactions();
-            string dealerTree = Solver.ViewDealerTree(Solver.DealerTree);
-            string result = $"Dealer Interactions:\n\n{interactions}\nDealer Tree:\n\n{dealerTree}";
+            string dealerBlackjackTree = Solver.ViewDealerTree(Solver.DealerBlackjackTree);
+            string dealerTree = Solver.ViewDealerTree(Solver.DealerPostRevealTree);
+            string result = $"Dealer Reveal Interactions:\n\n{revealInteractions}\nDealer Hit Interactions:\n\n{interactions}\nDealer Blackjack Tree:\n\n{dealerBlackjackTree}\nDealer Post Reveal Tree:\n\n{dealerTree}";
             string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Test/DealerInteractions.txt");
             string existingInteractions = File.ReadAllText(filePath);
             File.WriteAllText(filePath, result);

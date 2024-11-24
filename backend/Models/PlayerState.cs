@@ -7,7 +7,7 @@ namespace Solvation.Models
     {
         public readonly bool Splittable;
 
-        protected new readonly static Dictionary<Rank, PlayerState> RankValues = new Dictionary<Rank, PlayerState>
+        public new readonly static Dictionary<Rank, PlayerState> RankValues = new Dictionary<Rank, PlayerState>
         {
             { Rank.Two, new PlayerState(2, GameStateValueType.Hard) },
             { Rank.Three, new PlayerState(3, GameStateValueType.Hard) },

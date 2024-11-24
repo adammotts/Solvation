@@ -6,3 +6,4 @@ Rules:
 - Player blackjack pushes against dealer blackjack
 - Dealer stands on soft 17
 - No insurance
+- You can only get blackjack on initial deal, not splits

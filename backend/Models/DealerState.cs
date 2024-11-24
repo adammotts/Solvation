@@ -8,7 +8,7 @@ namespace Solvation.Models
         // This is an alias for MaybeBlackjack. If I want to implement insurance logic, then this needs to be changed for 10s
         public readonly bool Insurable;
 
-        protected new readonly static Dictionary<Rank, DealerState> RankValues = new Dictionary<Rank, DealerState>
+        public new readonly static Dictionary<Rank, DealerState> RankValues = new Dictionary<Rank, DealerState>
         {
             { Rank.Two, new DealerState(2, GameStateValueType.Hard) },
             { Rank.Three, new DealerState(3, GameStateValueType.Hard) },
@@ -35,7 +35,22 @@ namespace Solvation.Models
             return this.SumValue >= 17 ? GameStateType.Terminal : GameStateType.Active;
         }
 
+        // "Hit" refers to dealer adding cards after the hidden card is revealed (blackjack is impossible)
         public override DealerState Hit(Card card)
+        {
+            DealerState other = DealerState.RankValues[card.Rank];
+            DealerState.Combine(this, other, out int resultValue, out GameStateValueType resultValueType);
+
+            if (this.Insurable && other.Insurable && resultValue == 21)
+            {
+                throw new InvalidOperationException("Blackjack is not possible on hit");
+            }
+
+            return new DealerState(resultValue, resultValueType);
+        }
+
+        // "Reveal" refers to dealer revealing the hidden card (blackjack is possible)
+        public DealerState Reveal(Card card)
         {
             DealerState other = DealerState.RankValues[card.Rank];
             DealerState.Combine(this, other, out int resultValue, out GameStateValueType resultValueType);
@@ -110,6 +125,30 @@ namespace Solvation.Models
                     catch
                     {
                         result.AppendLine($"{dealerState} + {DealerState.RankValues[card.Rank]} = INVALID");
+                    }
+                }
+            }
+
+            return result.ToString();
+        }
+
+        public static string RevealInteractions()
+        {
+            StringBuilder result = new StringBuilder();
+
+            foreach (Card startingCard in Card.AllRanks())
+            {
+                foreach (Card card in Card.AllRanks())
+                {
+                    DealerState dealerState = DealerState.RankValues[startingCard.Rank];
+
+                    try {
+                        DealerState afterReveal = dealerState.Reveal(card);
+                        result.AppendLine($"{startingCard} + {card} = {afterReveal}");
+                    }
+                    catch
+                    {
+                        throw new InvalidOperationException();
                     }
                 }
             }
