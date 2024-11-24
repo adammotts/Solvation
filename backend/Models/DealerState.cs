@@ -84,6 +84,7 @@ namespace Solvation.Models
                 dealerStates.Add(new DealerState(i, GameStateValueType.Soft));
             }
 
+            // Represent both pre-reveal (blackjack is possible) and post-reveal cards (blackjack is impossible)
             dealerStates.Add(new DealerState(11, GameStateValueType.Soft, true));
             dealerStates.Add(new DealerState(10, GameStateValueType.Hard, true));
 
