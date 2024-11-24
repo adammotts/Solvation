@@ -163,7 +163,7 @@ namespace Solvation.Algorithms
 
                 if (probabilities.Count != 1)
                 {
-                    throw new InvalidProgramException();
+                    throw new InvalidOperationException("Dealer blackjack tree should not have entries other than blackjack");
                 }
 
                 dealerBlackjackTree[node] = probabilities;
