@@ -6,12 +6,17 @@ namespace Solvation.Algorithms
 {
     public class Solver
     {
-        // Tree given that dealer cannot achieve blackjack
+        /*
+            Pre Reveal: Tree before player and dealer blackjack reveal (dealer has a hidden card, no player actions can be taken)
+            Post Reveal: Tree after player and dealer blackjack reveal (dealer has a hidden card, but blackjack is not possible)
+        */
+
+        // 
         public readonly static Dictionary<DealerState, Dictionary<DealerState, double>> DealerPostRevealTree = GenerateDealerPostRevealTree();
 
         public readonly static Dictionary<DealerState, Dictionary<DealerState, double>> DealerBlackjackTree = GenerateDealerBlackjackTree();
 
-        public readonly static Dictionary<DealerState, Dictionary<PlayerState, Actions>> PlayerTree = GeneratePlayerTree();
+        public readonly static Dictionary<DealerState, Dictionary<PlayerState, Actions>> PlayerPostRevealTree = GeneratePlayerPostRevealTree();
 
         private static Dictionary<DealerState, Dictionary<DealerState, double>> GenerateDealerPostRevealTree()
         {
@@ -172,7 +177,7 @@ namespace Solvation.Algorithms
             return dealerBlackjackTree;
         }
 
-        public static string ViewDealerTree(Dictionary<DealerState, Dictionary<DealerState, double>> dealerTree)
+        private static string ViewDealerTree(Dictionary<DealerState, Dictionary<DealerState, double>> dealerTree)
         {
             StringBuilder result = new StringBuilder();
             foreach (DealerState node in dealerTree.Keys)
@@ -188,7 +193,7 @@ namespace Solvation.Algorithms
             return result.ToString();
         }
 
-        private static Dictionary<DealerState, Dictionary<PlayerState, Actions>> GeneratePlayerTree()
+        private static Dictionary<DealerState, Dictionary<PlayerState, Actions>> GeneratePlayerPostRevealTree()
         {
             // The dealer's tree
             var dealerTree = Solver.DealerPostRevealTree;
@@ -214,7 +219,9 @@ namespace Solvation.Algorithms
         {
             var playerStrategyGivenDealerState = new Dictionary<PlayerState, Actions>();
 
-            foreach (PlayerState playerNode in PlayerState.AllStates())
+            PlayerState[] allStates = PlayerState.AllStates().Where(node => node.ValueType != GameStateValueType.Blackjack).ToArray();
+
+            foreach (PlayerState playerNode in allStates)
             {
                 Actions expectedValues = new Actions(0, 0, 0, 0);
 
@@ -310,6 +317,11 @@ namespace Solvation.Algorithms
 
         private static double StandExpectedValue(PlayerState playerNode, DealerState dealerNode)
         {
+            if (playerNode.ValueType == GameStateValueType.Blackjack || dealerNode.ValueType == GameStateValueType.Blackjack)
+            {
+                throw new InvalidOperationException("Blackjack should not be in stand expected value");
+            }
+
             var dealerTree = Solver.DealerPostRevealTree;
 
             double ev = 0;
@@ -320,23 +332,8 @@ namespace Solvation.Algorithms
             {
                 double frequency = dealerTreeCard[terminalNode];
 
-                // Blackjack tie
-                if (terminalNode.ValueType == GameStateValueType.Blackjack && playerNode.ValueType == GameStateValueType.Blackjack)
-                {
-                    ev += 0;
-                }
-                // Dealer blackjack
-                else if (terminalNode.ValueType == GameStateValueType.Blackjack)
-                {
-                    ev -= 1 * frequency;
-                }
-                // Player blackjack
-                else if (playerNode.ValueType == GameStateValueType.Blackjack)
-                {
-                    ev += 1.5 * frequency;
-                }
                 // Player bust
-                else if (playerNode.SumValue > 21)
+                if (playerNode.SumValue > 21)
                 {
                     ev -= 1 * frequency;
                 }
@@ -397,7 +394,7 @@ namespace Solvation.Algorithms
         private static bool PlayerInteractions()
         {
             string interactions = PlayerState.Interactions();
-            string playerTree = Solver.ViewPlayerTree(Solver.PlayerTree);
+            string playerTree = Solver.ViewPlayerTree(Solver.PlayerPostRevealTree);
             string result = $"Player Interactions:\n\n{interactions}\nPlayer Tree:\n\n{playerTree}";
             string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Test/PlayerInteractions.txt");
             string existingInteractions = File.ReadAllText(filePath);
@@ -431,7 +428,7 @@ namespace Solvation.Algorithms
         {
             List<GameState> gameStates = new List<GameState>();
 
-            var playerStrategyTree = Solver.PlayerTree;
+            var playerStrategyTree = Solver.PlayerPostRevealTree;
 
             foreach (DealerState dealerState in playerStrategyTree.Keys)
             {
