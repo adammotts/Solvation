@@ -66,7 +66,7 @@ namespace Solvation.Models
                 splitValueType = GameStateValueType.Hard;
             }
 
-            PlayerState resultAfterSplit = new PlayerState(splitValue, splitValueType, this.Doubleable, false);
+            PlayerState resultAfterSplit = new PlayerState(splitValue, splitValueType);
 
             PlayerState other = PlayerState.RankValues[card.Rank];
             PlayerState.Combine(resultAfterSplit, other, out int resultValue, out GameStateValueType resultValueType);
