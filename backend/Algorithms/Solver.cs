@@ -421,8 +421,9 @@ namespace Solvation.Algorithms
         private static bool PlayerInteractions()
         {
             string interactions = PlayerState.Interactions();
+            string splitInteractions = PlayerState.SplitInteractions();
             string playerTree = Solver.ViewPlayerTree(Solver.PlayerPostRevealTree);
-            string result = $"Player Interactions:\n\n{interactions}\nPlayer Tree:\n\n{playerTree}";
+            string result = $"Player Hit Interactions:\n\n{interactions}\nPlayer Split Interactions:\n\n{splitInteractions}\nPlayer Tree:\n\n{playerTree}";
             string filePath = Path.Combine(Directory.GetCurrentDirectory(), "Test/PlayerInteractions.txt");
             string existingInteractions = File.ReadAllText(filePath);
             File.WriteAllText(filePath, result);

@@ -160,6 +160,28 @@ namespace Solvation.Models
 
             return result.ToString();
         }
+
+        public static string SplitInteractions()
+        {
+            StringBuilder result = new StringBuilder();
+
+            foreach (PlayerState playerState in PlayerState.AllStates())
+            {
+                foreach (Card card in Card.AllRanks())
+                {
+                    try {
+                        PlayerState afterSplit = playerState.Split(card);
+                        result.AppendLine($"Split {playerState} + {PlayerState.RankValues[card.Rank]} = {afterSplit}");
+                    }
+                    catch
+                    {
+                        result.AppendLine($"Split {playerState} + {PlayerState.RankValues[card.Rank]} = INVALID");
+                    }
+                }
+            }
+
+            return result.ToString();
+        }
         
         public override bool Equals(object? obj)
         {
