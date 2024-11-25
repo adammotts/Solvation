@@ -211,6 +211,20 @@ namespace Solvation.Algorithms
                     expectedValues.Split = ev;
                 }
 
+                // Not doubleable or splittable
+                else if (!playerNode.Doubleable)
+                {
+                    expectedValues.Stand = StandExpectedValue(playerNode, dealerNode);
+
+                    foreach (var card in allRanks)
+                    {
+                        PlayerMovesAfterAddCard(playerNode, card, playerStrategyGivenDealerState, out double evResultHit, out double evResultStand, out double evResultDouble, out double evResultSplit);
+
+                        expectedValues.Hit += BestMove(evResultHit, evResultStand) / allRanks.Count();
+                    }
+                }
+
+                // Not doubleable, not splittable
                 else if (!playerNode.Splittable)
                 {
                     expectedValues.Stand = StandExpectedValue(playerNode, dealerNode);
@@ -225,15 +239,14 @@ namespace Solvation.Algorithms
                     }
                 }
 
+                // All splittable states are also doubleable
                 else
                 {
                     double evSplit = 0;
 
-                    PlayerState splitNode = playerNode.Split();
-
                     foreach (var card in allRanks)
                     {
-                        PlayerMovesAfterAddCard(splitNode, card, playerStrategyGivenDealerState, out double evResultHit, out double evResultStand, out double evResultDouble, out double evResultSplit);
+                        PlayerMovesAfterSplit(playerNode, card, playerStrategyGivenDealerState, out double evResultHit, out double evResultStand, out double evResultDouble, out double evResultSplit);
 
                         evSplit += 2 * BestMove(evResultHit, evResultStand, evResultDouble) / allRanks.Count();
                     }
@@ -258,6 +271,21 @@ namespace Solvation.Algorithms
             if (!playerStrategyGivenDealerState.TryGetValue(resultAfterAddCard, out var resultNodeActions))
             {
                 throw new KeyNotFoundException($"{playerNode} + {card} = {resultAfterAddCard} not found in player tree");
+            }
+
+            evResultHit = resultNodeActions.Hit;
+            evResultStand = resultNodeActions.Stand;
+            evResultDouble = resultNodeActions.Double;
+            evResultSplit = resultNodeActions.Split;
+        }
+
+        private static void PlayerMovesAfterSplit(PlayerState playerNode, Card card, Dictionary<PlayerState, Actions> playerStrategyGivenDealerState, out double evResultHit, out double evResultStand, out double evResultDouble, out double evResultSplit)
+        {
+            PlayerState resultAfterAddCard = playerNode.Split(card);
+
+            if (!playerStrategyGivenDealerState.TryGetValue(resultAfterAddCard, out var resultNodeActions))
+            {
+                throw new KeyNotFoundException($"Split {playerNode} + {card} = {resultAfterAddCard} not found in player tree");
             }
 
             evResultHit = resultNodeActions.Hit;

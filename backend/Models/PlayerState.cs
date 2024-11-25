@@ -5,6 +5,8 @@ namespace Solvation.Models
 {
     public class PlayerState : PileState
     {
+        public readonly bool Doubleable;
+
         public readonly bool Splittable;
 
         public new readonly static Dictionary<Rank, PlayerState> RankValues = new Dictionary<Rank, PlayerState>
@@ -24,8 +26,9 @@ namespace Solvation.Models
             { Rank.Ace, new PlayerState(11, GameStateValueType.Soft) }
         };
 
-        public PlayerState(int sumValue, GameStateValueType valueType, bool splittable = false) : base(sumValue, valueType)
+        public PlayerState(int sumValue, GameStateValueType valueType, bool doubleable = false, bool splittable = false) : base(sumValue, valueType)
         {
+            this.Doubleable = doubleable;
             this.Splittable = splittable;
         }
 
@@ -41,7 +44,7 @@ namespace Solvation.Models
             return new PlayerState(resultValue, resultValueType);
         }
 
-        public PlayerState Split()
+        public PlayerState Split(Card card)
         {
             if (this.StateType == GameStateType.Terminal)
                 throw new InvalidOperationException("Cannot act on terminal state");
@@ -63,7 +66,12 @@ namespace Solvation.Models
                 splitValueType = GameStateValueType.Hard;
             }
 
-            return new PlayerState(splitValue, splitValueType);
+            PlayerState resultAfterSplit = new PlayerState(splitValue, splitValueType, this.Doubleable, false);
+
+            PlayerState other = PlayerState.RankValues[card.Rank];
+            PlayerState.Combine(resultAfterSplit, other, out int resultValue, out GameStateValueType resultValueType);
+
+            return new PlayerState(resultValue, resultValueType, true);
         }
 
         public PlayerState DeclineSplit()
@@ -71,7 +79,7 @@ namespace Solvation.Models
             if (!this.Splittable)
                 throw new ArgumentException("Not Splittable");
 
-            return new PlayerState(this.SumValue, this.ValueType, false);
+            return new PlayerState(this.SumValue, this.ValueType, this.Doubleable, false);
         }
 
         public new static PlayerState[] AllStates()
@@ -84,13 +92,17 @@ namespace Solvation.Models
             }
 
             playerStates.Add(new PlayerState(21, GameStateValueType.Blackjack));
+            playerStates.Add(new PlayerState(21, GameStateValueType.Hard));
+            playerStates.Add(new PlayerState(21, GameStateValueType.Soft));
+            playerStates.Add(new PlayerState(21, GameStateValueType.Hard, true));
+            playerStates.Add(new PlayerState(21, GameStateValueType.Soft, true));
 
-            for (int i = 21; i >= 11; i--)
+            for (int i = 20; i >= 11; i--)
             {
                 playerStates.Add(new PlayerState(i, GameStateValueType.Hard));
             }
 
-            for (int i = 21; i >= 11; i--)
+            for (int i = 20; i >= 11; i--)
             {
                 playerStates.Add(new PlayerState(i, GameStateValueType.Soft));
             }
@@ -100,11 +112,28 @@ namespace Solvation.Models
                 playerStates.Add(new PlayerState(i, GameStateValueType.Hard));
             }
 
-            playerStates.Add(new PlayerState(12, GameStateValueType.Soft, true));
+            /* Doubleable */
+            for (int i = 20; i >= 11; i--)
+            {
+                playerStates.Add(new PlayerState(i, GameStateValueType.Hard, true));
+            }
+
+            for (int i = 20; i >= 11; i--)
+            {
+                playerStates.Add(new PlayerState(i, GameStateValueType.Soft, true));
+            }
 
             for (int i = 10; i >= 2; i--)
             {
-                playerStates.Add(new PlayerState(i * 2, GameStateValueType.Hard, true));
+                playerStates.Add(new PlayerState(i, GameStateValueType.Hard, true));
+            }
+
+            /* Splittable */
+            playerStates.Add(new PlayerState(12, GameStateValueType.Soft, true, true));
+
+            for (int i = 10; i >= 2; i--)
+            {
+                playerStates.Add(new PlayerState(i * 2, GameStateValueType.Hard, true, true));
             }
 
             return playerStates.ToArray();
@@ -136,7 +165,12 @@ namespace Solvation.Models
         {
             if (obj is PlayerState other)
             {
-                return this.SumValue == other.SumValue && this.ValueType == other.ValueType && this.StateType == other.StateType && this.Splittable == other.Splittable;
+                return
+                    this.SumValue == other.SumValue &&
+                    this.ValueType == other.ValueType &&
+                    this.StateType == other.StateType &&
+                    this.Doubleable == other.Doubleable &&
+                    this.Splittable == other.Splittable;
             }
 
             return false;
@@ -144,7 +178,7 @@ namespace Solvation.Models
 
         public override int GetHashCode()
         {
-            return HashCode.Combine(this.SumValue, this.ValueType, this.StateType, this.Splittable);
+            return HashCode.Combine(this.SumValue, this.ValueType, this.StateType, this.Doubleable, this.Splittable);
         }
 
         public override string ToString()
