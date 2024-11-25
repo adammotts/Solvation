@@ -199,44 +199,54 @@ namespace Solvation.Algorithms
 
             foreach (PlayerState playerNode in allStates)
             {
-                Actions expectedValues = new Actions(0, 0, 0, 0);
+                double defaultMin = 0;
+
+                Actions expectedValues = new Actions(defaultMin, defaultMin, defaultMin, defaultMin);
+
+                double evStand = StandExpectedValue(playerNode, dealerNode);
 
                 if (playerNode.StateType == GameStateType.Terminal)
                 {
-                    double ev = StandExpectedValue(playerNode, dealerNode);
-
-                    expectedValues.Hit = ev;
-                    expectedValues.Stand = ev;
-                    expectedValues.Double = ev;
-                    expectedValues.Split = ev;
+                    expectedValues.Hit = evStand;
+                    expectedValues.Stand = evStand;
+                    expectedValues.Double = evStand;
+                    expectedValues.Split = evStand;
                 }
 
                 // Not doubleable or splittable
                 else if (!playerNode.Doubleable)
                 {
-                    expectedValues.Stand = StandExpectedValue(playerNode, dealerNode);
+                    double evHit = 0;
 
                     foreach (var card in allRanks)
                     {
                         PlayerMovesAfterAddCard(playerNode, card, playerStrategyGivenDealerState, out double evResultHit, out double evResultStand, out double evResultDouble, out double evResultSplit);
 
-                        expectedValues.Hit += BestMove(evResultHit, evResultStand) / allRanks.Count();
+                        evHit += BestMove(evResultHit, evResultStand) / allRanks.Count();
                     }
+
+                    expectedValues.Hit = evHit;
+                    expectedValues.Stand = evStand;
                 }
 
                 // Doubleable, not splittable
                 else if (!playerNode.Splittable)
                 {
-                    expectedValues.Stand = StandExpectedValue(playerNode, dealerNode);
+                    double evHit = 0;
+                    double evDouble = 0;
 
                     foreach (var card in allRanks)
                     {
                         PlayerMovesAfterAddCard(playerNode, card, playerStrategyGivenDealerState, out double evResultHit, out double evResultStand, out double evResultDouble, out double evResultSplit);
 
-                        expectedValues.Hit += BestMove(evResultHit, evResultStand) / allRanks.Count();
+                        evHit += BestMove(evResultHit, evResultStand) / allRanks.Count();
 
-                        expectedValues.Double += 2 * evResultStand / allRanks.Count();
+                        evDouble += 2 * evResultStand / allRanks.Count();
                     }
+
+                    expectedValues.Hit = evHit;
+                    expectedValues.Double = evDouble;
+                    expectedValues.Stand = evStand;
                 }
 
                 // All splittable states are also doubleable
