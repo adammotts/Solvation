@@ -5,7 +5,7 @@ Rules:
 - Can only split once
 - Player blackjack pushes against dealer blackjack
 - Dealer stands on soft 17
-- No insurance
+- No insurance (coming soon)
 - You can only get blackjack on initial deal, not splits
 - Player can double after split
 - Player cannot act after reaching 21, whether soft or hard
