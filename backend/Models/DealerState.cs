@@ -63,7 +63,7 @@ namespace Solvation.Models
             return new DealerState(resultValue, resultValueType);
         }
 
-        public new static List<DealerState> AllStates()
+        public new static DealerState[] AllStates()
         {
             var dealerStates = new List<DealerState>();
 
@@ -93,10 +93,10 @@ namespace Solvation.Models
                 dealerStates.Add(new DealerState(i, GameStateValueType.Hard));
             }
 
-            return dealerStates;
+            return dealerStates.ToArray();
         }
 
-        public new static List<DealerState> AllTerminalStates()
+        public new static DealerState[] AllTerminalStates()
         {
             var terminalStates = new List<DealerState>();
 
@@ -108,7 +108,7 @@ namespace Solvation.Models
                 }
             }
 
-            return terminalStates;
+            return terminalStates.ToArray();
         }
 
         public new static string Interactions()

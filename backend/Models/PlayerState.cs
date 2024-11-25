@@ -74,7 +74,7 @@ namespace Solvation.Models
             return new PlayerState(this.SumValue, this.ValueType, false);
         }
 
-        public new static List<PlayerState> AllStates()
+        public new static PlayerState[] AllStates()
         {
             List<PlayerState> playerStates = new List<PlayerState>();
 
@@ -107,7 +107,7 @@ namespace Solvation.Models
                 playerStates.Add(new PlayerState(i * 2, GameStateValueType.Hard, true));
             }
 
-            return playerStates;
+            return playerStates.ToArray();
         }
 
         public new static string Interactions()

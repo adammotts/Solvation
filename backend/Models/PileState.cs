@@ -61,12 +61,12 @@ namespace Solvation.Models
             }
         }
 
-        public static List<PileState> AllStates()
+        public static PileState[] AllStates()
         {
             throw new NotImplementedException();
         }
 
-        public static List<PileState> AllTerminalStates()
+        public static PileState[] AllTerminalStates()
         {
             throw new NotImplementedException();
         }
