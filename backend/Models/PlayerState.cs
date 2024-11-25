@@ -183,7 +183,7 @@ namespace Solvation.Models
 
         public override string ToString()
         {
-            return $"[{this.SumValue}, {this.ValueType}, {this.StateType}, {(this.Splittable ? "Splittable" : "Not Splittable")}]";
+            return $"[{this.SumValue}, {this.ValueType}, {this.StateType}, {(this.Doubleable ? "Doubleable" : "Not Doubleable")}, {(this.Splittable ? "Splittable" : "Not Splittable")}]";
         }
     }
 }

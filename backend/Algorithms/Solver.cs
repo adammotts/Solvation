@@ -224,7 +224,7 @@ namespace Solvation.Algorithms
                     }
                 }
 
-                // Not doubleable, not splittable
+                // Doubleable, not splittable
                 else if (!playerNode.Splittable)
                 {
                     expectedValues.Stand = StandExpectedValue(playerNode, dealerNode);
