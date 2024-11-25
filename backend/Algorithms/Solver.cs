@@ -199,9 +199,7 @@ namespace Solvation.Algorithms
 
             foreach (PlayerState playerNode in allStates)
             {
-                double defaultMin = 0;
-
-                Actions expectedValues = new Actions(defaultMin, defaultMin, defaultMin, defaultMin);
+                Actions expectedValues = new Actions(null, null, null, null);
 
                 double evStand = StandExpectedValue(playerNode, dealerNode);
 
@@ -220,7 +218,7 @@ namespace Solvation.Algorithms
 
                     foreach (var card in allRanks)
                     {
-                        PlayerMovesAfterAddCard(playerNode, card, playerStrategyGivenDealerState, out double evResultHit, out double evResultStand, out double evResultDouble, out double evResultSplit);
+                        PlayerMovesAfterAddCard(playerNode, card, playerStrategyGivenDealerState, out double evResultHit, out double evResultStand);
 
                         evHit += BestMove(evResultHit, evResultStand) / allRanks.Count();
                     }
@@ -237,7 +235,7 @@ namespace Solvation.Algorithms
 
                     foreach (var card in allRanks)
                     {
-                        PlayerMovesAfterAddCard(playerNode, card, playerStrategyGivenDealerState, out double evResultHit, out double evResultStand, out double evResultDouble, out double evResultSplit);
+                        PlayerMovesAfterAddCard(playerNode, card, playerStrategyGivenDealerState, out double evResultHit, out double evResultStand);
 
                         evHit += BestMove(evResultHit, evResultStand) / allRanks.Count();
 
@@ -245,8 +243,8 @@ namespace Solvation.Algorithms
                     }
 
                     expectedValues.Hit = evHit;
-                    expectedValues.Double = evDouble;
                     expectedValues.Stand = evStand;
+                    expectedValues.Double = evDouble;
                 }
 
                 // All splittable states are also doubleable
@@ -256,7 +254,7 @@ namespace Solvation.Algorithms
 
                     foreach (var card in allRanks)
                     {
-                        PlayerMovesAfterSplit(playerNode, card, playerStrategyGivenDealerState, out double evResultHit, out double evResultStand, out double evResultDouble, out double evResultSplit);
+                        PlayerMovesAfterSplit(playerNode, card, playerStrategyGivenDealerState, out double evResultHit, out double evResultStand, out double evResultDouble);
 
                         evSplit += 2 * BestMove(evResultHit, evResultStand, evResultDouble) / allRanks.Count();
                     }
@@ -274,7 +272,7 @@ namespace Solvation.Algorithms
             return playerStrategyGivenDealerState;
         }
 
-        private static void PlayerMovesAfterAddCard(PlayerState playerNode, Card card, Dictionary<PlayerState, Actions> playerStrategyGivenDealerState, out double evResultHit, out double evResultStand, out double evResultDouble, out double evResultSplit)
+        private static void PlayerMovesAfterAddCard(PlayerState playerNode, Card card, Dictionary<PlayerState, Actions> playerStrategyGivenDealerState, out double evResultHit, out double evResultStand)
         {
             PlayerState resultAfterAddCard = playerNode.Hit(card);
 
@@ -283,13 +281,26 @@ namespace Solvation.Algorithms
                 throw new KeyNotFoundException($"{playerNode} + {card} = {resultAfterAddCard} not found in player tree");
             }
 
-            evResultHit = resultNodeActions.Hit;
-            evResultStand = resultNodeActions.Stand;
-            evResultDouble = resultNodeActions.Double;
-            evResultSplit = resultNodeActions.Split;
+            if (resultNodeActions.Hit.HasValue)
+            {
+                evResultHit = resultNodeActions.Hit.Value;
+            }
+            else
+            {
+                throw new InvalidOperationException("Hit expected value should not be null");
+            }
+
+            if (resultNodeActions.Stand.HasValue)
+            {
+                evResultStand = resultNodeActions.Stand.Value;
+            }
+            else
+            {
+                throw new InvalidOperationException("Stand expected value should not be null");
+            }
         }
 
-        private static void PlayerMovesAfterSplit(PlayerState playerNode, Card card, Dictionary<PlayerState, Actions> playerStrategyGivenDealerState, out double evResultHit, out double evResultStand, out double evResultDouble, out double evResultSplit)
+        private static void PlayerMovesAfterSplit(PlayerState playerNode, Card card, Dictionary<PlayerState, Actions> playerStrategyGivenDealerState, out double evResultHit, out double evResultStand, out double evResultDouble)
         {
             PlayerState resultAfterAddCard = playerNode.Split(card);
 
@@ -298,10 +309,32 @@ namespace Solvation.Algorithms
                 throw new KeyNotFoundException($"Split {playerNode} + {card} = {resultAfterAddCard} not found in player tree");
             }
 
-            evResultHit = resultNodeActions.Hit;
-            evResultStand = resultNodeActions.Stand;
-            evResultDouble = resultNodeActions.Double;
-            evResultSplit = resultNodeActions.Split;
+            if (resultNodeActions.Hit.HasValue)
+            {
+                evResultHit = resultNodeActions.Hit.Value;
+            }
+            else
+            {
+                throw new InvalidOperationException("Hit expected value should not be null");
+            }
+
+            if (resultNodeActions.Stand.HasValue)
+            {
+                evResultStand = resultNodeActions.Stand.Value;
+            }
+            else
+            {
+                throw new InvalidOperationException("Stand expected value should not be null");
+            }
+
+            if (resultNodeActions.Double.HasValue)
+            {
+                evResultDouble = resultNodeActions.Double.Value;
+            }
+            else
+            {
+                throw new InvalidOperationException("Double expected value should not be null");
+            }
         }
 
         private static double BestMove(params double[] evs)
