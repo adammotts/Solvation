@@ -28,6 +28,9 @@ namespace Solvation.Models
 
         public PlayerState(int sumValue, GameStateValueType valueType, bool doubleable = false, bool splittable = false) : base(sumValue, valueType)
         {
+            if (splittable && !doubleable)
+                throw new ArgumentException("Splittable implies Doubleable");
+
             this.Doubleable = doubleable;
             this.Splittable = splittable;
         }
