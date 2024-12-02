@@ -50,7 +50,7 @@ namespace Solvation.Controllers
                 Builders<GameState>.Filter.Eq(g => g.PlayerSumValue, request.PlayerSumValue),
                 Builders<GameState>.Filter.Eq(g => g.PlayerValueType, request.PlayerValueType),
                 Builders<GameState>.Filter.Eq(g => g.PlayerStateType, request.PlayerStateType),
-                Builders<GameState>.Filter.Eq(g => g.DealerFaceUpValue, request.DealerFaceUpValue),
+                Builders<GameState>.Filter.Eq(g => g.DealerFaceUpValue, request.DealerSumValue),
                 Builders<GameState>.Filter.Eq(g => g.DealerValueType, request.DealerValueType),
                 Builders<GameState>.Filter.Eq(g => g.DealerStateType, request.DealerStateType)
             );

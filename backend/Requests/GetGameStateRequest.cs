@@ -7,7 +7,7 @@ namespace Solvation.Requests
         public int PlayerSumValue;
         public GameStateValueType PlayerValueType;
         public GameStateType PlayerStateType;
-        public int DealerFaceUpValue;
+        public int DealerSumValue;
         public GameStateValueType DealerValueType;
         public GameStateType DealerStateType;
     }
