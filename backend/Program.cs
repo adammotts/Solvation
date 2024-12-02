@@ -4,6 +4,15 @@ Solver.VerifyInteractions();
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Services.AddCors(options =>
+{
+    options.AddDefaultPolicy(policy =>
+    {
+        policy.AllowAnyOrigin()
+              .AllowAnyHeader()
+              .AllowAnyMethod();
+    });
+});
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddSingleton<MongoDbService>();
@@ -18,5 +27,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.MapControllers();
+
+app.UseCors();
 
 app.Run();
