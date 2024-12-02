@@ -85,7 +85,7 @@ namespace Solvation.Models
             return new PlayerState(this.SumValue, this.ValueType, this.Doubleable, false);
         }
 
-        public static PlayerState DeterminePlayerState(Card[] cards)
+        public static PlayerState FromCards(Card[] cards)
         {
             if (cards.Length < 1)
             {
@@ -99,7 +99,20 @@ namespace Solvation.Models
                 playerState = playerState.Hit(cards[i]);
             }
 
-            return playerState;
+            bool doubleable = false;
+            bool splittable = false;
+
+            if (cards.Length == 2)
+            {
+                doubleable = true;
+
+                if (PlayerState.RankValues[cards[0].Rank].SumValue == PlayerState.RankValues[cards[1].Rank].SumValue)
+                {
+                    splittable = true;
+                }
+            }
+
+            return new PlayerState(playerState.SumValue, playerState.ValueType, doubleable, splittable);
         }
 
         public new static PlayerState[] AllStates()

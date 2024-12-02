@@ -471,9 +471,12 @@ namespace Solvation.Algorithms
                             playerState.SumValue,
                             playerState.ValueType,
                             playerState.StateType,
+                            playerState.Doubleable,
+                            playerState.Splittable,
                             dealerState.SumValue,
                             dealerState.ValueType,
                             dealerState.StateType,
+                            dealerState.Insurable,
                             expectedValues
                         )
                     );

@@ -43,27 +43,32 @@ namespace Solvation.Controllers
         }
 
         /* Test with:
-            curl -X GET "http://localhost:5256/game-state" \
+            curl -X GET "http://localhost:5256/moves" \
             -H "Content-Type: application/json" \
             -d '{
-                "PlayerSumValue": 21,
-                "PlayerValueType": "Blackjack",
-                "PlayerStateType": "Terminal",
-                "DealerFaceUpValue": 10,
-                "DealerValueType": "Hard",
-                "DealerStateType": "Active"
+                "PlayerCards": ["2♥", "10♥"],
+                "DealerCard": "6♥"
             }'
         */
-        [HttpGet("/game-state")]
-        public IActionResult GetGameState([FromBody] GetGameStateRequest request)
+        [HttpGet("/moves")]
+        public IActionResult GetMoves([FromBody] GetMovesRequest request)
         {
+            Card[] playerCards = Card.FromStringArray(request.PlayerCards);
+            Card dealerCard = Card.FromString(request.DealerCard);
+
+            PlayerState playerState = PlayerState.FromCards(playerCards);
+            DealerState dealerState = DealerState.FromCard(dealerCard);
+
             var filter = Builders<GameState>.Filter.And(
-                Builders<GameState>.Filter.Eq(g => g.PlayerSumValue, request.PlayerSumValue),
-                Builders<GameState>.Filter.Eq(g => g.PlayerValueType, request.PlayerValueType),
-                Builders<GameState>.Filter.Eq(g => g.PlayerStateType, request.PlayerStateType),
-                Builders<GameState>.Filter.Eq(g => g.DealerFaceUpValue, request.DealerSumValue),
-                Builders<GameState>.Filter.Eq(g => g.DealerValueType, request.DealerValueType),
-                Builders<GameState>.Filter.Eq(g => g.DealerStateType, request.DealerStateType)
+                Builders<GameState>.Filter.Eq(g => g.PlayerSumValue, playerState.SumValue),
+                Builders<GameState>.Filter.Eq(g => g.PlayerValueType, playerState.ValueType),
+                Builders<GameState>.Filter.Eq(g => g.PlayerStateType, playerState.StateType),
+                Builders<GameState>.Filter.Eq(g => g.PlayerDoubleable, playerState.Doubleable),
+                Builders<GameState>.Filter.Eq(g => g.PlayerSplittable, playerState.Splittable),
+                Builders<GameState>.Filter.Eq(g => g.DealerFaceUpValue, dealerState.SumValue),
+                Builders<GameState>.Filter.Eq(g => g.DealerValueType, dealerState.ValueType),
+                Builders<GameState>.Filter.Eq(g => g.DealerStateType, dealerState.StateType),
+                Builders<GameState>.Filter.Eq(g => g.DealerInsurable, dealerState.Insurable)
             );
 
             var gameStates = _gameStateCollection.Find(filter).ToList();

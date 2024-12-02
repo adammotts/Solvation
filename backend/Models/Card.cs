@@ -113,9 +113,9 @@ namespace Solvation.Models
 
         public static Card FromString(string cardString)
         {
-            if (cardString.Length != 2 || cardString.Length != 3)
+            if (cardString.Length != 2 && cardString.Length != 3)
             {
-                throw new ArgumentException("Card string must be of length 2.");
+                throw new ArgumentException("Card string must be of length 2 or 3.");
             }
 
             string rankString = cardString.Substring(0, cardString.Length - 1);

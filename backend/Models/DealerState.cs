@@ -157,6 +157,11 @@ namespace Solvation.Models
             return result.ToString();
         }
 
+        public static DealerState FromCard(Card card)
+        {
+            return DealerState.RankValues[card.Rank];
+        }
+
         public override bool Equals(object? obj)
         {
             if (obj is DealerState other)
