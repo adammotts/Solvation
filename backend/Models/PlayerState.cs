@@ -5,9 +5,9 @@ namespace Solvation.Models
 {
     public class PlayerState : PileState
     {
-        public readonly bool Doubleable;
+        public bool Doubleable { get; private set; }
 
-        public readonly bool Splittable;
+        public bool Splittable { get; private set; }
 
         public new readonly static Dictionary<Rank, PlayerState> RankValues = new Dictionary<Rank, PlayerState>
         {

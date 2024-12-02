@@ -28,7 +28,7 @@ namespace Solvation.Controllers
 
             _gameStateCollection.InsertMany(gameStates);
 
-            return Ok(gameStates);
+            return Ok(string.Join("\n", gameStates.Select(element => element.ToString())));
         }
 
         /* Test with:
@@ -40,6 +40,15 @@ namespace Solvation.Controllers
             _gameStateCollection.DeleteMany(Builders<GameState>.Filter.Empty);
 
             return Ok();
+        }
+
+        /* Test with:
+            curl -X GET "http://localhost:5256/game-states"
+        */
+        [HttpGet("/game-states")]
+        public IActionResult GetGameStates()
+        {
+            return Ok(string.Join("\n", _gameStateCollection.Find(Builders<GameState>.Filter.Empty).ToList().Select(element => element.ToString())));
         }
 
         /* Test with:
@@ -60,15 +69,8 @@ namespace Solvation.Controllers
             DealerState dealerState = DealerState.FromCard(dealerCard);
 
             var filter = Builders<GameState>.Filter.And(
-                Builders<GameState>.Filter.Eq(g => g.PlayerSumValue, playerState.SumValue),
-                Builders<GameState>.Filter.Eq(g => g.PlayerValueType, playerState.ValueType),
-                Builders<GameState>.Filter.Eq(g => g.PlayerStateType, playerState.StateType),
-                Builders<GameState>.Filter.Eq(g => g.PlayerDoubleable, playerState.Doubleable),
-                Builders<GameState>.Filter.Eq(g => g.PlayerSplittable, playerState.Splittable),
-                Builders<GameState>.Filter.Eq(g => g.DealerFaceUpValue, dealerState.SumValue),
-                Builders<GameState>.Filter.Eq(g => g.DealerValueType, dealerState.ValueType),
-                Builders<GameState>.Filter.Eq(g => g.DealerStateType, dealerState.StateType),
-                Builders<GameState>.Filter.Eq(g => g.DealerInsurable, dealerState.Insurable)
+                Builders<GameState>.Filter.Eq(g => g.PlayerState, playerState),
+                Builders<GameState>.Filter.Eq(g => g.DealerState, dealerState)
             );
 
             var gameStates = _gameStateCollection.Find(filter).ToList();
@@ -80,10 +82,10 @@ namespace Solvation.Controllers
 
             if (gameStates.Count > 1)
             {
-                return StatusCode(500, "Multiple GameStates found.");
+                return StatusCode(500, "Multiple GameStates found." + gameStates.Count);
             }
 
-            return Ok(gameStates.First());
+            return Ok(gameStates.First().Actions.ToString());
         }
     }
 }

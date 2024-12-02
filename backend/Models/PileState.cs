@@ -4,9 +4,9 @@ namespace Solvation.Models
 {
     public abstract class PileState
     {
-        public readonly int SumValue;
-        public readonly GameStateValueType ValueType;
-        public readonly GameStateType StateType;
+        public int SumValue { get; private set; }
+        public GameStateValueType ValueType { get; private set; }
+        public GameStateType StateType { get; private set; }
 
         public readonly static Dictionary<Rank, PlayerState> RankValues = new Dictionary<Rank, PlayerState>();
 

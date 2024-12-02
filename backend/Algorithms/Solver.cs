@@ -464,19 +464,12 @@ namespace Solvation.Algorithms
 
                 foreach (PlayerState playerState in playerStrategyGivenDealerState.Keys)
                 {
-                    var expectedValues = playerStrategyGivenDealerState[playerState];
+                    Actions expectedValues = playerStrategyGivenDealerState[playerState];
 
                     gameStates.Add(
                         new GameState(
-                            playerState.SumValue,
-                            playerState.ValueType,
-                            playerState.StateType,
-                            playerState.Doubleable,
-                            playerState.Splittable,
-                            dealerState.SumValue,
-                            dealerState.ValueType,
-                            dealerState.StateType,
-                            dealerState.Insurable,
+                            playerState,
+                            dealerState,
                             expectedValues
                         )
                     );
