@@ -52,6 +52,21 @@ namespace Solvation.Controllers
         }
 
         /* Test with:
+            curl -X PUT "http://localhost:5256/game-states"
+        */
+        [HttpPut("/game-states")]
+        public IActionResult ResetGameStates()
+        {
+            _gameStateCollection.DeleteMany(Builders<GameState>.Filter.Empty);
+
+            GameState[] gameStates = Solver.Solve();
+
+            _gameStateCollection.InsertMany(gameStates);
+
+            return Ok(string.Join("\n", gameStates.Select(element => element.ToString())));
+        }
+
+        /* Test with:
             curl -X GET "http://localhost:5256/moves" -H "Content-Type: application/json" -d '{ "PlayerCards": ["2♥", "10♥"], "DealerCard": "6♥" }'
         */
         [HttpGet("/moves")]
