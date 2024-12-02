@@ -52,12 +52,7 @@ namespace Solvation.Controllers
         }
 
         /* Test with:
-            curl -X GET "http://localhost:5256/moves" \
-            -H "Content-Type: application/json" \
-            -d '{
-                "PlayerCards": ["2♥", "10♥"],
-                "DealerCard": "6♥"
-            }'
+            curl -X GET "http://localhost:5256/moves" -H "Content-Type: application/json" -d '{ "PlayerCards": ["2♥", "10♥"], "DealerCard": "6♥" }'
         */
         [HttpGet("/moves")]
         public IActionResult GetMoves([FromBody] GetMovesRequest request)
