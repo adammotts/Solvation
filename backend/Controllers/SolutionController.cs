@@ -32,6 +32,17 @@ namespace Solvation.Controllers
         }
 
         /* Test with:
+            curl -X DELETE "http://localhost:5256/game-states"
+        */
+        [HttpDelete("/game-states")]
+        public IActionResult DeleteGameStates()
+        {
+            _gameStateCollection.DeleteMany(Builders<GameState>.Filter.Empty);
+
+            return Ok();
+        }
+
+        /* Test with:
             curl -X GET "http://localhost:5256/game-state" \
             -H "Content-Type: application/json" \
             -d '{
@@ -68,17 +79,6 @@ namespace Solvation.Controllers
             }
 
             return Ok(gameStates.First());
-        }
-
-        /* Test with:
-            curl -X DELETE "http://localhost:5256/game-states"
-        */
-        [HttpDelete("/game-states")]
-        public IActionResult DeleteGameStates()
-        {
-            _gameStateCollection.DeleteMany(Builders<GameState>.Filter.Empty);
-
-            return Ok();
         }
     }
 }

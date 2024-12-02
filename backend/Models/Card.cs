@@ -14,7 +14,7 @@ namespace Solvation.Models
             this.Suit = suit;
         }
 
-        public readonly static Dictionary<Rank, string> Ranks = new Dictionary<Rank, string>
+        public readonly static Dictionary<Rank, string> RanksToString = new Dictionary<Rank, string>
         {
             { Rank.Two, "2" },
             { Rank.Three, "3" },
@@ -31,12 +31,37 @@ namespace Solvation.Models
             { Rank.Ace, "A" }
         };
 
-        public readonly static Dictionary<Suit, string> Suits = new Dictionary<Suit, string>
+        public readonly static Dictionary<Suit, string> SuitsToString = new Dictionary<Suit, string>
         {
             { Suit.Spades, "♠" },
             { Suit.Hearts, "♥" },
             { Suit.Diamonds, "♦" },
             { Suit.Clubs, "♣" }
+        };
+
+        public readonly static Dictionary<string, Rank> StringToRanks = new Dictionary<string, Rank>
+        {
+            { "2", Rank.Two },
+            { "3", Rank.Three },
+            { "4", Rank.Four },
+            { "5", Rank.Five },
+            { "6", Rank.Six },
+            { "7", Rank.Seven },
+            { "8", Rank.Eight },
+            { "9", Rank.Nine },
+            { "10", Rank.Ten },
+            { "J", Rank.Jack },
+            { "Q", Rank.Queen },
+            { "K", Rank.King },
+            { "A", Rank.Ace }
+        };
+
+        public readonly static Dictionary<string, Suit> StringToSuits = new Dictionary<string, Suit>
+        {
+            { "♠", Suit.Spades },
+            { "♥", Suit.Hearts },
+            { "♦", Suit.Diamonds },
+            { "♣", Suit.Clubs }
         };
 
         public static Card[] Deck()
@@ -83,7 +108,32 @@ namespace Solvation.Models
 
         public override string ToString()
         {
-            return $"{Ranks[this.Rank]}{Suits[this.Suit]}";
+            return $"{RanksToString[this.Rank]}{SuitsToString[this.Suit]}";
+        }
+
+        public static Card FromString(string cardString)
+        {
+            if (cardString.Length != 2 || cardString.Length != 3)
+            {
+                throw new ArgumentException("Card string must be of length 2.");
+            }
+
+            string rankString = cardString.Substring(0, cardString.Length - 1);
+            string suitString = cardString.Substring(cardString.Length - 1);
+
+            return new Card(StringToRanks[rankString], StringToSuits[suitString]);
+        }
+
+        public static Card[] FromStringArray(string[] cardStrings)
+        {
+            List<Card> cards = new List<Card>();
+
+            foreach (string cardString in cardStrings)
+            {
+                cards.Add(FromString(cardString));
+            }
+
+            return cards.ToArray();
         }
     }
 }
