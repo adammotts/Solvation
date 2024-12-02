@@ -85,6 +85,23 @@ namespace Solvation.Models
             return new PlayerState(this.SumValue, this.ValueType, this.Doubleable, false);
         }
 
+        public static PlayerState DeterminePlayerState(Card[] cards)
+        {
+            if (cards.Length < 1)
+            {
+                throw new ArgumentException("At least one card is required");
+            }
+
+            PlayerState playerState = PlayerState.RankValues[cards[0].Rank];
+
+            for (int i = 1; i < cards.Length; i++)
+            {
+                playerState = playerState.Hit(cards[i]);
+            }
+
+            return playerState;
+        }
+
         public new static PlayerState[] AllStates()
         {
             List<PlayerState> playerStates = new List<PlayerState>();
