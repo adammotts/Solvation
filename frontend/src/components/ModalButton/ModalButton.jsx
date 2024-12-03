@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { Text, Button, Modal } from '../../primitive';
+import { Text, Button, Modal, Label } from '../../primitive';
 
 export function ModalButton({ move, afterMove }) {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -16,10 +16,8 @@ export function ModalButton({ move, afterMove }) {
       <Button text={move.name} onClick={handleOpenModal} />
 
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
-        <div>
-          <img src={move.source} alt={move.label} />
-          {move.label}
-        </div>
+        <img src={move.source} alt={move.label} />
+        <Label text={move.label} />
         <Text
           text={`By choosing to ${move.name.toLowerCase()}, you have an expected value
           of ${move.ev.toFixed(4)}.`}
