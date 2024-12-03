@@ -1,8 +1,17 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ModalButton } from '../../components';
+import { useNavigate } from 'react-router-dom';
 
-export function Choices({ allMoves }) {
+export function Choices({ allMoves, type }) {
+  const navigate = useNavigate();
+
+  function afterMove() {
+    if (type === 'Start') {
+      navigate('/game');
+    }
+  }
+
   function getMoveIcons(allMoves) {
     const images = [
       { source: '/images/correct_64x.png', label: 'Best Move' },
@@ -52,7 +61,7 @@ export function Choices({ allMoves }) {
   return (
     <>
       {Object.values(moves).map((move) => (
-        <ModalButton key={move.label} move={move} />
+        <ModalButton key={move.label} move={move} afterMove={afterMove} />
       ))}
     </>
   );
@@ -60,4 +69,5 @@ export function Choices({ allMoves }) {
 
 Choices.propTypes = {
   allMoves: PropTypes.object.isRequired,
+  type: PropTypes.string.isRequired,
 };

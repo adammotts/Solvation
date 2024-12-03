@@ -13,6 +13,7 @@ export function Home() {
           Play: -0.00511734,
           Abstain: 0,
         }}
+        type={'Start'}
       />
     </div>
   );

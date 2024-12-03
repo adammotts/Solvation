@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { Text, Button, Modal } from '../../primitive';
 
-export function ModalButton({ move }) {
+export function ModalButton({ move, afterMove }) {
   const [isModalOpen, setModalOpen] = useState(false);
 
   const handleOpenModal = () => setModalOpen(true);
-  const handleCloseModal = () => setModalOpen(false);
+  const handleCloseModal = () => {
+    setModalOpen(false);
+    afterMove();
+  };
 
   return (
     <>
@@ -28,4 +31,5 @@ export function ModalButton({ move }) {
 
 ModalButton.propTypes = {
   move: PropTypes.object.isRequired,
+  afterMove: PropTypes.func.isRequired,
 };
