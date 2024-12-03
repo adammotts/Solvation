@@ -20,7 +20,7 @@ export function ModalButton({ move, afterMove }) {
         <Label text={move.label} />
         <Text
           text={`By choosing to ${move.name.toLowerCase()}, you have an expected value
-          of ${move.ev.toFixed(4)}.`}
+          of ${move.ev.toFixed(4)}`}
         />
       </Modal>
     </>

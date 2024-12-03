@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ModalButton } from '../../components';
 import { useNavigate } from 'react-router-dom';
+import './Choices.css';
 
 export function Choices({ allMoves, type }) {
   const navigate = useNavigate();
@@ -59,11 +60,11 @@ export function Choices({ allMoves, type }) {
   const moves = getMoveIcons(allMoves);
 
   return (
-    <>
+    <div className="moves-container">
       {Object.values(moves).map((move) => (
         <ModalButton key={move.label} move={move} afterMove={afterMove} />
       ))}
-    </>
+    </div>
   );
 }
 
