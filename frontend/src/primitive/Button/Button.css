@@ -1,0 +1,19 @@
+.button {
+  border-radius: 5px;
+  padding: 0px 15px;
+  color: white;
+  font-size: 10px;
+  text-shadow: 
+    -1px -1px 0 black,
+    1px -1px 0 black,
+    -1px 1px 0 black,
+    1px 1px 0 black;
+  background-color: #0B3D0B;
+  border: 1px solid black;
+  cursor: pointer;
+  transition: transform 0.05s ease;
+}
+
+.button-clicked {
+  transform: scale(0.95);
+}
