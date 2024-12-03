@@ -5,10 +5,10 @@ import { ModalButton } from '../../components';
 export function Choices({ allMoves }) {
   function getMoveIcons(allMoves) {
     const images = [
-      ['/images/correct_64x.png', 'Best Move'],
-      ['/images/inaccuracy_64x.png', 'Inaccuracy'],
-      ['/images/mistake_64x.png', 'Mistake'],
-      ['/images/incorrect_64x.png', 'Blunder'],
+      { source: '/images/correct_64x.png', label: 'Best Move' },
+      { source: '/images/inaccuracy_64x.png', label: 'Inaccuracy' },
+      { source: '/images/mistake_64x.png', label: 'Mistake' },
+      { source: '/images/incorrect_64x.png', label: 'Blunder' },
     ];
 
     const sortedMoves = Object.entries(allMoves).sort((a, b) => b[1] - a[1]);
@@ -19,29 +19,25 @@ export function Choices({ allMoves }) {
     sortedMoves.forEach(([move, ev], index) => {
       if (index === 0) {
         mappedMoves[move] = {
-          icon: images[0][0],
-          label: images[0][1],
+          ...images[0],
           name: move,
           ev: ev,
         };
       } else if (index === numMoves - 1) {
         mappedMoves[move] = {
-          icon: images[3][0],
-          label: images[3][1],
+          ...images[3],
           name: move,
           ev: ev,
         };
       } else if (numMoves === 3 && index === 1) {
         mappedMoves[move] = {
-          icon: images[2][0],
-          label: images[2][1],
+          ...images[2],
           name: move,
           ev: ev,
         };
       } else {
         mappedMoves[move] = {
-          icon: images[index][0],
-          label: images[index][1],
+          ...images[index],
           name: move,
           ev: ev,
         };
