@@ -12,7 +12,7 @@ export function Modal({ isOpen, onClose, children }) {
         <button className="modal-close-button" onClick={onClose}>
           ✖
         </button>
-        {children}
+        <div className="modal-content">{children}</div>
       </div>
     </>
   );
