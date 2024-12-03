@@ -8,7 +8,10 @@ export function Home() {
     <div className="home-background">
       <Title text={'Welcome to Solvation!'} />
       <Subtitle text={'Would you like to play some Blackjack?'} />
-      <ModalButton buttonText={'Yes, I love gambling!'} modalContent={'test'} />
+      <ModalButton
+        buttonText={'Yes, I love gambling!'}
+        modalContent={'Blunder'}
+      />
     </div>
   );
 }
