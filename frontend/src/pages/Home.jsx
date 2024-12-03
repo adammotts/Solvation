@@ -1,7 +1,7 @@
 import React from 'react';
-import ResetButton from './components/ResetButton';
+import { ResetButton } from '../components';
 
-export default function Home() {
+export function Home() {
   return (
     <div style={{ backgroundColor: 'darkgreen', height: '100vh' }}>
       <ResetButton />

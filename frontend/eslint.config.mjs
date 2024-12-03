@@ -14,6 +14,11 @@ export default [
     plugins: {
       prettier: prettierPlugin,
     },
+    settings: {
+      react: {
+        version: 'detect',
+      },
+    },
     rules: {
       'no-multiple-empty-lines': ['error', { max: 1, maxEOF: 0, maxBOF: 0 }],
       'react/react-in-jsx-scope': 'off',

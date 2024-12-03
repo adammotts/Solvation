@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-function ResetButton() {
+export function ResetButton() {
   const [isLoading, setIsLoading] = useState(false);
 
   const handleReset = async () => {
@@ -39,5 +39,3 @@ function ResetButton() {
     </button>
   );
 }
-
-export default ResetButton;

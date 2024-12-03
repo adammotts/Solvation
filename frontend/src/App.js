@@ -1,10 +1,6 @@
 import React from 'react';
-import ResetButton from './components/ResetButton';
+import { Home } from './pages';
 
 export default function App() {
-  return (
-    <div style={{ backgroundColor: 'darkgreen', height: '100vh' }}>
-      <ResetButton />
-    </div>
-  );
+  return <Home />;
 }
