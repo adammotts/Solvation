@@ -10,7 +10,12 @@ export function Home() {
       <Subtitle text={'Would you like to play some Blackjack?'} />
       <ModalButton
         buttonText={'Yes, I love gambling!'}
-        modalContent={'Blunder'}
+        modalContent={
+          <div>
+            <img src="/images/incorrect_64x.png" alt="correct" />
+            Blunder
+          </div>
+        }
       />
     </div>
   );
