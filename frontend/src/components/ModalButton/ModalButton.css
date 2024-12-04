@@ -1,0 +1,20 @@
+.label-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.next-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+  pointer-events: none;
+}
+
+.next-button-container.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
