@@ -9,7 +9,7 @@ export function Choices({ allMoves, type }) {
 
   function afterMove() {
     if (type === 'Start') {
-      navigate('/game');
+      navigate('/welcome');
     }
   }
 

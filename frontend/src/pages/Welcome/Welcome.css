@@ -1,0 +1,23 @@
+.welcome-background {
+  background-color: darkgreen;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.next-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+  opacity: 0;
+  transition: opacity 0.5s ease-in;
+  pointer-events: none;
+}
+
+.next-button-container.visible {
+  opacity: 1;
+  pointer-events: auto;
+}

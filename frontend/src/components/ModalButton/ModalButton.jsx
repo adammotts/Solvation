@@ -19,7 +19,7 @@ export function ModalButton({ move, afterMove }) {
     if (isModalOpen) {
       const timer = setTimeout(() => {
         setIsVisible(true);
-      }, 1000);
+      }, 500);
       return () => clearTimeout(timer);
     } else {
       setIsVisible(false);
