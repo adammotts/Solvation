@@ -16,7 +16,7 @@ export function Welcome() {
 
   return (
     <div className="welcome-background">
-      <Title text={'Welcome to Solvation!'} />
+      <Title text={'Welcome!'} />
       <Subtitle
         text={
           'Whether or not you chose to be here, you are here now, so hear me out.'
