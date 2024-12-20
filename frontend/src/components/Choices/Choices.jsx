@@ -7,6 +7,8 @@ import './Choices.css';
 export function Choices({ allMoves, type }) {
   const navigate = useNavigate();
 
+  const moveOrder = ['hit', 'stand', 'double', 'split'];
+
   function afterMove() {
     if (type === 'Start') {
       navigate('/welcome');
@@ -63,9 +65,11 @@ export function Choices({ allMoves, type }) {
 
   return (
     <div className="moves-container">
-      {Object.values(moves).map((move) => (
-        <ModalButton key={move.label} move={move} afterMove={afterMove} />
-      ))}
+      {Object.values(moves)
+        .sort((a, b) => moveOrder.indexOf(a.name) - moveOrder.indexOf(b.name))
+        .map((move) => (
+          <ModalButton key={move.label} move={move} afterMove={afterMove} />
+        ))}
     </div>
   );
 }
