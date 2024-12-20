@@ -10,9 +10,9 @@ export function Home() {
   return (
     <div className="home-background">
       <Title text={'Solvation'} />
-      <img className="spade" src={Spade} alt="spade" height={'250px'} />
+      <img src={Spade} alt="spade" height={'250px'} />
       <div className={`train-button-container`}>
-        <Button text={'Train'} onClick={() => navigate('/home')} />
+        <Button text={'Train'} onClick={() => navigate('/train')} />
       </div>
     </div>
   );

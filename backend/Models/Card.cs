@@ -4,9 +4,9 @@ namespace Solvation.Models
 {
     public class Card
     {
-        public readonly Rank Rank;
+        public Rank Rank { get; set; }
 
-        public readonly Suit Suit;
+        public Suit Suit { get; set; }
 
         public Card(Rank rank, Suit suit)
         {
@@ -77,6 +77,15 @@ namespace Solvation.Models
             }
 
             return deck.ToArray();
+        }
+
+        public static Card Deal()
+        {
+            Random random = new Random();
+            Card[] deck = Deck();
+            int index = random.Next(deck.Length);
+
+            return deck[index];
         }
 
         public static Card[] AllRanks()
