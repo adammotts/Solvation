@@ -12,9 +12,12 @@ namespace Solvation.Controllers
     {
         private readonly IMongoCollection<GameState> _gameStateCollection;
 
+        private readonly IMongoCollection<Hand> _handCollection;
+
         public SolutionController(MongoDbService mongoDbService)
         {
             _gameStateCollection = mongoDbService.GetCollection<GameState>("gameStates");
+            _handCollection = mongoDbService.GetCollection<Hand>("hands");
         }
 
         /*
@@ -92,10 +95,76 @@ namespace Solvation.Controllers
 
             if (gameStates.Count > 1)
             {
-                return StatusCode(500, "Multiple GameStates found." + gameStates.Count);
+                return StatusCode(500, "Multiple GameStates found. " + gameStates.Count);
             }
 
             return Ok(gameStates.First().Actions.ToString());
+        }
+
+        /* Test with:
+            curl -X POST "http://localhost:5256/hands"  
+        */
+        [HttpPost("/hands")]
+        public IActionResult GenerateHands()
+        {
+            Hand[] hands = new Hand[10];
+
+            for (int i = 0; i < hands.Length; i++)
+            {
+                hands[i] = new Hand();
+            }
+
+            _handCollection.InsertMany(hands);
+
+            return Ok(string.Join("\n", hands.Select(element => element.ToString())));
+        }
+
+        /* Test with:
+            curl -X GET "http://localhost:5256/hand/6765085c864009ec961ea2e8"
+        */
+        [HttpGet("/hand/{id}")]
+        public IActionResult GetHandById(string id)
+        {
+            var hand = _handCollection.Find(h => h.Id == id).FirstOrDefault();
+
+            if (hand == null)
+            {
+                return NotFound(new { message = "Hand not found" });
+            }
+
+            Card[] playerCards = hand.PlayerCards.ToArray();
+            Card dealerCard = hand.DealerCards.First();
+
+            PlayerState playerState = PlayerState.FromCards(playerCards);
+            DealerState dealerState = DealerState.FromCard(dealerCard);
+
+            var filter = Builders<GameState>.Filter.And(
+                Builders<GameState>.Filter.Eq(g => g.PlayerState, playerState),
+                Builders<GameState>.Filter.Eq(g => g.DealerState, dealerState)
+            );
+
+            var gameStates = _gameStateCollection.Find(filter).ToList();
+
+            if (!gameStates.Any())
+            {
+                return NotFound("No matching GameStates found.");
+            }
+
+            if (gameStates.Count > 1)
+            {
+                return StatusCode(500, "Multiple GameStates found. " + gameStates.Count);
+            }
+
+            return Ok(new { hand, gameStates.First().Actions });
+        }
+
+        /* Test with:
+            curl -X GET "http://localhost:5256/hands"
+        */
+        [HttpGet("/hands")]
+        public IActionResult GetHands()
+        {
+            return Ok(string.Join("\n", _handCollection.Find(Builders<Hand>.Filter.Empty).ToList().Select(element => element.ToString())));
         }
     }
 }

@@ -26,9 +26,13 @@ export function ModalButton({ move, afterMove }) {
     }
   }, [isModalOpen]);
 
+  function capitalize(str) {
+    return str.charAt(0).toUpperCase() + str.slice(1);
+  }
+
   return (
     <>
-      <Button text={move.name} onClick={handleOpenModal} />
+      <Button text={capitalize(move.name)} onClick={handleOpenModal} />
 
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         <div className="label-container">

@@ -21,7 +21,9 @@ export function Choices({ allMoves, type }) {
       { source: '/images/incorrect_64x.png', label: 'Blunder' },
     ];
 
-    const sortedMoves = Object.entries(allMoves).sort((a, b) => b[1] - a[1]);
+    const sortedMoves = Object.entries(allMoves)
+      .filter(([, value]) => value !== null)
+      .sort((a, b) => b[1] - a[1]);
 
     const mappedMoves = {};
     const numMoves = sortedMoves.length;

@@ -2,10 +2,10 @@ namespace Solvation.Models
 {
     public class Actions
     {
-        public double? Hit;
-        public double? Stand;
-        public double? Double;
-        public double? Split;
+        public double? Hit { get; set; }
+        public double? Stand { get; set; }
+        public double? Double { get; set; }
+        public double? Split { get; set; }
 
         public Actions(double? hitExpectedValue, double? standExpectedValue, double? doubleExpectedValue, double? splitExpectedValue)
         {

@@ -26,7 +26,7 @@ namespace Solvation.Models
 
         public override string ToString()
         {
-            return $"[Player: {PlayerCards}, Dealer: {DealerCards}]";
+            return $"[ID: {Id}, Player: {PlayerCards}, Dealer: {DealerCards}]";
         }
     }
 }
