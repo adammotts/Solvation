@@ -5,7 +5,9 @@ import { Choices, Cards } from '../../components';
 import './Train.css';
 
 export function Train() {
-  const { id: sessionId } = useParams();
+  const { sessionId } = useParams();
+
+  console.log(sessionId);
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -19,7 +21,7 @@ export function Train() {
   });
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/hand/676520f3de03c062e7185970`, {
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/session/${sessionId}`, {
       method: 'GET',
     })
       .then((response) => response.json())

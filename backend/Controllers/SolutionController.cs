@@ -127,6 +127,65 @@ namespace Solvation.Controllers
         }
 
         /* Test with:
+            curl -X GET "http://localhost:5256/session/6765bf2e7f65239364166057"
+        */
+        [HttpGet("/session/{id}")]
+        public IActionResult GetSessionById(string id)
+        {
+            var session = _sessionCollection.Find(s => s.Id == id).FirstOrDefault();
+
+            if (session == null)
+            {
+                return NotFound(new { message = "Session not found" });
+            }
+            
+            var currentHandId = session.HandIds[session.CurrentHandIndex];
+
+            var hand = _handCollection.Find(h => h.Id == currentHandId).FirstOrDefault();
+
+            if (hand == null)
+            {
+                return NotFound(new { message = "Hand not found" });
+            }
+
+            Card[] playerCards = hand.PlayerCards.ToArray();
+            Card dealerCard = hand.DealerCards.First();
+
+            PlayerState playerState = PlayerState.FromCards(playerCards);
+            DealerState dealerState = DealerState.FromCard(dealerCard);
+
+            var filter = Builders<GameState>.Filter.And(
+                Builders<GameState>.Filter.Eq(g => g.PlayerState, playerState),
+                Builders<GameState>.Filter.Eq(g => g.DealerState, dealerState)
+            );
+
+            var gameStates = _gameStateCollection.Find(filter).ToList();
+
+            if (!gameStates.Any())
+            {
+                return NotFound("No matching GameStates found.");
+            }
+
+            if (gameStates.Count > 1)
+            {
+                return StatusCode(500, "Multiple GameStates found. " + gameStates.Count);
+            }
+
+            return Ok(new { hand, gameStates.First().Actions });
+        }
+
+        /* Test with:
+            curl -X GET "http://localhost:5256/sessions"
+        */
+        [HttpDelete("/sessions")]
+        public IActionResult DeleteSessions()
+        {
+            _sessionCollection.DeleteMany(Builders<Session>.Filter.Empty);
+
+            return Ok();
+        }
+
+        /* Test with:
             curl -X GET "http://localhost:5256/hand/6765085c864009ec961ea2e8"
         */
         [HttpGet("/hand/{id}")]
