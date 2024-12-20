@@ -166,5 +166,16 @@ namespace Solvation.Controllers
         {
             return Ok(string.Join("\n", _handCollection.Find(Builders<Hand>.Filter.Empty).ToList().Select(element => element.ToString())));
         }
+
+        /* Test with:
+            curl -X DELETE "http://localhost:5256/hands"
+        */
+        [HttpDelete("/hands")]
+        public IActionResult DeleteHands()
+        {
+            _handCollection.DeleteMany(Builders<Hand>.Filter.Empty);
+
+            return Ok();
+        }
     }
 }

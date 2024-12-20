@@ -13,7 +13,7 @@ export function Train() {
     Split: null,
   });
 
-  fetch('http://localhost:5256/hand/6765085c864009ec961ea2e8', {
+  fetch('http://localhost:5256/hand/676520f3de03c062e7185970', {
     method: 'GET',
   })
     .then((response) => response.json())
