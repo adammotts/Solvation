@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Title } from '../../primitive';
+import { Title, Loading } from '../../primitive';
 import { Choices, Cards } from '../../components';
 import './Train.css';
 
 export function Train() {
+  const [loading, setLoading] = useState(true);
   const [playerCards, setPlayerCards] = useState([]);
   const [dealerCards, setDealerCards] = useState([]);
   const [actions, setActions] = useState({
@@ -18,6 +19,7 @@ export function Train() {
   })
     .then((response) => response.json())
     .then((data) => {
+      setLoading(false);
       setPlayerCards(data.hand.playerCards);
       setDealerCards(data.hand.dealerCards);
       setActions(data.actions);
@@ -28,10 +30,16 @@ export function Train() {
 
   return (
     <div className="train-background">
-      <Title text={'What Would You Like To Do?'} />
-      <Cards cards={dealerCards} variant={'dealer'} />
-      <Cards cards={playerCards} variant={'player'} />
-      <Choices allMoves={actions} type={'Start'} />
+      {loading ? (
+        <Loading />
+      ) : (
+        <>
+          <Title text={'What Would You Like To Do?'} />
+          <Cards cards={dealerCards} variant={'dealer'} />
+          <Cards cards={playerCards} variant={'player'} />
+          <Choices allMoves={actions} type={'Start'} />
+        </>
+      )}
     </div>
   );
 }
