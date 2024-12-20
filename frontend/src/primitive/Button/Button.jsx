@@ -3,7 +3,7 @@ import { Loading } from '..';
 import PropTypes from 'prop-types';
 import './Button.css';
 
-export function Button({ text, onClick, loading = false }) {
+export function Button({ text, onClick, disabled = false, loading = false }) {
   const [isClicked, setIsClicked] = useState(false);
 
   const handleMouseDown = () => setIsClicked(true);
@@ -16,7 +16,7 @@ export function Button({ text, onClick, loading = false }) {
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
-      disabled={loading}
+      disabled={loading || disabled}
     >
       {loading ? <Loading size={'25px'} /> : <h1>{text}</h1>}
     </button>
@@ -26,5 +26,6 @@ export function Button({ text, onClick, loading = false }) {
 Button.propTypes = {
   text: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
   loading: PropTypes.bool,
 };

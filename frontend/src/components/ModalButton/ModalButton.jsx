@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 import { Text, Button, Modal, Label } from '../../primitive';
 import './ModalButton.css';
 
-export function ModalButton({ move, afterMove }) {
+export function ModalButton({ move, onSelect, afterMove, disabled = false }) {
   const [isModalOpen, setModalOpen] = useState(false);
 
-  const handleOpenModal = () => setModalOpen(true);
+  const handleOpenModal = () => {
+    onSelect(move.name);
+    setModalOpen(true);
+  }
+
   const handleCloseModal = () => {
     setModalOpen(false);
     setIsVisible(false);
@@ -14,7 +18,7 @@ export function ModalButton({ move, afterMove }) {
 
   const onNext = () => {
     handleCloseModal();
-    afterMove();
+    afterMove(move.name);
   };
 
   const [isVisible, setIsVisible] = useState(false);
@@ -48,7 +52,7 @@ export function ModalButton({ move, afterMove }) {
           of ${move.ev.toFixed(4)}`}
         />
         <div className={`next-button-container ${isVisible ? 'visible' : ''}`}>
-          <Button text={'Next'} onClick={onNext} />
+          <Button text={'Next'} onClick={onNext} disabled={disabled} />
         </div>
       </Modal>
     </>
@@ -57,5 +61,7 @@ export function ModalButton({ move, afterMove }) {
 
 ModalButton.propTypes = {
   move: PropTypes.object.isRequired,
+  onSelect: PropTypes.func.isRequired,
   afterMove: PropTypes.func.isRequired,
+  disabled: PropTypes.bool,
 };

@@ -7,18 +7,23 @@ import './Train.css';
 export function Train() {
   const { sessionId } = useParams();
 
-  console.log(sessionId);
-
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [playerCards, setPlayerCards] = useState([]);
   const [dealerCards, setDealerCards] = useState([]);
+  const [choice, setChoice] = useState(null);
   const [actions, setActions] = useState({
     Hit: null,
     Stand: null,
     Double: null,
     Split: null,
   });
+
+  function onSelect(move) {
+    if (choice === null) {
+      setChoice(move);
+    }
+  }
 
   useEffect(() => {
     fetch(`${process.env.REACT_APP_API_BASE_URL}/session/${sessionId}`, {
@@ -51,7 +56,7 @@ export function Train() {
           <Title text={'What Would You Like To Do?'} />
           <Cards cards={dealerCards} variant={'dealer'} />
           <Cards cards={playerCards} variant={'player'} />
-          <Choices allMoves={actions} type={'Start'} />
+          <Choices allMoves={actions} onSelect={onSelect} afterMove={() => {}} choice={choice} />
         </>
       )}
     </div>

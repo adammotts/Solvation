@@ -1,19 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { ModalButton } from '../../components';
-import { useNavigate } from 'react-router-dom';
 import './Choices.css';
 
-export function Choices({ allMoves, type }) {
-  const navigate = useNavigate();
-
+export function Choices({ allMoves, onSelect, afterMove, choice }) {
   const moveOrder = ['hit', 'stand', 'double', 'split'];
-
-  function afterMove() {
-    if (type === 'Start') {
-      navigate('/welcome');
-    }
-  }
 
   function getMoveIcons(allMoves) {
     const images = [
@@ -68,7 +59,7 @@ export function Choices({ allMoves, type }) {
       {Object.values(moves)
         .sort((a, b) => moveOrder.indexOf(a.name) - moveOrder.indexOf(b.name))
         .map((move) => (
-          <ModalButton key={move.label} move={move} afterMove={afterMove} />
+          <ModalButton key={move.label} move={move} onSelect={onSelect} afterMove={afterMove} disabled={choice !== null && move.name !== choice} />
         ))}
     </div>
   );
@@ -76,5 +67,7 @@ export function Choices({ allMoves, type }) {
 
 Choices.propTypes = {
   allMoves: PropTypes.object.isRequired,
-  type: PropTypes.string.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  afterMove: PropTypes.func.isRequired,
+  choice: PropTypes.string,
 };
