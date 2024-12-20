@@ -116,7 +116,7 @@ namespace Solvation.Controllers
 
             _handCollection.InsertMany(hands);
 
-            return Ok(string.Join("\n", hands.Select(element => element.ToString())));
+            return Ok(hands.Select(element => element.Id));
         }
 
         /* Test with:

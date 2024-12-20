@@ -10,6 +10,7 @@ export default [
     files: ['**/*.{js,mjs,cjs,jsx}'],
     languageOptions: {
       globals: globals.browser,
+      process: 'readonly',
     },
     plugins: {
       prettier: prettierPlugin,

@@ -16,7 +16,7 @@ export function Train() {
   });
 
   useEffect(() => {
-    fetch('http://localhost:5256/hand/676520f3de03c062e7185970', {
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/hand/676520f3de03c062e7185970`, {
       method: 'GET',
     })
       .then((response) => response.json())
@@ -33,6 +33,7 @@ export function Train() {
   }, []);
 
   if (error) {
+    console.log(error);
     return <Error />;
   }
 
