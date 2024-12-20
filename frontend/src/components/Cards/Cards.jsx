@@ -55,7 +55,7 @@ import AceOfDiamonds from '../../assets/cards/ace_of_diamonds.png';
 import AceOfHearts from '../../assets/cards/ace_of_hearts.png';
 import AceOfSpades from '../../assets/cards/ace_of_spades.png';
 
-export function Cards({ cards }) {
+export function Cards({ cards, variant }) {
   function getImage(card) {
     const cardMap = {
       TwoClubs: TwoOfClubs,
@@ -115,6 +115,10 @@ export function Cards({ cards }) {
     return cardMap[`${card.rank}${card.suit}`];
   }
 
+  if (variant === 'dealer') {
+    cards = cards.slice(0, 1);
+  }
+
   return (
     <div className="cards-container">
       {cards.map((card, index) => (
@@ -131,4 +135,5 @@ Cards.propTypes = {
       suit: PropTypes.string.isRequired,
     })
   ).isRequired,
+  variant: PropTypes.string.isRequired,
 };

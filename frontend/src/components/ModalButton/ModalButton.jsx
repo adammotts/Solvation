@@ -10,6 +10,10 @@ export function ModalButton({ move, afterMove }) {
   const handleCloseModal = () => {
     setModalOpen(false);
     setIsVisible(false);
+  };
+
+  const onNext = () => {
+    handleCloseModal();
     afterMove();
   };
 
@@ -44,7 +48,7 @@ export function ModalButton({ move, afterMove }) {
           of ${move.ev.toFixed(4)}`}
         />
         <div className={`next-button-container ${isVisible ? 'visible' : ''}`}>
-          <Button text={'Next'} onClick={handleCloseModal} />
+          <Button text={'Next'} onClick={onNext} />
         </div>
       </Modal>
     </>

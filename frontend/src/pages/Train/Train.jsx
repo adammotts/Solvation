@@ -29,8 +29,8 @@ export function Train() {
   return (
     <div className="train-background">
       <Title text={'What Would You Like To Do?'} />
-      <Cards cards={playerCards} />
-      <Cards cards={dealerCards} />
+      <Cards cards={dealerCards} variant={'dealer'} />
+      <Cards cards={playerCards} variant={'player'} />
       <Choices allMoves={actions} type={'Start'} />
     </div>
   );

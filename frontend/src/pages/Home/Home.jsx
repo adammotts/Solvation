@@ -7,12 +7,17 @@ import './Home.css';
 export function Home() {
   const navigate = useNavigate();
 
+  const handleTrainClick = () => {
+    navigate('/train');
+    window.location.reload();
+  };
+
   return (
     <div className="home-background">
       <Title text={'Solvation'} />
       <img src={Spade} alt="spade" height={'250px'} />
       <div className={`train-button-container`}>
-        <Button text={'Train'} onClick={() => navigate('/train')} />
+        <Button text={'Train'} onClick={handleTrainClick} />
       </div>
     </div>
   );
