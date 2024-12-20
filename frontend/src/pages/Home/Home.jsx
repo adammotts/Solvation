@@ -1,6 +1,7 @@
 import React from 'react';
-import { Title, Subtitle, Button } from '../../primitive';
+import { Title, Button } from '../../primitive';
 import { useNavigate } from 'react-router-dom';
+import Spade from '../../assets/spade.png';
 import './Home.css';
 
 export function Home() {
@@ -9,7 +10,7 @@ export function Home() {
   return (
     <div className="home-background">
       <Title text={'Solvation'} />
-      <Subtitle text={'Train your Blackjack skills'} />
+      <img className="spade" src={Spade} alt="spade" height={'250px'} />
       <div className={`train-button-container`}>
         <Button text={'Train'} onClick={() => navigate('/home')} />
       </div>
