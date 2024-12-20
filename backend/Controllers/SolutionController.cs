@@ -14,10 +14,13 @@ namespace Solvation.Controllers
 
         private readonly IMongoCollection<Hand> _handCollection;
 
+        private readonly IMongoCollection<Session> _sessionCollection;
+
         public SolutionController(MongoDbService mongoDbService)
         {
             _gameStateCollection = mongoDbService.GetCollection<GameState>("gameStates");
             _handCollection = mongoDbService.GetCollection<Hand>("hands");
+            _sessionCollection = mongoDbService.GetCollection<Session>("sessions");
         }
 
         /*
@@ -102,10 +105,10 @@ namespace Solvation.Controllers
         }
 
         /* Test with:
-            curl -X POST "http://localhost:5256/hands"  
+            curl -X POST "http://localhost:5256/session"  
         */
-        [HttpPost("/hands")]
-        public IActionResult GenerateHands()
+        [HttpPost("/session")]
+        public IActionResult GenerateSession()
         {
             Hand[] hands = new Hand[10];
 
@@ -116,7 +119,11 @@ namespace Solvation.Controllers
 
             _handCollection.InsertMany(hands);
 
-            return Ok(hands.Select(element => element.Id));
+            Session session = new Session(hands);
+
+            _sessionCollection.InsertOne(session);
+
+            return Ok(new { id = session.Id });
         }
 
         /* Test with:

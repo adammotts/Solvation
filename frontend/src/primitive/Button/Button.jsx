@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
+import { Loading } from '..';
 import PropTypes from 'prop-types';
 import './Button.css';
 
-export function Button({ text, onClick }) {
+export function Button({ text, onClick, loading = false }) {
   const [isClicked, setIsClicked] = useState(false);
 
   const handleMouseDown = () => setIsClicked(true);
@@ -15,8 +16,9 @@ export function Button({ text, onClick }) {
       onMouseDown={handleMouseDown}
       onMouseUp={handleMouseUp}
       onMouseLeave={handleMouseUp}
+      disabled={loading}
     >
-      <h1>{text}</h1>
+      {loading ? <Loading size={'25px'} /> : <h1>{text}</h1>}
     </button>
   );
 }
@@ -24,4 +26,5 @@ export function Button({ text, onClick }) {
 Button.propTypes = {
   text: PropTypes.string.isRequired,
   onClick: PropTypes.func.isRequired,
+  loading: PropTypes.bool,
 };

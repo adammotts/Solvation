@@ -9,7 +9,7 @@ export default function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/welcome" element={<Welcome />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/train" element={<Train />} />
+        <Route path="/train/:id" element={<Train />} />
       </Routes>
     </BrowserRouter>
   );

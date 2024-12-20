@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import { Title, Loading, Error } from '../../primitive';
 import { Choices, Cards } from '../../components';
 import './Train.css';
 
 export function Train() {
+  const { id: sessionId } = useParams();
+
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [playerCards, setPlayerCards] = useState([]);
