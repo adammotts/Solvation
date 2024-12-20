@@ -5,3 +5,4 @@ export * from './Subtitle/Subtitle';
 export * from './Text/Text';
 export * from './Label/Label';
 export * from './Loading/Loading';
+export * from './Error/Error';
