@@ -40,7 +40,7 @@ export function Train() {
         setLoading(false);
         setError(error);
       });
-  }, []);
+  }, [sessionId]);
 
   if (error) {
     console.log(error);

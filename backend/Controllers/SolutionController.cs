@@ -175,7 +175,7 @@ namespace Solvation.Controllers
         }
 
         /* Test with:
-            curl -X GET "http://localhost:5256/sessions"
+            curl -X DELETE "http://localhost:5256/sessions"
         */
         [HttpDelete("/sessions")]
         public IActionResult DeleteSessions()
