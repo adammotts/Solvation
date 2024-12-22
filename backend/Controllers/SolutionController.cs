@@ -168,7 +168,16 @@ namespace Solvation.Controllers
 
             DealerState dealerState = hand.CurrentDealerState();
 
-            Actions actions = ActionsFromStates(playerState, dealerState);
+            Actions actions;
+            
+            try
+            {
+                actions = ActionsFromStates(playerState, dealerState);
+            }
+            catch
+            {
+                actions = new Actions(null, null, null, null);
+            }
 
             return Ok(new { hand, actions, terminal = playerState.StateType == GameStateType.Terminal });
         }
