@@ -119,6 +119,11 @@ namespace Solvation.Controllers
         public IActionResult GetSessionById(string id)
         {
             Session session = SessionFromId(id);
+
+            if (session.Ended())
+            {
+                return Ok(new { ended = true, evLoss = session.ExpectedValueLoss });
+            }
             
             Hand hand = HandFromSession(session);
 
@@ -129,7 +134,7 @@ namespace Solvation.Controllers
             
             HandleTerminalPlayerState(session, playerState);
 
-            return Ok(new { hand, actions, terminal = playerState.StateType == GameStateType.Terminal });
+            return Ok(new { ended = false, hand, actions, terminal = playerState.StateType == GameStateType.Terminal });
         }
 
         [HttpPatch("/session/{id}")]
@@ -141,6 +146,8 @@ namespace Solvation.Controllers
 
             var move = request.Move;
 
+            UpdateSessionEV(session, hand, move);
+            
             PlayerState playerState;
 
             switch (move)
@@ -179,7 +186,7 @@ namespace Solvation.Controllers
                 actions = new Actions(null, null, null, null);
             }
 
-            return Ok(new { hand, actions, terminal = playerState.StateType == GameStateType.Terminal });
+            return Ok(new { ended = false, hand, actions, terminal = playerState.StateType == GameStateType.Terminal });
         }
 
         /* Test with:
@@ -308,6 +315,18 @@ namespace Solvation.Controllers
             }
 
             var sessionUpdate = Builders<Session>.Update.Set(s => s.CurrentHandIndex, session.CurrentHandIndex);
+            _sessionCollection.UpdateOne(s => s.Id == session.Id, sessionUpdate);
+        }
+
+        private void UpdateSessionEV(Session session, Hand hand, string move)
+        {
+            Actions actions = ActionsFromStates(hand.CurrentPlayerState(), hand.CurrentDealerState());
+
+            double evBestMove = actions.BestMoveEV();
+            double evMove = actions.MoveEV(move);
+
+            var sessionUpdate = Builders<Session>.Update
+                .Set(s => s.ExpectedValueLoss, session.ExpectedValueLoss + evBestMove - evMove);
             _sessionCollection.UpdateOne(s => s.Id == session.Id, sessionUpdate);
         }
     }

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import { Title, Button, Loading, Error } from '../../primitive';
+import { useParams, useNavigate } from 'react-router-dom';
+import { Title, Subtitle, Button, Loading, Error } from '../../primitive';
 import { Choices, Cards } from '../../components';
 import './Train.css';
 
 export function Train() {
   const { sessionId } = useParams();
+  const navigate = useNavigate();
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -19,6 +20,8 @@ export function Train() {
     Split: null,
   });
   const [terminal, setTerminal] = useState(false);
+  const [ended, setEnded] = useState(false);
+  const [evLoss, setEvLoss] = useState(0.0);
 
   function onSelect(move) {
     if (choice === null) {
@@ -32,10 +35,16 @@ export function Train() {
     })
       .then((response) => response.json())
       .then((data) => {
-        setPlayerCards(data.hand.playerCards);
-        setDealerCards(data.hand.dealerCards);
-        setActions(data.actions);
-        setTerminal(data.terminal);
+        if (!data.ended) {
+          setPlayerCards(data.hand.playerCards);
+          setDealerCards(data.hand.dealerCards);
+          setActions(data.actions);
+          setTerminal(data.terminal);
+        }
+        else {
+          setEnded(true);
+          setEvLoss(data.evLoss);
+        }
         setLoading(false);
       })
       .catch((error) => {
@@ -78,13 +87,23 @@ export function Train() {
         <Loading />
       ) : (
         <>
-          <Title text={'What Would You Like To Do?'} />
-          <Cards cards={dealerCards} variant={'dealer'} />
-          <Cards cards={playerCards} variant={'player'} />
-          {terminal ? (
-            <Button text={'Next Hand'} onClick={() => window.location.reload()} />
+          {!ended ? (
+            <>
+              <Title text={'What Would You Like To Do?'} />
+              <Cards cards={dealerCards} variant={'dealer'} />
+              <Cards cards={playerCards} variant={'player'} />
+              {terminal ? (
+                <Button text={'Next Hand'} onClick={() => window.location.reload()} />
+              ) : (
+                <Choices allMoves={actions} onSelect={onSelect} afterMove={afterMove} choice={choice} />
+              )}
+            </>
           ) : (
-            <Choices allMoves={actions} onSelect={onSelect} afterMove={afterMove} choice={choice} />
+            <>
+              <Title text={'Session Ended'} />
+              <Subtitle text={`You leaked ${evLoss.toFixed(4)}`} />
+              <Button text={'Return Home'} onClick={() => navigate('/home')} />
+            </>
           )}
         </>
       )}

@@ -13,8 +13,6 @@ namespace Solvation.Models
 
         public int CurrentHandIndex { get; set; } = 0;
 
-        public double ExpectedValue { get; set; } = 0.0;
-
         public double ExpectedValueLoss { get; set; } = 0.0;
         
         public Session(Hand[] hands)
@@ -30,11 +28,12 @@ namespace Solvation.Models
 
         public string? CurrentHandId()
         {
-            if (this.CurrentHandIndex >= this.HandIds.Count)
-            {
-                return null;
-            }
             return this.HandIds[this.CurrentHandIndex];
+        }
+
+        public bool Ended()
+        {
+            return this.CurrentHandIndex >= this.HandIds.Count;
         }
 
         public void NextHand()
