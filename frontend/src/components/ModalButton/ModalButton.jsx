@@ -18,7 +18,7 @@ export function ModalButton({ move, onSelect, afterMove, disabled = false }) {
 
   const onNext = () => {
     handleCloseModal();
-    afterMove(move.name);
+    afterMove(move);
   };
 
   const [isVisible, setIsVisible] = useState(false);

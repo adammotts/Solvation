@@ -14,6 +14,8 @@ namespace Solvation.Models
         public int CurrentHandIndex { get; set; } = 0;
 
         public double ExpectedValueLoss { get; set; } = 0.0;
+
+        public Statistics Statistics { get; set; } = new Statistics();
         
         public Session(Hand[] hands)
         {

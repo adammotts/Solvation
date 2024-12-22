@@ -60,7 +60,7 @@ export function Train() {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ move: move }),
+      body: JSON.stringify({ move: move.name, label: move.label }),
     })
       .then((response) => response.json())
       .then((data) => {
@@ -93,7 +93,7 @@ export function Train() {
               <Cards cards={dealerCards} variant={'dealer'} />
               <Cards cards={playerCards} variant={'player'} />
               {terminal ? (
-                <Button text={'Next Hand'} onClick={() => window.location.reload()} />
+                <Button text={'Next'} onClick={() => window.location.reload()} />
               ) : (
                 <Choices allMoves={actions} onSelect={onSelect} afterMove={afterMove} choice={choice} />
               )}
@@ -101,8 +101,10 @@ export function Train() {
           ) : (
             <>
               <Title text={'Session Ended'} />
-              <Subtitle text={`You leaked ${evLoss.toFixed(4)}`} />
-              <Button text={'Return Home'} onClick={() => navigate('/home')} />
+              <Subtitle text={`You leaked of a total of ${evLoss.toFixed(4)} Expected Value`} />
+              <div className="return-home-button-container">
+                <Button text={'Return Home'} onClick={() => navigate('/home')} />
+              </div>
             </>
           )}
         </>

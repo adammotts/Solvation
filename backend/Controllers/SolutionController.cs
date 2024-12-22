@@ -96,7 +96,7 @@ namespace Solvation.Controllers
         [HttpPost("/session")]
         public IActionResult GenerateSession()
         {
-            Hand[] hands = new Hand[10];
+            Hand[] hands = new Hand[1];
 
             for (int i = 0; i < hands.Length; i++)
             {
@@ -145,8 +145,9 @@ namespace Solvation.Controllers
             Hand hand = HandFromSession(session);
 
             var move = request.Move;
+            var label = request.Label;
 
-            UpdateSessionEV(session, hand, move);
+            UpdateSessionAnalytics(session, hand, move, label);
             
             PlayerState playerState;
 
@@ -318,7 +319,7 @@ namespace Solvation.Controllers
             _sessionCollection.UpdateOne(s => s.Id == session.Id, sessionUpdate);
         }
 
-        private void UpdateSessionEV(Session session, Hand hand, string move)
+        private void UpdateSessionAnalytics(Session session, Hand hand, string move, string label)
         {
             Actions actions = ActionsFromStates(hand.CurrentPlayerState(), hand.CurrentDealerState());
 
@@ -326,7 +327,8 @@ namespace Solvation.Controllers
             double evMove = actions.MoveEV(move);
 
             var sessionUpdate = Builders<Session>.Update
-                .Set(s => s.ExpectedValueLoss, session.ExpectedValueLoss + evBestMove - evMove);
+                .Set(s => s.ExpectedValueLoss, session.ExpectedValueLoss + evBestMove - evMove)
+                .Set(s => s.Statistics, session.Statistics.Update(label));
             _sessionCollection.UpdateOne(s => s.Id == session.Id, sessionUpdate);
         }
     }
