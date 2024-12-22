@@ -8,6 +8,13 @@
   gap: 20px;
 }
 
+.statistics-label-container {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  margin-top: 10px;
+}
+
 .return-home-button-container {
-  margin-top: 40px;
+  margin-top: 20px;
 }
