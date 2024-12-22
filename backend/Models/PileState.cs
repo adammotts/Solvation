@@ -6,7 +6,7 @@ namespace Solvation.Models
     {
         public int SumValue { get; private set; }
         public GameStateValueType ValueType { get; private set; }
-        public GameStateType StateType { get; private set; }
+        public GameStateType StateType { get; protected set; }
 
         public readonly static Dictionary<Rank, PlayerState> RankValues = new Dictionary<Rank, PlayerState>();
 

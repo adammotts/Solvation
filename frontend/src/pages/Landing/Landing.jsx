@@ -23,7 +23,7 @@ export function Landing() {
   return (
     <div className="landing-background">
       <Title text={'Would you like to play some Blackjack?'} />
-      <Choices allMoves={allMoves} onSelect={onSelect} afterMove={() => navigate('/welcome')} choice={choice} />
+      <Choices allMoves={allMoves} onSelect={onSelect} afterMove={(move) => navigate('/welcome')} choice={choice} />
     </div>
   );
 }

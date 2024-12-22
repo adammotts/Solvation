@@ -1,6 +1,7 @@
 using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 using Solvation.Models;
+using Solvation.Enums;
 using Solvation.Requests;
 using Solvation.Algorithms;
 
@@ -83,25 +84,10 @@ namespace Solvation.Controllers
 
             PlayerState playerState = PlayerState.FromCards(playerCards);
             DealerState dealerState = DealerState.FromCard(dealerCard);
-
-            var filter = Builders<GameState>.Filter.And(
-                Builders<GameState>.Filter.Eq(g => g.PlayerState, playerState),
-                Builders<GameState>.Filter.Eq(g => g.DealerState, dealerState)
-            );
-
-            var gameStates = _gameStateCollection.Find(filter).ToList();
-
-            if (!gameStates.Any())
-            {
-                return NotFound("No matching GameStates found.");
-            }
-
-            if (gameStates.Count > 1)
-            {
-                return StatusCode(500, "Multiple GameStates found. " + gameStates.Count);
-            }
-
-            return Ok(gameStates.First().Actions.ToString());
+            
+            Actions actions = ActionsFromStates(playerState, dealerState);
+                
+            return Ok(actions);
         }
 
         /* Test with:
@@ -132,46 +118,59 @@ namespace Solvation.Controllers
         [HttpGet("/session/{id}")]
         public IActionResult GetSessionById(string id)
         {
-            var session = _sessionCollection.Find(s => s.Id == id).FirstOrDefault();
-
-            if (session == null)
-            {
-                return NotFound(new { message = "Session not found" });
-            }
+            Session session = SessionFromId(id);
             
-            var currentHandId = session.HandIds[session.CurrentHandIndex];
+            Hand hand = HandFromSession(session);
 
-            var hand = _handCollection.Find(h => h.Id == currentHandId).FirstOrDefault();
+            PlayerState playerState = hand.CurrentPlayerState();
+            DealerState dealerState = hand.CurrentDealerState();
 
-            if (hand == null)
+            Actions actions = ActionsFromStates(playerState, dealerState);
+            
+            HandleTerminalPlayerState(session, playerState);
+
+            return Ok(new { hand, actions, terminal = playerState.StateType == GameStateType.Terminal });
+        }
+
+        [HttpPatch("/session/{id}")]
+        public IActionResult MakeMoveForSession(string id, [FromBody] MakeMoveRequest request)
+        {
+            var session = SessionFromId(id);
+            
+            Hand hand = HandFromSession(session);
+
+            var move = request.Move;
+
+            PlayerState playerState;
+
+            switch (move)
             {
-                return NotFound(new { message = "Hand not found" });
+                case "hit":
+                    playerState = hand.Hit();
+                    break;
+                case "stand":
+                    playerState = hand.Stand();
+                    break;
+                case "double":
+                    playerState = hand.Double();
+                    break;
+                case "split":
+                    playerState = hand.Split();
+                    break;
+                default:
+                    return BadRequest(new { message = "Invalid move" });
             }
 
-            Card[] playerCards = hand.PlayerCards.ToArray();
-            Card dealerCard = hand.DealerCards.First();
+            var handUpdate = Builders<Hand>.Update.Set(h => h.PlayerCards, hand.PlayerCards);
+            _handCollection.UpdateOne(h => h.Id == hand.Id, handUpdate);
 
-            PlayerState playerState = PlayerState.FromCards(playerCards);
-            DealerState dealerState = DealerState.FromCard(dealerCard);
+            HandleTerminalPlayerState(session, playerState);
 
-            var filter = Builders<GameState>.Filter.And(
-                Builders<GameState>.Filter.Eq(g => g.PlayerState, playerState),
-                Builders<GameState>.Filter.Eq(g => g.DealerState, dealerState)
-            );
+            DealerState dealerState = hand.CurrentDealerState();
 
-            var gameStates = _gameStateCollection.Find(filter).ToList();
+            Actions actions = ActionsFromStates(playerState, dealerState);
 
-            if (!gameStates.Any())
-            {
-                return NotFound("No matching GameStates found.");
-            }
-
-            if (gameStates.Count > 1)
-            {
-                return StatusCode(500, "Multiple GameStates found. " + gameStates.Count);
-            }
-
-            return Ok(new { hand, gameStates.First().Actions });
+            return Ok(new { hand, actions, terminal = playerState.StateType == GameStateType.Terminal });
         }
 
         /* Test with:
@@ -242,6 +241,65 @@ namespace Solvation.Controllers
             _handCollection.DeleteMany(Builders<Hand>.Filter.Empty);
 
             return Ok();
+        }
+
+        private Actions ActionsFromStates(PlayerState playerState, DealerState dealerState)
+        {
+            var filter = Builders<GameState>.Filter.And(
+                Builders<GameState>.Filter.Eq(g => g.PlayerState, playerState),
+                Builders<GameState>.Filter.Eq(g => g.DealerState, dealerState)
+            );
+
+            var gameStates = _gameStateCollection.Find(filter).ToList();
+
+            if (!gameStates.Any())
+            {
+                throw new System.Exception("No matching GameStates found.");
+            }
+
+            if (gameStates.Count > 1)
+            {
+                throw new System.Exception("Multiple GameStates found. " + gameStates.Count);
+            }
+
+            return gameStates.First().Actions;
+        }
+
+        private Session SessionFromId(string id)
+        {
+            var session = _sessionCollection.Find(s => s.Id == id).FirstOrDefault();
+
+            if (session == null)
+            {
+                throw new System.Exception("Session not found");
+            }
+
+            return session;
+        }
+
+        private Hand HandFromSession(Session session)
+        {
+            var currentHandId = session.CurrentHandId();
+
+            var hand = _handCollection.Find(h => h.Id == currentHandId).FirstOrDefault();
+
+            if (hand == null)
+            {
+                throw new System.Exception("Hand not found");
+            }
+
+            return hand;
+        }
+
+        private void HandleTerminalPlayerState(Session session, PlayerState playerState)
+        {
+            if (playerState.StateType == GameStateType.Terminal)
+            {
+                session.NextHand();
+            }
+
+            var sessionUpdate = Builders<Session>.Update.Set(s => s.CurrentHandIndex, session.CurrentHandIndex);
+            _sessionCollection.UpdateOne(s => s.Id == session.Id, sessionUpdate);
         }
     }
 }

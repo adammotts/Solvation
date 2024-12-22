@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { Title, Loading, Error } from '../../primitive';
+import { Title, Button, Loading, Error } from '../../primitive';
 import { Choices, Cards } from '../../components';
 import './Train.css';
 
@@ -18,6 +18,7 @@ export function Train() {
     Double: null,
     Split: null,
   });
+  const [terminal, setTerminal] = useState(false);
 
   function onSelect(move) {
     if (choice === null) {
@@ -31,16 +32,40 @@ export function Train() {
     })
       .then((response) => response.json())
       .then((data) => {
-        setLoading(false);
         setPlayerCards(data.hand.playerCards);
         setDealerCards(data.hand.dealerCards);
         setActions(data.actions);
+        setTerminal(data.terminal);
+        setLoading(false);
       })
       .catch((error) => {
         setLoading(false);
         setError(error);
       });
   }, [sessionId]);
+
+  function afterMove(move) {
+    setLoading(true);
+    fetch(`${process.env.REACT_APP_API_BASE_URL}/session/${sessionId}`, {
+      method: 'PATCH',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ move: move }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        setPlayerCards(data.hand.playerCards);
+        setDealerCards(data.hand.dealerCards);
+        setActions(data.actions);
+        setTerminal(data.terminal);
+        setChoice(null);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setError(error);
+      });
+  }
 
   if (error) {
     console.log(error);
@@ -56,7 +81,11 @@ export function Train() {
           <Title text={'What Would You Like To Do?'} />
           <Cards cards={dealerCards} variant={'dealer'} />
           <Cards cards={playerCards} variant={'player'} />
-          <Choices allMoves={actions} onSelect={onSelect} afterMove={() => {}} choice={choice} />
+          {terminal ? (
+            <Button text={'Next Hand'} onClick={() => window.location.reload()} />
+          ) : (
+            <Choices allMoves={actions} onSelect={onSelect} afterMove={afterMove} choice={choice} />
+          )}
         </>
       )}
     </div>

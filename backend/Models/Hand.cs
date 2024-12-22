@@ -24,6 +24,40 @@ namespace Solvation.Models
             this.DealerCards.Add(Card.Deal());
         }
 
+        public DealerState CurrentDealerState()
+        {
+            return DealerState.FromCard(this.DealerCards.First());
+        }
+
+        public PlayerState CurrentPlayerState()
+        {
+            return PlayerState.FromCards(this.PlayerCards.ToArray());
+        }
+
+        public PlayerState Hit()
+        {
+            this.PlayerCards.Add(Card.Deal());
+            return PlayerState.FromCards(this.PlayerCards.ToArray());
+        }
+
+        public PlayerState Stand()
+        {
+            return PlayerState.FromCards(this.PlayerCards.ToArray(), overrideIsTerminal: true);
+        }
+
+        public PlayerState Double()
+        {
+            this.PlayerCards.Add(Card.Deal());
+            return PlayerState.FromCards(this.PlayerCards.ToArray(), overrideIsTerminal: true);
+        }
+
+        public PlayerState Split()
+        {
+            this.PlayerCards.RemoveAt(1);
+            this.PlayerCards.Add(Card.Deal());
+            return PlayerState.FromCards(this.PlayerCards.ToArray(), overrideIsNotSplittable: true);
+        }
+
         public override string ToString()
         {
             return $"[ID: {Id}, Player: {PlayerCards}, Dealer: {DealerCards}]";
