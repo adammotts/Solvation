@@ -22,6 +22,12 @@ export function Train() {
   const [terminal, setTerminal] = useState(false);
   const [ended, setEnded] = useState(false);
   const [evLoss, setEvLoss] = useState(0.0);
+  const [statistics, setStatistics] = useState({
+    bestMoves: 0,
+    inaccuracies: 0,
+    mistakes: 0,
+    blunders: 0,
+  });
 
   function onSelect(move) {
     if (choice === null) {
@@ -44,6 +50,7 @@ export function Train() {
         else {
           setEnded(true);
           setEvLoss(data.evLoss);
+          setStatistics(data.statistics);
         }
         setLoading(false);
       })
@@ -101,7 +108,11 @@ export function Train() {
           ) : (
             <>
               <Title text={'Session Ended'} />
-              <Subtitle text={`You leaked of a total of ${evLoss.toFixed(4)} Expected Value`} />
+              <Subtitle text={`Total EV Leaked: ${evLoss.toFixed(4)}`} />
+              <Subtitle text={`Best Moves: ${statistics.bestMoves}`} />
+              <Subtitle text={`Inaccuracies: ${statistics.inaccuracies}`} />
+              <Subtitle text={`Mistakes: ${statistics.mistakes}`} />
+              <Subtitle text={`Blunders: ${statistics.blunders}`} />
               <div className="return-home-button-container">
                 <Button text={'Return Home'} onClick={() => navigate('/home')} />
               </div>

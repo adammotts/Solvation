@@ -96,7 +96,7 @@ namespace Solvation.Controllers
         [HttpPost("/session")]
         public IActionResult GenerateSession()
         {
-            Hand[] hands = new Hand[1];
+            Hand[] hands = new Hand[10];
 
             for (int i = 0; i < hands.Length; i++)
             {
@@ -122,7 +122,7 @@ namespace Solvation.Controllers
 
             if (session.Ended())
             {
-                return Ok(new { ended = true, evLoss = session.ExpectedValueLoss });
+                return Ok(new { ended = true, evLoss = session.ExpectedValueLoss, statistics = session.Statistics });
             }
             
             Hand hand = HandFromSession(session);
