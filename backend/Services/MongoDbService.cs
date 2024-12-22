@@ -21,8 +21,8 @@ public class MongoDbService
             ?? throw new InvalidOperationException("Configuration key 'MongoDB:DatabaseName' is not set.");
 
         var connectionString = connectionStringTemplate
-            .Replace("<username>", username)
-            .Replace("<password>", password);
+            .Replace("<db_username>", username)
+            .Replace("<db_password>", password);
 
         var client = new MongoClient(connectionString);
         _database = client.GetDatabase(databaseName);
