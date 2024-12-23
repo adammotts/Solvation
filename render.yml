@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: Solvation-Backend
+    env: web
+    rootDir: backend
+    runtime: dotnet
+    buildCommand: dotnet publish -c Release -o out
+    startCommand: dotnet out/backend.dll
+    envVars:
+      - key: DATABASE_URL
+        value: <your-database-url>
+      - key: ANOTHER_ENV_VAR
+        value: <value>
+
+  - type: web
+    name: Solvation-Frontend
+    env: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: build
