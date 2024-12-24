@@ -8,6 +8,8 @@ public class MongoDbService
 
     public MongoDbService(IConfiguration configuration)
     {
+        DotNetEnv.Env.Load();
+
         var username = Environment.GetEnvironmentVariable("DATABASE_USER_USERNAME")
             ?? throw new InvalidOperationException("Environment variable 'DATABASE_USER_USERNAME' is not set.");
         var password = Environment.GetEnvironmentVariable("DATABASE_USER_PASSWORD")
