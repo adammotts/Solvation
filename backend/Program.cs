@@ -17,8 +17,6 @@ builder.Services.AddSingleton<MongoDbService>();
 
 var app = builder.Build();
 
-app.UseForwardedHeaders();
-
 if (app.Environment.IsDevelopment())
 {
     Solver.VerifyInteractions();
