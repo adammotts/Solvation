@@ -17,7 +17,7 @@ RUN dotnet build ./backend.csproj -c Release -o /app/build
 RUN dotnet publish ./backend.csproj -c Release -o /app/publish
 
 # Use the .NET runtime image for the final container
-FROM mcr.microsoft.com/dotnet/aspnet:6.0 AS runtime
+FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
 
 # Set the working directory to /app
 WORKDIR /app
