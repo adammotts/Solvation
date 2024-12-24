@@ -1,5 +1,9 @@
 using Solvation.Algorithms;
 
+Console.WriteLine("Variables :::");
+Console.WriteLine(Environment.GetEnvironmentVariable("DATABASE_USER_USERNAME"));
+Console.WriteLine(Environment.GetEnvironmentVariable("DATABASE_USER_PASSWORD"));
+
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
