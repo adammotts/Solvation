@@ -8,6 +8,14 @@
   gap: 20px;
 }
 
+.subtitle-container {
+  max-width: 35%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
 .next-button-container {
   display: flex;
   justify-content: center;

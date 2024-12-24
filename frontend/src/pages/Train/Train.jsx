@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Title, Subtitle, Label, Button, Loading, Error } from '../../primitive';
+import { Title, Subtitle, Button, Loading, Error } from '../../primitive';
 import { Choices, Cards } from '../../components';
 import './Train.css';
 
@@ -111,19 +111,19 @@ export function Train() {
               <Subtitle text={`Total EV Leaked: ${evLoss.toFixed(4)}`} />
               <div className="statistics-label-container">
                 <img src={'/images/correct_64x.png'} alt={'Best Move'} />
-                <Label text={`Best Moves: ${statistics.bestMoves}`} />
+                <Subtitle text={`Best Moves: ${statistics.bestMoves}`} />
               </div>
               <div className="statistics-label-container">
                 <img src={'/images/inaccuracy_64x.png'} alt={'Inaccuracy'} />
-                <Label text={`Inaccuracies: ${statistics.inaccuracies}`} />
+                <Subtitle text={`Inaccuracies: ${statistics.inaccuracies}`} />
               </div>
               <div className="statistics-label-container">
                 <img src={'/images/mistake_64x.png'} alt={'Mistake'} />
-                <Label text={`Mistakes: ${statistics.mistakes}`} />
+                <Subtitle text={`Mistakes: ${statistics.mistakes}`} />
               </div>
               <div className="statistics-label-container">
                 <img src={'/images/incorrect_64x.png'} alt={'Blunder'} />
-                <Label text={`Blunders: ${statistics.blunders}`} />
+                <Subtitle text={`Blunders: ${statistics.blunders}`} />
               </div>
               <div className="return-home-button-container">
                 <Button text={'Return Home'} onClick={() => navigate('/home')} />

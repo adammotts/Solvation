@@ -17,21 +17,23 @@ export function Welcome() {
   return (
     <div className="welcome-background">
       <Title text={'Welcome!'} />
-      <Subtitle
-        text={
-          'Whether or not you chose to be here, you are here now, so hear me out.'
-        }
-      />
-      <Subtitle
-        text={
-          'Many people choose to gamble, even if they are aware that it is a losing endeavor.'
-        }
-      />
-      <Subtitle
-        text={
-          'Especially in Blackjack, many people are unaware of optimal strategy, losing even more money than they should.'
-        }
-      />
+      <div className="subtitle-container">
+        <Subtitle
+          text={
+            'Whether or not you chose to be here, you are here now, so hear me out.'
+          }
+        />
+        <Subtitle
+          text={
+            'Many people choose to gamble, even if they are aware that it is a losing endeavor.'
+          }
+        />
+        <Subtitle
+          text={
+            'Especially in Blackjack, many people are unaware of optimal strategy, losing even more money than they should.'
+          }
+        />
+      </div>
       <div className={`next-button-container ${isVisible ? 'visible' : ''}`}>
         <Button text={'Next'} onClick={() => navigate('/home')} />
       </div>
