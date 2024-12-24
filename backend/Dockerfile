@@ -4,6 +4,9 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 # Set the working directory to /app
 WORKDIR /app
 
+# Copy the current directory (i.e., ./backend) contents into the container
+COPY . ./
+
 # Restore the dependencies for the C# project
 RUN dotnet restore ./backend.csproj
 
@@ -22,6 +25,7 @@ WORKDIR /app
 # Expose port 80
 EXPOSE 80
 
+# Set environment variables
 ENV DATABASE_USER_USERNAME=${DATABASE_USER_USERNAME}
 ENV DATABASE_USER_PASSWORD=${DATABASE_USER_PASSWORD}
 ENV MONGO_CONNECTION_STRING=${MONGO_CONNECTION_STRING}
