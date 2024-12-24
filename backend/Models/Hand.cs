@@ -1,5 +1,6 @@
 using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
+using Solvation.Enums;
 
 namespace Solvation.Models
 {
@@ -22,6 +23,12 @@ namespace Solvation.Models
             this.DealerCards.Add(Card.Deal());
             this.PlayerCards.Add(Card.Deal());
             this.DealerCards.Add(Card.Deal());
+
+            while (this.CurrentPlayerState().ValueType == GameStateValueType.Blackjack)
+            {
+                this.PlayerCards.RemoveAt(1);
+                this.PlayerCards.Add(Card.Deal());
+            }
         }
 
         public DealerState CurrentDealerState()
