@@ -25,5 +25,8 @@ COPY --from=build /app/build /usr/share/nginx/html
 # Expose port 80
 EXPOSE 80
 
+# Set environment variables
+ENV REACT_APP_API_BASE_URL=${REACT_APP_API_BASE_URL}
+
 # Start nginx to serve the React app
 CMD ["nginx", "-g", "daemon off;"]
