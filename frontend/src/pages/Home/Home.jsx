@@ -16,8 +16,7 @@ export function Home() {
       .then((response) => {
         if (response.ok) {
           return response.json();
-        }
-        else {
+        } else {
           throw new Error('Error generating session');
         }
       })
