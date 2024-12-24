@@ -85,7 +85,7 @@ namespace Solvation.Models
             return new PlayerState(this.SumValue, this.ValueType, this.Doubleable, false);
         }
 
-        public static PlayerState FromCards(Card[] cards, bool overrideIsTerminal = false, bool overrideIsNotSplittable = false)
+        public static PlayerState FromCards(Card[] cards, bool overrideIsTerminal = false, bool overrideIsNotSplittable = false, bool allowBlackjack = false)
         {
             if (cards.Length < 1)
             {
@@ -101,6 +101,7 @@ namespace Solvation.Models
 
             bool doubleable = false;
             bool splittable = false;
+            bool isBlackjack = false;
 
             if (cards.Length == 2)
             {
@@ -110,9 +111,14 @@ namespace Solvation.Models
                 {
                     splittable = true;
                 }
+
+                if (allowBlackjack && playerState.SumValue == 21)
+                {
+                    isBlackjack = true;
+                }
             }
 
-            PlayerState resultState = new PlayerState(playerState.SumValue, playerState.ValueType, doubleable, splittable);
+            PlayerState resultState = new PlayerState(playerState.SumValue, isBlackjack ? GameStateValueType.Blackjack : playerState.ValueType, doubleable, splittable);
         
             if (overrideIsTerminal)
             {

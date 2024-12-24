@@ -478,5 +478,43 @@ namespace Solvation.Algorithms
 
             return gameStates.ToArray();
         }
+
+        public static double GameExpectedValue(int epochs = 1000000)
+        {
+            double ev = 0;
+
+            for (int i = 0; i < epochs; i++)
+            {
+                Hand hand = new Hand(true);
+                
+                PlayerState playerState = PlayerState.FromCards(hand.PlayerCards.ToArray(), allowBlackjack: true);
+
+                // Currently I have no functionality to construct a post reveal state for the dealer, so a player state to simulate blackjack is used
+                PlayerState dealerRevealState = PlayerState.FromCards(hand.DealerCards.ToArray(), allowBlackjack: true);
+
+                // Console.WriteLine($"Player: {hand.PlayerCards.First()}, {hand.PlayerCards.Last()} | {playerState}, Dealer: {hand.DealerCards.First()}, {hand.DealerCards.Last()} | {dealerRevealState} | {hand.CurrentDealerState()}");
+
+                if (playerState.ValueType == GameStateValueType.Blackjack)
+                {
+                    
+                    ev += 1.5;
+                }
+
+                else if (dealerRevealState.ValueType == GameStateValueType.Blackjack)
+                {
+                    ev -= 1;
+                }
+
+                else {
+                    DealerState dealerPreRevealState = hand.CurrentDealerState();
+
+                    Actions expectedValues = Solver.PlayerPostRevealTree[dealerPreRevealState][playerState];
+
+                    ev += expectedValues.BestMoveEV();
+                }
+            }
+
+            return ev / epochs;
+        }
     }
 }

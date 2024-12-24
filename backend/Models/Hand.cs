@@ -14,7 +14,7 @@ namespace Solvation.Models
 
         public List<Card> DealerCards { get; set; } = [];
         
-        public Hand()
+        public Hand(bool allowBlackjack = false)
         {
             this.PlayerCards = new List<Card>();
             this.DealerCards = new List<Card>();
@@ -24,7 +24,7 @@ namespace Solvation.Models
             this.PlayerCards.Add(Card.Deal());
             this.DealerCards.Add(Card.Deal());
 
-            while (this.CurrentPlayerState().ValueType == GameStateValueType.Blackjack)
+            while (!allowBlackjack && this.CurrentPlayerState().ValueType == GameStateValueType.Blackjack)
             {
                 this.PlayerCards.RemoveAt(1);
                 this.PlayerCards.Add(Card.Deal());

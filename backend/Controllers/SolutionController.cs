@@ -11,6 +11,8 @@ namespace Solvation.Controllers
     [Route("[controller]")]
     public class SolutionController : ControllerBase
     {
+        private readonly IMongoCollection<GameActions> _gameExpectedValueCollection;
+
         private readonly IMongoCollection<GameState> _gameStateCollection;
 
         private readonly IMongoCollection<Hand> _handCollection;
@@ -19,9 +21,55 @@ namespace Solvation.Controllers
 
         public SolutionController(MongoDbService mongoDbService)
         {
+            _gameExpectedValueCollection = mongoDbService.GetCollection<GameActions>("gameExpectedValues");
             _gameStateCollection = mongoDbService.GetCollection<GameState>("gameStates");
             _handCollection = mongoDbService.GetCollection<Hand>("hands");
             _sessionCollection = mongoDbService.GetCollection<Session>("sessions");
+        }
+
+        /* Test with:
+            curl -X POST "http://localhost:5256/game-expected-value"
+        */
+        [HttpPost("/game-expected-value")]
+        public IActionResult GenerateGameExpectedValue()
+        {
+            double gameExpectedValue = Solver.GameExpectedValue();
+
+            _gameExpectedValueCollection.InsertOne(new GameActions(gameExpectedValue));
+
+            return Ok(gameExpectedValue);
+        }
+
+        /* Test with:
+            curl -X DELETE "http://localhost:5256/game-expected-values"
+        */
+        [HttpDelete("/game-expected-values")]
+        public IActionResult DeleteGameExpectedValues()
+        {
+            _gameExpectedValueCollection.DeleteMany(Builders<GameActions>.Filter.Empty);
+
+            return Ok();
+        }
+
+        /* Test with:
+            curl -X GET "http://localhost:5256/game-expected-value"
+        */
+        [HttpGet("/game-expected-value")]
+        public IActionResult GetGameExpectedValue()
+        {
+            var gameExpectedValues = _gameExpectedValueCollection.Find(Builders<GameActions>.Filter.Empty).ToList();
+
+            if (!gameExpectedValues.Any())
+            {
+                throw new System.Exception("No Game Expected Value found.");
+            }
+
+            if (gameExpectedValues.Count > 1)
+            {
+                throw new System.Exception("Multiple GameStates found. " + gameExpectedValues.Count);
+            }
+
+            return Ok(gameExpectedValues.First());
         }
 
         /*
