@@ -25,6 +25,10 @@ WORKDIR /app
 # Expose port 80
 EXPOSE 80
 
+ENV DATABASE_USER_USERNAME="Cluster44181"
+ENV DATABASE_USER_PASSWORD="SkVWdWZ5aFle"
+ENV MONGO_CONNECTION_STRING="mongodb+srv://<db_username>:<db_password>@cluster44181.mp3df.mongodb.net/?retryWrites=true&w=majority&appName=Cluster44181"
+
 # Copy the published files from the build stage
 COPY --from=build /app/publish .
 
