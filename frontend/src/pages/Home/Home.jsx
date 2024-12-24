@@ -32,8 +32,8 @@ export function Home() {
   return (
     <div className="home-background">
       <Title text={'Solvation'} />
-      <div className="home-icon">
-        <img src={Spade} alt="spade" height={'250px'} />
+      <div className="home-icon-container">
+        <img src={Spade} alt="spade" className="spade-icon" />
       </div>
       <div className={`train-button-container`}>
         <Button text={'Train'} onClick={handleTrainClick} loading={loading} />

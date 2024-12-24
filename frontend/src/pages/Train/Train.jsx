@@ -96,7 +96,9 @@ export function Train() {
         <>
           {!ended ? (
             <>
-              <Title text={'What Would You Like To Do?'} />
+              <div className="train-title-text">
+                <Title text={'What Would You Like To Do?'} />
+              </div>
               <Cards cards={dealerCards} variant={'dealer'} />
               <Cards cards={playerCards} variant={'player'} />
               {terminal ? (
@@ -110,19 +112,19 @@ export function Train() {
               <Title text={'Session Ended'} />
               <Subtitle text={`Total EV Leaked: ${evLoss.toFixed(4)}`} />
               <div className="statistics-label-container">
-                <img src={'/images/correct_64x.png'} alt={'Best Move'} />
+                <img src={'/images/correct_64x.png'} alt={'Best Move'} className="statistics-icon" />
                 <Subtitle text={`Best Moves: ${statistics.bestMoves}`} />
               </div>
               <div className="statistics-label-container">
-                <img src={'/images/inaccuracy_64x.png'} alt={'Inaccuracy'} />
+                <img src={'/images/inaccuracy_64x.png'} alt={'Inaccuracy'} className="statistics-icon" />
                 <Subtitle text={`Inaccuracies: ${statistics.inaccuracies}`} />
               </div>
               <div className="statistics-label-container">
-                <img src={'/images/mistake_64x.png'} alt={'Mistake'} />
+                <img src={'/images/mistake_64x.png'} alt={'Mistake'} className="statistics-icon" />
                 <Subtitle text={`Mistakes: ${statistics.mistakes}`} />
               </div>
               <div className="statistics-label-container">
-                <img src={'/images/incorrect_64x.png'} alt={'Blunder'} />
+                <img src={'/images/incorrect_64x.png'} alt={'Blunder'} className="statistics-icon" />
                 <Subtitle text={`Blunders: ${statistics.blunders}`} />
               </div>
               <div className="return-home-button-container">

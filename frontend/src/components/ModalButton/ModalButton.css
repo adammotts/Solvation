@@ -5,6 +5,22 @@
   margin-bottom: 15px;
 }
 
+.label-icon {
+  height: 60px;
+  width: auto;
+}
+
+@media (max-width: 768px) {
+  .label-container {
+    gap: 15px;
+  }
+
+  .label-icon {
+    height: 40px;
+    width: auto;
+  }
+}
+
 .next-button-container {
   display: flex;
   justify-content: center;

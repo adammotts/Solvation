@@ -16,6 +16,16 @@
   gap: 20px;
 }
 
+@media (max-width: 768px) {
+  .welcome-background {
+    gap: 0px;
+  }
+
+  .subtitle-container {
+    max-width: 80%;
+  }
+}
+
 .next-button-container {
   display: flex;
   justify-content: center;

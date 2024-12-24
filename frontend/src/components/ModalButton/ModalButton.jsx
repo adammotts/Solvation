@@ -44,7 +44,7 @@ export function ModalButton({ move, onSelect, afterMove, disabled = false }) {
 
       <Modal isOpen={isModalOpen} onClose={handleCloseModal}>
         <div className="label-container">
-          <img src={move.source} alt={move.label} />
+          <img src={move.source} alt={move.label} className="label-icon" />
           <Label text={move.label} />
         </div>
         <Text

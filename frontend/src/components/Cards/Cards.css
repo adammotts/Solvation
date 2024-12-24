@@ -1,4 +1,24 @@
 .cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
   margin-top: -10px;
   margin-bottom: 30px;
+}
+
+.card-image {
+  height: 200px;
+  width: auto;
+}
+
+@media (max-width: 768px) {
+  .cards-container {
+    gap: 5px;
+  }
+
+  .card-image {
+    height: 150px;
+    width: auto;
+  }
 }

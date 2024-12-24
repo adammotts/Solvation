@@ -3,3 +3,9 @@
   font-size: 20px;
   margin: 0;
 }
+
+@media (max-width: 768px) {
+  .text {
+    font-size: 13px;
+  }
+}

@@ -122,7 +122,7 @@ export function Cards({ cards, variant }) {
   return (
     <div className="cards-container">
       {cards.map((card, index) => (
-        <img key={index} src={getImage(card)} alt={card} height={'200px'} />
+        <img key={index} src={getImage(card)} alt={card} className="card-image" />
       ))}
     </div>
   );

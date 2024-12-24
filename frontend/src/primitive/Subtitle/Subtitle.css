@@ -7,4 +7,11 @@
     -1px 1px 0 black,
     1px 1px 0 black;
   margin: 0;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .subtitle {
+    font-size: 15px;
+  }
 }
