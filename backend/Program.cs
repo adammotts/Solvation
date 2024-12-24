@@ -1,7 +1,5 @@
 using Solvation.Algorithms;
 
-Solver.VerifyInteractions();
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddCors(options =>
@@ -21,6 +19,7 @@ var app = builder.Build();
 
 if (app.Environment.IsDevelopment())
 {
+    Solver.VerifyInteractions();
     app.MapOpenApi();
 }
 
