@@ -5,13 +5,13 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 WORKDIR /app
 
 # Restore the dependencies for the C# project
-RUN dotnet restore backend.csproj
+RUN dotnet restore ./backend.csproj
 
 # Build the project
-RUN dotnet build backend.csproj -c Release -o /app/build
+RUN dotnet build ./backend.csproj -c Release -o /app/build
 
 # Publish the project to /app/publish
-RUN dotnet publish backend.csproj -c Release -o /app/publish
+RUN dotnet publish ./backend.csproj -c Release -o /app/publish
 
 # Use the .NET runtime image for the final container
 FROM mcr.microsoft.com/dotnet/aspnet:9.0 AS runtime
@@ -22,7 +22,6 @@ WORKDIR /app
 # Expose port 80
 EXPOSE 80
 
-# Set environment variables (optional: set these from your CI/CD pipeline or manually in Railway)
 ENV DATABASE_USER_USERNAME=${DATABASE_USER_USERNAME}
 ENV DATABASE_USER_PASSWORD=${DATABASE_USER_PASSWORD}
 ENV MONGO_CONNECTION_STRING=${MONGO_CONNECTION_STRING}
