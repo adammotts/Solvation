@@ -51,6 +51,10 @@
     padding: 10px 5px;
   }
 
+  .modal-close-button {
+    font-size: 18px;
+  }
+
   .modal-content {
     padding: 10px 15px;
   }
