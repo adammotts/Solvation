@@ -1,5 +1,7 @@
 # Solvation
-Train your blackjack skills by playing against the dealer and learning the expected values of each move you make. Solved with closed form Dynamic Programming. Solver trained using Q Learning. Designed using the Curiously Recurring Template Pattern (CRTP), also known as F-bound Polymorphism
+Train your blackjack skills by playing against the dealer and learning the expected values of each move you make. Solved with closed form Dynamic Programming. Solver trained using Q Learning. Designed using the Curiously Recurring Template Pattern (CRTP), also known as F-bound Polymorphism. See video below for walk through.
+
+https://github.com/user-attachments/assets/4dbb4094-30be-4944-92e9-26d41d00f018
 
 ## Rules
 - Can only split once
