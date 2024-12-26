@@ -38,7 +38,7 @@ namespace Solvation.Models
 
         public PlayerState CurrentPlayerState()
         {
-            return PlayerState.FromCards(this.PlayerCards.ToArray());
+            return PlayerState.FromCards(this.PlayerCards.ToArray(), allowBlackjack: true);
         }
 
         public PlayerState Hit()
