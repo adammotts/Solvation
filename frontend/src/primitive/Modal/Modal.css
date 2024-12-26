@@ -52,7 +52,7 @@
   }
 
   .modal-close-button {
-    font-size: 18px;
+    padding-right: 0;
   }
 
   .modal-content {
