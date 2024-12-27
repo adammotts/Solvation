@@ -3,6 +3,8 @@ Train your blackjack skills by playing against the dealer and learning the expec
 
 https://github.com/user-attachments/assets/4dbb4094-30be-4944-92e9-26d41d00f018
 
+It's important to make the best move, even when you are in an unfavorable situation. Even if you make a suboptimal move and end up winning, or the optimal move and end up losing, it's important to refrain from being results-oriented and understand that these outcomes are results of variance, and that in the long term, the EV of the optimal move will always be realized.
+
 ## Rules
 - Can only split once
 - Player blackjack pushes against dealer blackjack
