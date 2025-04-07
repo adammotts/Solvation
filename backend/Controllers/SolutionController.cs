@@ -27,6 +27,12 @@ namespace Solvation.Controllers
             _sessionCollection = mongoDbService.GetCollection<Session>("sessions");
         }
 
+        [HttpGet("/health")]
+        public IActionResult Health()
+        {
+            return Ok(new { status = "API is running" });
+        }
+
         /* Test with:
             curl -X POST "http://localhost:5256/game-expected-value"
         */
