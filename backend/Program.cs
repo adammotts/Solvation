@@ -1,12 +1,18 @@
 using Solvation.Algorithms;
+using DotNetEnv;
+
+DotNetEnv.Env.Load();
 
 var builder = WebApplication.CreateBuilder(args);
+
+var frontendUrl = Environment.GetEnvironmentVariable("FRONTEND_URL")
+    ?? throw new InvalidOperationException("Environment variable 'FRONTEND_URL' is not set.");
 
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy =>
     {
-        policy.AllowAnyOrigin()
+        policy.WithOrigins(frontendUrl)
               .AllowAnyHeader()
               .AllowAnyMethod();
     });
