@@ -19,15 +19,16 @@ export function Landing() {
     }
   }
   useEffect(() => {
-    gameService.getGameExpectedValue()
-      .then((data) => {
+    gameService
+      .getGameExpectedValue()
+      .then(data => {
         setGameExpectedValue({
           Play: data.play,
           Abstain: data.abstain,
         });
         setLoading(false);
       })
-      .catch((error) => {
+      .catch(error => {
         setLoading(false);
         setError(error);
       });
@@ -45,7 +46,12 @@ export function Landing() {
       ) : (
         <>
           <Title text={'Would you like to play some Blackjack?'} />
-          <Choices allMoves={gameExpectedValue} onSelect={onSelect} afterMove={(move) => navigate('/welcome')} choice={choice} />
+          <Choices
+            allMoves={gameExpectedValue}
+            onSelect={onSelect}
+            afterMove={move => navigate('/welcome')}
+            choice={choice}
+          />
         </>
       )}
     </div>

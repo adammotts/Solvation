@@ -1,6 +1,6 @@
 .label {
-    color: black;
-    font-size: 30px;
+  color: black;
+  font-size: 30px;
 }
 
 @media (max-width: 768px) {

@@ -1,0 +1,41 @@
+{
+    "$schema": "https://raw.githubusercontent.com/DotNetAnalyzers/StyleCopAnalyzers/master/StyleCop.Analyzers/StyleCop.Analyzers/Settings/stylecop.schema.json",
+    "settings": {
+        "indentation": {
+            "indentationSize": 4,
+            "tabSize": 4,
+            "useTabs": false
+        },
+        "spacingRules": {
+            "spacing": {
+                "spacing": "ignore"
+            }
+        },
+        "namingRules": {
+            "allowCommonHungarianPrefixes": false,
+            "allowedHungarianPrefixes": []
+        },
+        "maintainabilityRules": {
+            "topLevelTypes": [
+                "class",
+                "interface",
+                "struct",
+                "delegate",
+                "enum"
+            ]
+        },
+        "layoutRules": {
+            "newlineAtEndOfFile": "require",
+            "allowConsecutiveUsings": true
+        },
+        "documentationRules": {
+            "xmlHeader": false,
+            "fileHeader": "omit",
+            "copyrightText": "Copyright (c) {companyName}. All rights reserved.",
+            "companyName": "Solvation",
+            "variables": {
+                "companyName": "Solvation"
+            }
+        }
+    }
+}

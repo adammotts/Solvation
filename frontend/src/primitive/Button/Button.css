@@ -3,12 +3,12 @@
   padding: 0px 15px;
   color: white;
   font-size: 10px;
-  text-shadow: 
+  text-shadow:
     -1px -1px 0 black,
     1px -1px 0 black,
     -1px 1px 0 black,
     1px 1px 0 black;
-  background-color: #0B3D0B;
+  background-color: #0b3d0b;
   border: 1px solid black;
   height: 50px;
   min-width: 100px;
@@ -21,7 +21,7 @@
 }
 
 .button:disabled {
-  background-color: #A9A9A9;
+  background-color: #a9a9a9;
   border: 1px solid #808080;
   cursor: not-allowed;
   opacity: 0.6;

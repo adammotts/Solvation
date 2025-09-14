@@ -37,22 +37,22 @@ export function Train() {
   }
 
   useEffect(() => {
-    sessionService.getSession(sessionId)
-      .then((data) => {
+    sessionService
+      .getSession(sessionId)
+      .then(data => {
         if (!data.ended) {
           setPlayerCards(data.hand.playerCards);
           setDealerCards(data.hand.dealerCards);
           setActions(data.actions);
           setTerminal(data.terminal);
-        }
-        else {
+        } else {
           setEnded(true);
           setEvLoss(data.evLoss);
           setStatistics(data.statistics);
         }
         setLoading(false);
       })
-      .catch((error) => {
+      .catch(error => {
         setLoading(false);
         setError(error);
       });
@@ -60,8 +60,9 @@ export function Train() {
 
   function afterMove(move) {
     setLoading(true);
-    sessionService.makeMove(sessionId, move.name, move.label)
-      .then((data) => {
+    sessionService
+      .makeMove(sessionId, move.name, move.label)
+      .then(data => {
         setPlayerCards(data.hand.playerCards);
         setDealerCards(data.hand.dealerCards);
         setActions(data.actions);
@@ -69,7 +70,7 @@ export function Train() {
         setChoice(null);
         setLoading(false);
       })
-      .catch((error) => {
+      .catch(error => {
         setError(error);
         setLoading(false);
       });
@@ -94,9 +95,17 @@ export function Train() {
               <Cards cards={dealerCards} variant={'dealer'} />
               <Cards cards={playerCards} variant={'player'} />
               {terminal ? (
-                <Button text={'Next'} onClick={() => window.location.reload()} />
+                <Button
+                  text={'Next'}
+                  onClick={() => window.location.reload()}
+                />
               ) : (
-                <Choices allMoves={actions} onSelect={onSelect} afterMove={afterMove} choice={choice} />
+                <Choices
+                  allMoves={actions}
+                  onSelect={onSelect}
+                  afterMove={afterMove}
+                  choice={choice}
+                />
               )}
             </>
           ) : (
@@ -104,23 +113,42 @@ export function Train() {
               <Title text={'Session Ended'} />
               <Subtitle text={`Total EV Leaked: ${evLoss.toFixed(4)}`} />
               <div className="statistics-label-container">
-                <img src={'/images/correct_64x.png'} alt={'Best Move'} className="statistics-icon" />
+                <img
+                  src={'/images/correct_64x.png'}
+                  alt={'Best Move'}
+                  className="statistics-icon"
+                />
                 <Subtitle text={`Best Moves: ${statistics.bestMoves}`} />
               </div>
               <div className="statistics-label-container">
-                <img src={'/images/inaccuracy_64x.png'} alt={'Inaccuracy'} className="statistics-icon" />
+                <img
+                  src={'/images/inaccuracy_64x.png'}
+                  alt={'Inaccuracy'}
+                  className="statistics-icon"
+                />
                 <Subtitle text={`Inaccuracies: ${statistics.inaccuracies}`} />
               </div>
               <div className="statistics-label-container">
-                <img src={'/images/mistake_64x.png'} alt={'Mistake'} className="statistics-icon" />
+                <img
+                  src={'/images/mistake_64x.png'}
+                  alt={'Mistake'}
+                  className="statistics-icon"
+                />
                 <Subtitle text={`Mistakes: ${statistics.mistakes}`} />
               </div>
               <div className="statistics-label-container">
-                <img src={'/images/incorrect_64x.png'} alt={'Blunder'} className="statistics-icon" />
+                <img
+                  src={'/images/incorrect_64x.png'}
+                  alt={'Blunder'}
+                  className="statistics-icon"
+                />
                 <Subtitle text={`Blunders: ${statistics.blunders}`} />
               </div>
               <div className="return-home-button-container">
-                <Button text={'Return Home'} onClick={() => navigate('/home')} />
+                <Button
+                  text={'Return Home'}
+                  onClick={() => navigate('/home')}
+                />
               </div>
             </>
           )}

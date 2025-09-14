@@ -11,12 +11,13 @@ export function Home() {
 
   const handleTrainClick = () => {
     setLoading(true);
-    sessionService.createSession()
-      .then((data) => {
+    sessionService
+      .createSession()
+      .then(data => {
         navigate(`/train/${data.id}`);
         setLoading(false);
       })
-      .catch((error) => {
+      .catch(error => {
         console.error('Error:', error);
         setLoading(false);
       });

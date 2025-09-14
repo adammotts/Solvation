@@ -1,0 +1,20 @@
+repos:
+  # Frontend (React/JavaScript) hooks
+  - repo: local
+    hooks:
+      - id: frontend-format
+        name: Frontend format and lint
+        entry: bash scripts/format-frontend.sh
+        language: system
+        files: ^frontend/.*\.(js|jsx|css)$
+        pass_filenames: false
+
+  # Backend (.NET/C#) hooks
+  - repo: local
+    hooks:
+      - id: backend-format
+        name: Backend format and build
+        entry: bash scripts/format-backend.sh
+        language: system
+        files: ^backend/.*\.(cs|csproj)$
+        pass_filenames: false

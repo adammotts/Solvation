@@ -9,7 +9,7 @@ export function ModalButton({ move, onSelect, afterMove, disabled = false }) {
   const handleOpenModal = () => {
     onSelect(move.name);
     setModalOpen(true);
-  }
+  };
 
   const handleCloseModal = () => {
     setModalOpen(false);

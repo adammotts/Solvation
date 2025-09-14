@@ -58,8 +58,14 @@ export function Choices({ allMoves, onSelect, afterMove, choice }) {
     <div className="moves-container">
       {Object.values(moves)
         .sort((a, b) => moveOrder.indexOf(a.name) - moveOrder.indexOf(b.name))
-        .map((move) => (
-          <ModalButton key={move.label} move={move} onSelect={onSelect} afterMove={afterMove} disabled={choice !== null && move.name !== choice} />
+        .map(move => (
+          <ModalButton
+            key={move.label}
+            move={move}
+            onSelect={onSelect}
+            afterMove={afterMove}
+            disabled={choice !== null && move.name !== choice}
+          />
         ))}
     </div>
   );

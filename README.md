@@ -16,6 +16,8 @@ It's important to make the best move, even when you are in an unfavorable situat
 
 ## Developer Notes
 
+- Run ```python3 -m venv venv```, ```pip install -r requirements.txt```, then ```pre-commit install```
+
 ### Backend
 - Run `dotnet run` in `/backend` to start the backend at `localhost:5256`
 - If a change was made that affects the logic of player/dealer interactions or probabilities, the command will fail, and you can view changes in `/Test/PlayerInteractions.txt` or `/Test/DealerInteractions.txt`

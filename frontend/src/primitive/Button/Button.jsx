@@ -18,7 +18,11 @@ export function Button({ text, onClick, disabled = false, loading = false }) {
       onMouseLeave={handleMouseUp}
       disabled={loading || disabled}
     >
-      {loading ? <Loading size={'25px'} /> : <h1 className="button-text">{text}</h1>}
+      {loading ? (
+        <Loading size={'25px'} />
+      ) : (
+        <h1 className="button-text">{text}</h1>
+      )}
     </button>
   );
 }
