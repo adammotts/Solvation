@@ -1,4 +1,5 @@
 using Solvation.Algorithms;
+using Solvation.Services;
 using DotNetEnv;
 
 DotNetEnv.Env.Load();
@@ -20,6 +21,10 @@ builder.Services.AddCors(options =>
 builder.Services.AddControllers();
 builder.Services.AddOpenApi();
 builder.Services.AddSingleton<MongoDbService>();
+
+builder.Services.AddScoped<IGameService, GameService>();
+builder.Services.AddScoped<ISessionService, SessionService>();
+builder.Services.AddScoped<IHandService, HandService>();
 
 var app = builder.Build();
 

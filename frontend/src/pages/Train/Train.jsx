@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Title, Subtitle, Button, Loading, Error } from '../../primitive';
 import { Choices, Cards } from '../../components';
+import { sessionService } from '../../services';
 import './Train.css';
 
 export function Train() {
@@ -36,10 +37,7 @@ export function Train() {
   }
 
   useEffect(() => {
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/session/${sessionId}`, {
-      method: 'GET',
-    })
-      .then((response) => response.json())
+    sessionService.getSession(sessionId)
       .then((data) => {
         if (!data.ended) {
           setPlayerCards(data.hand.playerCards);
@@ -62,14 +60,7 @@ export function Train() {
 
   function afterMove(move) {
     setLoading(true);
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/session/${sessionId}`, {
-      method: 'PATCH',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ move: move.name, label: move.label }),
-    })
-      .then((response) => response.json())
+    sessionService.makeMove(sessionId, move.name, move.label)
       .then((data) => {
         setPlayerCards(data.hand.playerCards);
         setDealerCards(data.hand.dealerCards);
@@ -80,6 +71,7 @@ export function Train() {
       })
       .catch((error) => {
         setError(error);
+        setLoading(false);
       });
   }
 
