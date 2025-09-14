@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Title, Button } from '../../primitive';
 import { useNavigate } from 'react-router-dom';
+import apiService from '../../services/api';
 import Spade from '../../assets/spade.png';
 import './Home.css';
 
@@ -10,22 +11,14 @@ export function Home() {
 
   const handleTrainClick = () => {
     setLoading(true);
-    fetch(`${process.env.REACT_APP_API_BASE_URL}/session`, {
-      method: 'POST',
-    })
-      .then((response) => {
-        if (response.ok) {
-          return response.json();
-        } else {
-          throw new Error('Error generating session');
-        }
-      })
+    apiService.createSession()
       .then((data) => {
         navigate(`/train/${data.id}`);
         setLoading(false);
       })
       .catch((error) => {
         console.error('Error:', error);
+        setLoading(false);
       });
   };
 

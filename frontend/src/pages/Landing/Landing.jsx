@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Loading, Error, Title } from '../../primitive';
 import { Choices } from '../../components';
 import { useNavigate } from 'react-router-dom';
+import apiService from '../../services/api';
 import './Landing.css';
 
 export function Landing() {
@@ -17,24 +18,21 @@ export function Landing() {
       setChoice(move);
     }
   }
-    useEffect(() => {
-      fetch(`${process.env.REACT_APP_API_BASE_URL}/game-expected-value`, {
-        method: 'GET',
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          setGameExpectedValue({
-            Play: data.play,
-            Abstain: data.abstain,
-          });
-          setLoading(false);
-        })
-        .catch((error) => {
-          setLoading(false);
-          setError(error);
+  useEffect(() => {
+    apiService.getGameExpectedValue()
+      .then((data) => {
+        setGameExpectedValue({
+          Play: data.play,
+          Abstain: data.abstain,
         });
-    }, []);
-  
+        setLoading(false);
+      })
+      .catch((error) => {
+        setLoading(false);
+        setError(error);
+      });
+  }, []);
+
   if (error) {
     console.log(error);
     return <Error />;
