@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Title, Button } from '../../primitive';
 import { useNavigate } from 'react-router-dom';
-import apiService from '../../services/api';
+import { sessionService } from '../../services';
 import Spade from '../../assets/spade.png';
 import './Home.css';
 
@@ -11,7 +11,7 @@ export function Home() {
 
   const handleTrainClick = () => {
     setLoading(true);
-    apiService.createSession()
+    sessionService.createSession()
       .then((data) => {
         navigate(`/train/${data.id}`);
         setLoading(false);

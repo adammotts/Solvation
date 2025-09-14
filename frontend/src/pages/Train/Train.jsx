@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Title, Subtitle, Button, Loading, Error } from '../../primitive';
 import { Choices, Cards } from '../../components';
-import apiService from '../../services/api';
+import { sessionService } from '../../services';
 import './Train.css';
 
 export function Train() {
@@ -37,7 +37,7 @@ export function Train() {
   }
 
   useEffect(() => {
-    apiService.getSession(sessionId)
+    sessionService.getSession(sessionId)
       .then((data) => {
         if (!data.ended) {
           setPlayerCards(data.hand.playerCards);
@@ -60,7 +60,7 @@ export function Train() {
 
   function afterMove(move) {
     setLoading(true);
-    apiService.makeMove(sessionId, move.name, move.label)
+    sessionService.makeMove(sessionId, move.name, move.label)
       .then((data) => {
         setPlayerCards(data.hand.playerCards);
         setDealerCards(data.hand.dealerCards);

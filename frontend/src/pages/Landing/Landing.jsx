@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Loading, Error, Title } from '../../primitive';
 import { Choices } from '../../components';
 import { useNavigate } from 'react-router-dom';
-import apiService from '../../services/api';
+import { gameService } from '../../services';
 import './Landing.css';
 
 export function Landing() {
@@ -19,7 +19,7 @@ export function Landing() {
     }
   }
   useEffect(() => {
-    apiService.getGameExpectedValue()
+    gameService.getGameExpectedValue()
       .then((data) => {
         setGameExpectedValue({
           Play: data.play,
